@@ -5,6 +5,8 @@ import logo from '../images/logo4.png'
 import telegramImg from '../images/telegram.png'
 import discordImg from '../images/discord.png'
 import twitterImg from '../images/twitter.png'
+import everpayImg from '../images/everpay.png'
+import githubImg from '../images/github.png'
 
 // eslint-disable-next-line no-undef
 // eslint-disable-next-line no-unused-vars
@@ -25,6 +27,12 @@ const props = defineProps<{
       </div>
     </div>
     <div class="flex flex-row items-center justify-center md:justify-end">
+      <a href="https://everpay.io" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
+        <img :src="everpayImg" class="block w-6 h-6">
+      </a>
+      <a href="https://github.com/permaswap/perma-website" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
+        <img :src="githubImg" class="block w-6 h-6">
+      </a>
       <a href="https://twitter.com/FinanceEver" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
         <img :src="twitterImg" class="block w-6 h-6">
       </a>
