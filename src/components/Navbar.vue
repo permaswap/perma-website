@@ -48,7 +48,10 @@ const changeLocale = (lang: string) => {
         <span class="cursor-pointer" :class="locale === 'en' ? 'text-white' : ''" @click="changeLocale('en')">En</span>
       </div>
       <a
-        href="#"
+        :href="locale === 'zh' ?
+          'https://mirror.xyz/permaswap.eth/kdg0iXx1jB-vXYEc_WEAeTNX_sGjv8BXksHxcFdoKjo' :
+          'https://mirror.xyz/permaswap.eth/ustZcDgavlm4xmYI26thEAj8W2cXlZpRkG5Jqz0iS14'"
+        target="_blank"
         class="text-white bg-black text-sm font-normal px-5 py-2.5 lg:text-base lg:font-medium lg:px-7 lg:py-3 hover:bg-permaGreen transition-all duration-300"
         style="border: 1px solid #84C085;">
         {{ t('white_paper') }}
