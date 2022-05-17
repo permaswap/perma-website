@@ -33,7 +33,7 @@ const props = defineProps<{
       <a href="https://github.com/permaswap/perma-website" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
         <img :src="githubImg" class="block w-6 h-6">
       </a>
-      <a href="https://twitter.com/FinanceEver" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <a href="https://twitter.com/permaswap" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
         <img :src="twitterImg" class="block w-6 h-6">
       </a>
       <a href="https://discord.gg/WM5MQZGVPF" target="_blank" class="block w-6 h-6 mr-8 opacity-50 transition-opacity duration-300 hover:opacity-100">
