@@ -37,7 +37,7 @@ const messages = {
   roadmap_2_2: 'Governance through PermaDAO',
   roadmap_3_1: 'Start the Forerunner network',
   roadmap_3_2: 'Start Staking liquidity mining',
-  roadmap_3_3: 'Token negotialbe',
+  roadmap_3_3: 'Negotiable Token',
   roadmap_4_1: 'Start the Prophet network and open the era of multiple Routers',
   roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation."
 }
