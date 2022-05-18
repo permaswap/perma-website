@@ -9,7 +9,7 @@ const messages = {
   advantage_3_title: 'Flexible configuration',
   advantage_3_desc: 'Network protocols support multiple types of AMM market-making curves. LP nodes can select market-making curves according to their own requirements.',
   advantage_4_title: 'None MEV',
-  advantage_4_desc: 'Users sign orders with a deterministic bundle that identifies income as well as expenditure, the bot can’t carry out MEC attacks nor can it utilize user’s assets for arbitrage.',
+  advantage_4_desc: 'Users sign orders with a deterministic bundle that identifies income as well as expenditure, the bot can’t carry out MEV attacks nor can it utilize user’s assets for arbitrage.',
   advantage_5_title: 'Assets self-custody',
   advantage_5_desc: 'Private keys and assets are kept in the hands of the LPs, attack vectors are decentralized and assets are highly secure. No need to worry about the risk of complex smart contract code implementations. LP nodes only follow the simplest mathematical notation for quoting and signing. Simple and easy to securely audit.',
   milestone: 'Milestone',
