@@ -166,11 +166,11 @@ onMounted(async () => {
         <div
           v-for="(name, nameIndex) in nftCollections"
           :key="nameIndex"
-          class="mt-4 p-2"
-          style="background: #171717;border-radius: 4px">
-          <div class="flex flex-row items-center justify-between" @click="handleActive(name)">
+          class="mt-4 collection-item"
+        >
+          <div class="flex flex-row items-center justify-between cursor-pointer p-2 md:py-12 md:px-16" @click="handleActive(name)">
             <div class="flex flex-row items-center justify-start">
-              <div class="flex flex-row items-center justify-center collection-img-wrap mr-2">
+              <div class="flex flex-row items-center justify-center collection-img-wrap mr-2 md:mr-8">
                 <img :src="batchNftStack[name][0].imageUrl" class="collection-img">
               </div>
               <div class="collection-main">
@@ -184,8 +184,8 @@ onMounted(async () => {
             </div>
             <img :src="iconDropdown3" class="transition delay-300 transform" :class="`${activeName === name ? 'rotate-180' : 'rotate-0'}`">
           </div>
-          <div :class="activeName === name ? 'block' : 'hidden'">
-            <table class="mt-4" style="width:100%">
+          <div class="p-2 md:pb-12 md:px-16" :class="activeName === name ? 'block' : 'hidden'">
+            <table style="width:100%">
               <thead>
                 <tr style="background: rgba(40, 66, 34, 0.2);border-radius: 4px;color: rgba(255, 255, 255, 0.85);">
                   <th class="py-1 pl-2 text-left" style="width:30%">
@@ -226,7 +226,7 @@ onMounted(async () => {
         Arweave NFT
       </h3>
       <div
-        class="text-center cursor-not-allowed font-bold mt-4 text-sm md:text-base py-3 w-32 md:w-36"
+        class="text-center cursor-not-allowed font-bold mt-4 md:mt-8 text-sm md:text-base py-3 w-32 md:w-36"
         style="color:#5D806E;background: linear-gradient(268.01deg, rgba(41, 41, 41, 0.8) -9.16%, rgba(51, 51, 51, 0.8) 109.32%);"
       >
         {{ t('coming_soon') }}
@@ -256,6 +256,10 @@ onMounted(async () => {
   max-width: 148px;
   display: block;
 }
+.collection-item {
+  background: #171717;
+  border-radius: 4px;
+}
 .collection-img-wrap {
   width: 82px;
   height: 82px;
@@ -272,6 +276,7 @@ onMounted(async () => {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.45);
 }
+
 @media (min-width: 768px) {
   .sale-item {
     border: 3px solid rgba(255, 255, 255, 0.25);
@@ -287,6 +292,27 @@ onMounted(async () => {
     max-height:300px;
     max-width: 300px;
     display: block;
+  }
+  .collection-item {
+    border-radius: 8px;
+  }
+  .collection-img-wrap {
+    width: 148px;
+    height: 148px;
+  }
+  .collection-img {
+    max-width: 148px;
+    max-height: 148px;
+  }
+  .collection-main {
+    width: auto;
+  }
+  .collection-main-name {
+    font-size: 24px;
+  }
+  .collection-main-desc {
+    margin-top: 16px;
+    font-size: 18px;
   }
 }
 </style>
