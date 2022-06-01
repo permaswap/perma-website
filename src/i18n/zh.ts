@@ -39,7 +39,25 @@ const messages = {
   roadmap_3_2: '开启 PSN Staking 流动性挖矿',
   roadmap_3_3: 'PSN 正式开始流通',
   roadmap_4_1: '启动 Prophet 网络，开启多 Routers 时代',
-  roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营'
+  roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营',
+  nft: {
+    certified_nft: '认证的 NFT',
+    certified_nft_desc: 'everPay NFT 持有者可参与 Permaswap 先驱者挖矿',
+    nft_on_sale: '在售的 NFT',
+    price_low_to_high: '价格：从低到高',
+    price_high_to_low: '价格：从高到低',
+    sort_by: '价格排序',
+    reset: '重置',
+    nft_name: 'NFT 名称',
+    state: '状态',
+    holder: '持有者地址',
+    state_on_sale: '在售中',
+    state_bidding: '去出价',
+    state_under_bid: '出价中',
+    collect: '收起',
+    view_more: '查看更多',
+    click_to_see_more: '点击并查看系列下每个NFT状态'
+  }
 }
 
 export default messages

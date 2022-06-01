@@ -86,35 +86,35 @@ onMounted(async () => {
   <div style="box-sizing:border-box;" class="px-4 xl:w-1200px mx-auto pt-40 lg:pt-60">
     <div class="pb-12 lg:pb-40">
       <h1 class="pb-2 font-bold text-28px lg:text-55px">
-        Certified NFT
+        {{ t('nft.certified_nft') }}
       </h1>
       <p class="text-base lg:text-24px font-light" style="color: rgba(255, 255, 255, 0.65);">
-        Holders of everPay NFT can participate in permaswap pioneer mining.
+        {{ t('nft.certified_nft_desc') }}
       </p>
     </div>
 
     <div class="onsale-area">
       <div class="flex flex-row items-center justify-between">
         <h2 class="text-18px lg:text-24px">
-          NFT on sale
+          {{ t('nft.nft_on_sale') }}
         </h2>
         <div class="text-sm lg:text-18px text-nftGreen cursor-pointer flex flex-row items-center relative" @click="sortbarVisible = !sortbarVisible">
-          <span v-if="sortIndex === 0">Price: Low to High</span>
-          <span v-else-if="sortIndex === 1">Price: High to Low</span>
-          <span v-else-if="sortIndex === 2">Sort by</span>
+          <span v-if="sortIndex === 0">{{ t('nft.price_low_to_high') }}</span>
+          <span v-else-if="sortIndex === 1">{{ t('nft.price_high_to_low') }}</span>
+          <span v-else-if="sortIndex === 2">{{ t('nft.sort_by') }}</span>
           <img :src="iconDropdown" class="transition delay-300 transform" :class="`${sortbarVisible ? 'rotate-180' : 'rotate-0'}`">
           <ul
             v-if="sortbarVisible"
             class="dropdown-area absolute text-white w-200px right-0 top-10 text-right bg-black opacity-90"
             style="color:rgba(255, 255, 255, 0.85);">
             <li class="py-4 px-6" @click="sortIndex = 0">
-              Price: Low to High
+              {{ t('nft.price_low_to_high') }}
             </li>
             <li class="py-4 px-6" @click="sortIndex = 1">
-              Price: High to Low
+              {{ t('nft.price_high_to_low') }}
             </li>
             <li class="py-4 px-6" @click="sortIndex = 2">
-              Reset
+              {{ t('nft.reset') }}
             </li>
           </ul>
         </div>
@@ -149,7 +149,7 @@ onMounted(async () => {
         <span
           class="text-sm md:text-20px cursor-pointer"
           style="color:rgba(132, 192, 133, 0.65)"
-          @click="showMoreSaleItems = !showMoreSaleItems">{{ showMoreSaleItems ? 'Collect' : 'View More' }}</span>
+          @click="showMoreSaleItems = !showMoreSaleItems">{{ showMoreSaleItems ? t('nft.collect') : t('nft.view_more') }}</span>
         <img
           :src="iconDropdown2"
           class="transition delay-300 transform  cursor-pointer"
@@ -178,7 +178,7 @@ onMounted(async () => {
                   {{ name }}
                 </p>
                 <p class="collection-main-desc">
-                  You can expand and see the information of each nft
+                  {{ t('nft.click_to_see_more') }}
                 </p>
               </div>
             </div>
@@ -189,13 +189,13 @@ onMounted(async () => {
               <thead>
                 <tr style="background: rgba(40, 66, 34, 0.2);border-radius: 4px;color: rgba(255, 255, 255, 0.85);">
                   <th class="py-1 pl-2 text-left" style="width:30%">
-                    NFT Name
+                    {{ t('nft.nft_name') }}
                   </th>
                   <th class="text-left" style="width:30%;">
-                    State
+                    {{ t('nft.state') }}
                   </th>
                   <th class="pr-2 text-right" style="width:40%;">
-                    Holder Address
+                    {{ t('nft.holder') }}
                   </th>
                 </tr>
               </thead>
@@ -208,7 +208,7 @@ onMounted(async () => {
                     <a :href="nft.permaLink" target="_blank">{{ nft.name }}</a>
                   </td>
                   <td class="text-left" style="width:30%;">
-                    <a :href="nft.permaLink" target="_blank">{{ nft.price ? 'On Sale' : (nft.offer ? 'Under Bid' : 'Bidding') }}</a>
+                    <a :href="nft.permaLink" target="_blank">{{ nft.price ? t('nft.state_on_sale') : (nft.offer ? t('nft.state_under_bid') : t('nft.state_bidding')) }}</a>
                   </td>
                   <td class="pr-2 text-right" style="">
                     <a :href="`https://opensea.io/${nft.owner}`" target="_blank">{{ nft.owner.slice(0, 4) }}...{{ nft.owner.slice(-4) }}</a>
