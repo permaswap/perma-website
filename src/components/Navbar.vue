@@ -28,19 +28,26 @@ const changeLocale = (lang: string) => {
     :class="scrollTop === 0 ? 'pt-3 lg:pt-16' : 'pt-3'"
   >
     <!-- PC 端 -->
-    <img v-if="+scrollTop === 0" :src="logo3" class="hidden md:block h-6">
-    <img v-else :src="logo4" class="hidden md:block h-8">
-    <!-- 移动端 -->
-    <img
-      :src="logo1"
-      class="h-5 block md:hidden"
-    >
+    <router-link to="/">
+      <img v-if="+scrollTop === 0" :src="logo3" class="hidden md:block h-6">
+      <img v-else :src="logo4" class="hidden md:block h-8">
+      <!-- 移动端 -->
+      <img
+        :src="logo1"
+        class="h-5 block md:hidden"
+      >
+    </router-link>
     <!-- PC 端中间 logo -->
-    <img
+    <!-- <img
       :src="logo1"
       class="h-8 absolute left-1/2 -translate-x-1/2"
       :class="scrollTop === 0 ? 'hidden lg:block' : 'hidden'"
-    >
+    > -->
+    <div class="flex flex-1 ml-12">
+      <router-link to="/nft">
+        NFT
+      </router-link>
+    </div>
     <div class="flex flex-row items-center justify-end">
       <div class="flex flex-row items-center mr-4 md:mr-14 text-sm md:text-15px text-permaGrey">
         <span class="cursor-pointer" :class="locale === 'zh' ? 'text-white' : ''" @click="changeLocale('zh')">中文</span>

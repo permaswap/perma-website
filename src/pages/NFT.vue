@@ -269,7 +269,7 @@ onMounted(async () => {
   max-height: 82px;
 }
 .collection-main {
-  width: 240px;
+  width: 220px;
 }
 .collection-main-desc {
   margin-top: 4px;

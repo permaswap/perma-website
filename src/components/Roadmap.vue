@@ -72,10 +72,12 @@ const roadmaps = [
 const activeIndex = ref(-1)
 watch(props, () => {
   const eleContainer = document.getElementById('roadmap-container')
-  const offTop = (eleContainer as any).getBoundingClientRect().top + window.scrollY
-  // 滚动到 2/3 屏幕开始点亮
-  const active = Math.floor((props.scrollTop + window.innerHeight / 3 * 2 - offTop) / 205)
-  activeIndex.value = active
+  if (eleContainer && eleContainer.getBoundingClientRect) {
+    const offTop = (eleContainer as any).getBoundingClientRect().top + window.scrollY
+    // 滚动到 2/3 屏幕开始点亮
+    const active = Math.floor((props.scrollTop + window.innerHeight / 3 * 2 - offTop) / 205)
+    activeIndex.value = active
+  }
 })
 
 </script>
