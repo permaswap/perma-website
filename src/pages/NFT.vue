@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { getNfts } from '@/lib/api'
 import { computed, onMounted, Ref, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import iconDropdown from '../images/icon-dropdown.png'
 import iconDropdown2 from '../images/icon-dropdown2.png'
+import iconDropdown3 from '../images/icon-dropdown3.png'
 
+const { t } = useI18n()
 // eslint-disable-next-line no-unused-vars
 const windowWidth = ref(document.documentElement.offsetWidth)
 const sortbarVisible = ref(false)
@@ -39,6 +42,36 @@ const saleNftLines = computed(() => {
   })
   return result
 })
+
+const nftCollections = computed(() => {
+  const result: string[] = []
+  nfts.value.forEach((nft) => {
+    if (!result.includes(nft.collection)) {
+      result.push(nft.collection)
+    }
+  })
+  return result
+})
+
+const batchNftStack = computed(() => {
+  const stack = {} as any
+  nfts.value.forEach((nft) => {
+    if (stack[nft.collection] == null) {
+      stack[nft.collection] = []
+    }
+    stack[nft.collection].push(nft)
+  })
+  return stack
+})
+
+const activeName = ref('')
+const handleActive = (name: string) => {
+  if (activeName.value === name) {
+    activeName.value = ''
+  } else {
+    activeName.value = name
+  }
+}
 
 onMounted(async () => {
   window.addEventListener('resize', () => {
@@ -124,6 +157,81 @@ onMounted(async () => {
           @click="showMoreSaleItems=!showMoreSaleItems">
       </div>
     </div>
+
+    <div class="ethereum-nft-area pt-8 md:pt-24">
+      <h3 class="text-lg md:text-28px">
+        Ethereum NFT
+      </h3>
+      <div>
+        <div
+          v-for="(name, nameIndex) in nftCollections"
+          :key="nameIndex"
+          class="mt-4 p-2"
+          style="background: #171717;border-radius: 4px">
+          <div class="flex flex-row items-center justify-between" @click="handleActive(name)">
+            <div class="flex flex-row items-center justify-start">
+              <div class="flex flex-row items-center justify-center collection-img-wrap mr-2">
+                <img :src="batchNftStack[name][0].imageUrl" class="collection-img">
+              </div>
+              <div class="collection-main">
+                <p class="collection-main-name">
+                  {{ name }}
+                </p>
+                <p class="collection-main-desc">
+                  You can expand and see the information of each nft
+                </p>
+              </div>
+            </div>
+            <img :src="iconDropdown3" class="transition delay-300 transform" :class="`${activeName === name ? 'rotate-180' : 'rotate-0'}`">
+          </div>
+          <div :class="activeName === name ? 'block' : 'hidden'">
+            <table class="mt-4" style="width:100%">
+              <thead>
+                <tr style="background: rgba(40, 66, 34, 0.2);border-radius: 4px;color: rgba(255, 255, 255, 0.85);">
+                  <th class="py-1 pl-2 text-left" style="width:30%">
+                    NFT Name
+                  </th>
+                  <th class="text-left" style="width:30%;">
+                    State
+                  </th>
+                  <th class="pr-2 text-right" style="width:40%;">
+                    Holder Address
+                  </th>
+                </tr>
+              </thead>
+              <tbody style="color: rgba(255, 255, 255, 0.65);">
+                <tr
+                  v-for="(nft, nftIndex) in batchNftStack[name]"
+                  :key="nftIndex"
+                >
+                  <td class="py-3 pl-2 text-left">
+                    <a :href="nft.permaLink" target="_blank">{{ nft.name }}</a>
+                  </td>
+                  <td class="text-left" style="width:30%;">
+                    <a :href="nft.permaLink" target="_blank">{{ nft.price ? 'On Sale' : (nft.offer ? 'Under Bid' : 'Bidding') }}</a>
+                  </td>
+                  <td class="pr-2 text-right" style="">
+                    <a :href="`https://opensea.io/${nft.owner}`" target="_blank">{{ nft.owner.slice(0, 4) }}...{{ nft.owner.slice(-4) }}</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arweave-nft-area py-8 md:py-24">
+      <h3 class="text-lg md:text-28px">
+        Arweave NFT
+      </h3>
+      <div
+        class="text-center cursor-not-allowed font-bold mt-4 text-sm md:text-base py-3 w-32 md:w-36"
+        style="color:#5D806E;background: linear-gradient(268.01deg, rgba(41, 41, 41, 0.8) -9.16%, rgba(51, 51, 51, 0.8) 109.32%);"
+      >
+        {{ t('coming_soon') }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -147,6 +255,22 @@ onMounted(async () => {
   max-height:148px;
   max-width: 148px;
   display: block;
+}
+.collection-img-wrap {
+  width: 82px;
+  height: 82px;
+}
+.collection-img {
+  max-width: 82px;
+  max-height: 82px;
+}
+.collection-main {
+  width: 240px;
+}
+.collection-main-desc {
+  margin-top: 4px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
 }
 @media (min-width: 768px) {
   .sale-item {
