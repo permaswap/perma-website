@@ -56,7 +56,7 @@ const messages = {
     state_under_bid: '出价中',
     collect: '收起',
     view_more: '查看更多',
-    click_to_see_more: '点击并查看系列下每个NFT状态'
+    click_to_see_more: '点击查看系列下每个NFT状态'
   }
 }
 
