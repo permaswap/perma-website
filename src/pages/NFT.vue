@@ -159,7 +159,7 @@ onMounted(async () => {
     </div>
 
     <div class="ethereum-nft-area pt-8 md:pt-24">
-      <h3 class="text-lg md:text-28px">
+      <h3 class="text-lg md:text-24px">
         Ethereum NFT
       </h3>
       <div>
@@ -222,7 +222,7 @@ onMounted(async () => {
     </div>
 
     <div class="arweave-nft-area py-8 md:py-24">
-      <h3 class="text-lg md:text-28px">
+      <h3 class="text-lg md:text-24px">
         Arweave NFT
       </h3>
       <div
