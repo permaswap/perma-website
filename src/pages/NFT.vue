@@ -46,8 +46,8 @@ const saleNftLines = computed(() => {
 const nftCollections = computed(() => {
   const result: string[] = []
   nfts.value.forEach((nft) => {
-    if (!result.includes(nft.collection)) {
-      result.push(nft.collection)
+    if (!result.includes(nft.collectionName)) {
+      result.push(nft.collectionName)
     }
   })
   return result
@@ -56,10 +56,10 @@ const nftCollections = computed(() => {
 const batchNftStack = computed(() => {
   const stack = {} as any
   nfts.value.forEach((nft) => {
-    if (stack[nft.collection] == null) {
-      stack[nft.collection] = []
+    if (stack[nft.collectionName] == null) {
+      stack[nft.collectionName] = []
     }
-    stack[nft.collection].push(nft)
+    stack[nft.collectionName].push(nft)
   })
   return stack
 })
