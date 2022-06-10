@@ -42,7 +42,7 @@ const messages = {
   roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation.",
   nft: {
     certified_nft: 'Certified NFTs',
-    certified_nft_desc: 'Holders of everPay NFT can participate in permaswap percursor mining.',
+    certified_nft_desc: 'everPay NFT holders can partake in Permaswap percursos mining.',
     nft_on_sale: 'NFTs on sale',
     price_low_to_high: 'Price: Low to High',
     price_high_to_low: 'Price: High to Low',
@@ -56,7 +56,7 @@ const messages = {
     state_under_bid: 'Under Bid',
     collect: 'Collect',
     view_more: 'View More',
-    click_to_see_more: 'You can expand and see the information of each nft'
+    click_to_see_more: 'You can expand and see information from each NFT'
   }
 }
 
