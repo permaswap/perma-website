@@ -41,9 +41,9 @@ const messages = {
   roadmap_4_1: 'Start the Prophet network and open the era of multiple Routers',
   roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation.",
   nft: {
-    certified_nft: 'Certified NFT',
+    certified_nft: 'Certified NFTs',
     certified_nft_desc: 'Holders of everPay NFT can participate in permaswap percursor mining.',
-    nft_on_sale: 'NFT on sale',
+    nft_on_sale: 'NFTs on sale',
     price_low_to_high: 'Price: Low to High',
     price_high_to_low: 'Price: High to Low',
     sort_by: 'Sort by',
