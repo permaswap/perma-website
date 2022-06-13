@@ -39,7 +39,25 @@ const messages = {
   roadmap_3_2: 'Start Staking liquidity mining',
   roadmap_3_3: 'Negotiable Token',
   roadmap_4_1: 'Start the Prophet network and open the era of multiple Routers',
-  roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation."
+  roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation.",
+  nft: {
+    certified_nft: 'Certified NFTs',
+    certified_nft_desc: 'everPay NFT holders can partake in Permaswap percursos mining.',
+    nft_on_sale: 'NFTs on sale',
+    price_low_to_high: 'Price: Low to High',
+    price_high_to_low: 'Price: High to Low',
+    sort_by: 'Sort by',
+    reset: 'Reset',
+    nft_name: 'NFT Name',
+    state: 'State',
+    holder: 'Holder Address',
+    state_on_sale: 'On Sale',
+    state_bidding: 'Bidding',
+    state_under_bid: 'Under Bid',
+    collect: 'Collect',
+    view_more: 'View More',
+    click_to_see_more: 'You can expand and see information from each NFT'
+  }
 }
 
 export default messages
