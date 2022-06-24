@@ -5,19 +5,18 @@ import { SwiperSlide } from 'swiper/vue/swiper-slide'
 import 'swiper/swiper.scss'
 import 'swiper/swiper-bundle.css'
 import { useI18n } from 'vue-i18n'
-import milestoneBack from '../images/milestone-back.png'
-import precursor from '../images/precursor.png'
-import forerunner from '../images/forerunner.png'
-import prophet from '../images/prophet.png'
-import flood from '../images/flood.png'
-
+interface MilestonesArr {
+  title: string
+  iconSrc: string
+  items: string[]
+}
 const { t } = useI18n()
 
-const milestonesArr = [
+const milestonesArr:MilestonesArr[][] = [
   [
     {
       title: 'precursor',
-      iconSrc: precursor,
+      iconSrc: 'precursor.png',
       items: [
         'milestone_1_1',
         'milestone_1_2',
@@ -27,7 +26,7 @@ const milestonesArr = [
     },
     {
       title: 'forerunner',
-      iconSrc: forerunner,
+      iconSrc: 'forerunner.png',
       items: [
         'milestone_2_1',
         'milestone_2_2',
@@ -39,7 +38,7 @@ const milestonesArr = [
   [
     {
       title: 'prophet',
-      iconSrc: prophet,
+      iconSrc: 'prophet.png',
       items: [
         'milestone_3_1',
         'milestone_3_2',
@@ -49,7 +48,7 @@ const milestonesArr = [
     },
     {
       title: 'flood',
-      iconSrc: flood,
+      iconSrc: 'flood.png',
       items: [
         'milestone_4_1',
         'milestone_4_2',
@@ -68,7 +67,7 @@ const milestoneArr = [
 </script>
 
 <template>
-  <div class="pb-20 milestone-container" :style="`background-image:url(${milestoneBack});background-repeat:no-repeat;`">
+  <div class="pb-20 milestone-container milestone-Bg bg-no-repeat" style="">
     <div
       class="px-6 mx-auto xl:w-1024px 2xl:w-1342px"
     >
@@ -94,7 +93,7 @@ const milestoneArr = [
               {{ milestone.title.toUpperCase() }}
             </div>
             <div class="flex flex-row items-center justify-start mt-5 md:mt-10">
-              <img :src="milestone.iconSrc" class="mr-5 xl:mr-10 w-20 h-20 xl:w-100px xl:h-100px 2xl:w-155px 2xl:h-155px">
+              <img :src="require(`@/images/${milestone.iconSrc}`)" class="mr-5 xl:mr-10 w-20 h-20 xl:w-100px xl:h-100px 2xl:w-155px 2xl:h-155px">
               <ul>
                 <li
                   v-for="(item, indexItem) in milestone.items"
@@ -121,7 +120,7 @@ const milestoneArr = [
               <div class="text-base pt-7 pl-4" style="color: #8A8B8A;font-weight: 500;">
                 {{ milestone.title.toUpperCase() }}
               </div>
-              <img :src="milestone.iconSrc" style="width:133px;height:133px;margin: 36px auto;">
+              <img :src="require(`@/images/${milestone.iconSrc}`)" style="width:133px;height:133px;margin: 36px auto;">
               <ul class="pb-10">
                 <li
                   v-for="(item, indexItem) in milestone.items"
@@ -144,6 +143,9 @@ const milestoneArr = [
 </template>
 
 <style scoped>
+.milestone-Bg{
+  background-image: url('../images/milestone-back.png');
+}
 .milestone-container {
   background-position: 0 0;
 }

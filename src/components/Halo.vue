@@ -1,26 +1,13 @@
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue'
 import { useI18n } from 'vue-i18n'
-import permaGif from '../images/perma.gif'
-import haloBigBg from '../images/halo-ring-big-2.png'
-import haloSmallBg from '../images/halo-ring-small-3.png'
-import meltball from '../images/meltball.gif'
 
-// eslint-disable-next-line no-undef
-// eslint-disable-next-line no-unused-vars
 const props = defineProps<{
   windowWidth: number
 }>()
 
 const { t } = useI18n()
 
-const haloBg = computed(() => {
-  return props.windowWidth > 768 ? haloBigBg : haloSmallBg
-})
-
-const containerH = computed(() => {
-  return props.windowWidth > 768 ? props.windowWidth / 1720 * 945 : props.windowWidth / 375 * 413
-})
 const contentTop = computed(() => {
   return props.windowWidth > 768 ? props.windowWidth / 1720 * 300 : props.windowWidth / 375 * 150
 })
@@ -52,33 +39,37 @@ const ball2Left = computed(() => {
 </script>
 
 <template>
-  <div class="relative" :style="`height:${containerH}px;background-image:url(${haloBg});background-size:100% 100%;`">
-    <img class="absolute" :style="`width:${gifWidth}px;height:${gifHeight}px;left:50%;transform:translateX(-50%);top:${gifTop}px;`" :src="permaGif">
+  <div class="relative">
+    <img src="../images/halo-ring-big-2.png" class="md:block hidden">
+    <img src="../images/halo-ring-small-3.png" class="w-full md:hidden block" alt="">
+    <img class="absolute" :style="`width:${gifWidth}px;height:${gifHeight}px;left:50%;transform:translateX(-50%);top:${gifTop}px;`" src="@/images/perma.gif">
     <div class="w-full absolute" :style="`left:0;top:${contentTop}px;`">
       <div class="text-center font-bold text-white text-48px md:text-88px 2xl:text-122px">
         Permaswap
       </div>
-      <div class="text-center -mt-1 md:-mt-3 md:-mt-5 text-base md:text-lg 2xl:text-21px" :style="`color:#CACACA;`">
+      <div class="text-center -mt-1 md:-mt-5 text-base md:text-lg 2xl:text-21px text-everGray2">
         <div class="mx-auto w-72 md:w-auto">
           {{ t('slogan') }}
         </div>
       </div>
       <div
-        class="text-center cursor-not-allowed font-bold mt-4 md:mt-16 text-15px md:text-base py-3 mx-auto w-32 md:w-36"
-        style="color:#5D806E;background: linear-gradient(268.01deg, rgba(41, 41, 41, 0.8) -9.16%, rgba(51, 51, 51, 0.8) 109.32%);"
+        class="text-center text-everGray1 cursor-not-allowed font-bold mt-4 md:mt-16 text-15px bg-permaGreenBg md:text-base py-3 mx-auto w-32 md:w-36"
       >
         {{ t('coming_soon') }}
       </div>
     </div>
     <img
-      :src="meltball"
-      class="hidden xl:block absolute"
-      style="width:170.52px;height:172.25px;opacity: 0.9;"
+      src="@/images/meltball.gif"
+      class="hidden xl:block absolute opacity-90"
+      style="width:170.52px;height:172.25px;"
       :style="`top:${ball1Top}px;right:${ball1Right}px;`">
     <img
-      :src="meltball"
-      class="hidden xl:block absolute"
-      style="width:131.48px;height:132.81px;opacity: 0.8;transform: rotate(56.13deg);"
+      src="@/images/meltball.gif"
+      class="hidden xl:block absolute opacity-80"
+      style="width:131.48px;height:132.81px;transform: rotate(56.13deg);"
       :style="`top:${ball2Top}px;left:${ball2Left}px;`">
   </div>
 </template>
+<style scoped lang="scss">
+
+</style>
