@@ -2,40 +2,27 @@
 import { ref, defineProps, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { savedI18nStorageKey } from '@/constants'
-import logo1 from '../images/logo1.png'
-import logo3 from '../images/logo3.png'
-import logo4 from '../images/logo4.png'
-import menuLogo from '../images/menu.png'
 import { checkParentsHas } from '@/lib/util'
-
-// eslint-disable-next-line no-undef
-// eslint-disable-next-line no-unused-vars
-const props = defineProps<{
+defineProps<{
   scrollTop: number,
 }>()
-
 const isMenubarTarget = checkParentsHas('menu-bar')
-
 const { t, locale } = useI18n({ useScope: 'global' })
 const mobileMenu = ref(false)
-
 const changeLocale = (lang: string) => {
   window.localStorage.setItem(savedI18nStorageKey, lang)
   locale.value = lang
 }
-
 onMounted(() => {
   window.addEventListener('resize', () => {
     mobileMenu.value = false
   })
-
   document.addEventListener('click', (e) => {
     if (!isMenubarTarget(e.target as any)) {
       mobileMenu.value = false
     }
   })
 })
-
 </script>
 
 <template>
@@ -46,11 +33,11 @@ onMounted(() => {
   >
     <!-- PC 端 -->
     <router-link to="/">
-      <img v-if="+scrollTop === 0" :src="logo3" class="hidden md:block h-6">
-      <img v-else :src="logo4" class="hidden md:block h-8">
+      <img v-if="+scrollTop === 0" src="../images/logo3.png" class="hidden md:block h-6">
+      <img v-else src="../images/logo4.png" class="hidden md:block h-8">
       <!-- 移动端 -->
       <img
-        :src="logo1"
+        src="../images/logo1.png"
         class="h-5 block md:hidden"
       >
     </router-link>
@@ -85,7 +72,7 @@ onMounted(() => {
         style="width:42px;height:42px;box-sizing:border-box;background: linear-gradient(277.4deg, #3E583A 3.98%, rgba(128, 158, 123, 0.36) 98.4%);border: 1px solid #84C085;border-left:none;"
         @click="mobileMenu = !mobileMenu"
       >
-        <img class="" :src="menuLogo">
+        <img class="" src="../images/menu.png">
       </div>
     </div>
     <div

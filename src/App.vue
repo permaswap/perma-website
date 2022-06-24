@@ -3,7 +3,6 @@ import { ref, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 const scrollTop = ref(0)
 
-// eslint-disable-next-line no-unused-vars
 const windowWidth = ref(document.documentElement.offsetWidth)
 
 onMounted(() => {
