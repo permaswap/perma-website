@@ -1,31 +1,21 @@
 <script lang="ts" setup>
 import { defineProps, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-// import roadmapBack from '../images/roadmap-back.png'
-import timeline1 from '../images/timeline1.png'
-import timeline1Grey from '../images/timeline1Grey.png'
-import timeline2 from '../images/timeline2.png'
-import timeline2Grey from '../images/timeline2Grey.png'
-import timeline3 from '../images/timeline3.png'
-import timeline3Grey from '../images/timeline3Grey.png'
-import timeline4 from '../images/timeline4.png'
-import timeline4Grey from '../images/timeline4Grey.png'
-import timeline5 from '../images/timeline5.png'
-import timeline5Grey from '../images/timeline5Grey.png'
-
-// eslint-disable-next-line no-undef
-// eslint-disable-next-line no-unused-vars
+interface RoadmapsArr {
+  title: string
+  icon: string
+  activeIcon: string
+  items: string[]
+}
 const props = defineProps<{
   scrollTop: number
 }>()
-
 const { t } = useI18n()
-
-const roadmaps = [
+const roadmaps:RoadmapsArr[] = [
   {
     title: '2022 Q3',
-    icon: timeline1Grey,
-    activeIcon: timeline1,
+    icon: 'timeline1Grey.png',
+    activeIcon: 'timeline1.png',
     items: [
       'roadmap_1_1',
       'roadmap_1_2',
@@ -34,8 +24,8 @@ const roadmaps = [
   },
   {
     title: '2022 Q4',
-    icon: timeline2Grey,
-    activeIcon: timeline2,
+    icon: 'timeline2Grey.png',
+    activeIcon: 'timeline2.png',
     items: [
       'roadmap_2_1',
       'roadmap_2_2'
@@ -43,8 +33,8 @@ const roadmaps = [
   },
   {
     title: '2023 Q1',
-    icon: timeline3Grey,
-    activeIcon: timeline3,
+    icon: 'timeline3Grey.png',
+    activeIcon: 'timeline3.png',
     items: [
       'roadmap_3_1',
       'roadmap_3_2',
@@ -53,22 +43,21 @@ const roadmaps = [
   },
   {
     title: '2023 Q4',
-    icon: timeline4Grey,
-    activeIcon: timeline4,
+    icon: 'timeline4Grey.png',
+    activeIcon: 'timeline4.png',
     items: [
       'roadmap_4_1'
     ]
   },
   {
     title: '2024',
-    icon: timeline5Grey,
-    activeIcon: timeline5,
+    icon: 'timeline5Grey.png',
+    activeIcon: 'timeline5.png',
     items: [
       'roadmap_5_1'
     ]
   }
 ]
-
 const activeIndex = ref(-1)
 watch(props, () => {
   const eleContainer = document.getElementById('roadmap-container')
@@ -79,7 +68,6 @@ watch(props, () => {
     activeIndex.value = active
   }
 })
-
 </script>
 
 <template>
@@ -101,7 +89,7 @@ watch(props, () => {
             style="transition:background .6s;"
             :style="`background:${activeIndex >= index ? '#fff' : 'rgba(255, 255, 255, 0.1)'};`"
           >
-            <img :src="activeIndex >= index ? roadmap.activeIcon : roadmap.icon">
+            <img :src="require(`@/images/${activeIndex >= index ? roadmap.activeIcon : roadmap.icon}`)">
             <div
               v-if="index !== roadmaps.length - 1"
               class="absolute roadmap-bar"

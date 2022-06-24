@@ -2,17 +2,10 @@
 import { onMounted, defineProps } from 'vue'
 import { useI18n } from 'vue-i18n'
 import lottie from 'lottie-web'
-import featureBack from '../images/feature-back.png'
-import featureBackSmall from '../images/feature-back-small.png'
-
-// eslint-disable-next-line no-undef
-// eslint-disable-next-line no-unused-vars
-const props = defineProps<{
+defineProps<{
   windowWidth: number
 }>()
-
 const { t } = useI18n()
-
 const features = [
   {
     title: 'advantage_1_title',
@@ -51,7 +44,7 @@ onMounted(() => {
 <template>
   <div
     class="feature-container"
-    :style="`background-image:url(${windowWidth > 640 ? featureBack : featureBackSmall});background-position:0 0;background-repeat:no-repeat;`"
+    :style="`background-image:url(${windowWidth > 640 ? require('../images/feature-back.png') : require('../images/feature-back-small.png')});background-position:0 0;background-repeat:no-repeat;`"
   >
     <div
       class="px-6 pt-16 mx-auto xl:w-1024px 2xl:w-1342px"
