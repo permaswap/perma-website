@@ -27,14 +27,14 @@ onMounted(() => {
 
 <template>
   <div
-    class="navbar px-4 lg:px-8 xl:px-14 w-full fixed flex flex-row items-center justify-between z-10"
-    style="transition:padding .3s;"
-    :class="scrollTop === 0 ? 'py-3 lg:py-16' : 'py-3'"
+    class="lg:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10"
+    style="transition:margin .4s;height: 80px;"
+    :class="scrollTop === 0 ? 'mt-6 bg-black' : 'mt-0 navbar'"
   >
     <!-- PC 端 -->
     <router-link to="/">
-      <img v-if="+scrollTop === 0" src="../images/logo3.png" class="hidden md:block h-6">
-      <img v-else src="../images/logo4.png" class="hidden md:block h-8">
+      <!-- <img v-if="+scrollTop === 0" src="../images/logo3.png" class="hidden md:block h-6"> -->
+      <img src="../images/logo4.png" class="hidden md:block h-8">
       <!-- 移动端 -->
       <img
         src="../images/logo1.png"
@@ -53,7 +53,7 @@ onMounted(() => {
       </router-link>
     </div>
     <div class="flex flex-row items-center justify-end">
-      <div class="flex flex-row items-center mr-4 md:mr-14 text-sm md:text-15px text-permaGrey">
+      <div class="flex flex-row items-center mr-4 md:mr-14 text-14px md:text-base text-permaGrey">
         <span class="cursor-pointer" :class="locale === 'zh' ? 'text-white' : ''" @click="changeLocale('zh')">中文</span>
         <span class="h-3.5 w-px block mx-2 bg-permaGrey" />
         <span class="cursor-pointer" :class="locale === 'en' ? 'text-white' : ''" @click="changeLocale('en')">En</span>
@@ -91,11 +91,7 @@ onMounted(() => {
 
 <style scoped>
 .navbar {
-  background: rgba(18, 18, 18, 0.65);
-}
-@media (min-width: 1024px) {
-  .navbar {
-    background: none;
-  }
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(120px);
 }
 </style>

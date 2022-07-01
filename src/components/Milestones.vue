@@ -66,13 +66,13 @@ const milestoneArr = [
 <template>
   <div class="pb-20 milestone-container milestone-Bg bg-no-repeat" style="">
     <div
-      class="px-6 mx-auto xl:w-1024px 2xl:w-1342px"
+      class="px-6 mx-auto xl:w-1024px 2xl:w-1200px"
     >
-      <div style="color: #70B16E;margin-bottom:38px;" class="text-36px font-bold">
+      <div class="text-36px mb-9 font-space-gtotesk-bold text-permaGreen2">
         {{ t('milestone') }}
       </div>
       <!-- PC 端 -->
-      <div class="hidden md:block">
+      <div class="hidden md:block pt-9">
         <div
           v-for="(milestones, index) in milestonesArr"
           :key="index"
@@ -81,26 +81,25 @@ const milestoneArr = [
           <div
             v-for="milestone in milestones"
             :key="milestone.title"
-            class="pt-7 pb-16 pl-10 mb-5 w-48% h-250px 2xl:h-310px"
+            class="pt-7 pb-16 pl-7 mb-5 w-49% 2xl:h-310px h-300px rounded-3xl"
             :style="`
-              background: #171717;border-radius: 23.4984px;box-sizing:border-box;
+              background: #171717;;box-sizing:border-box;
             `"
           >
-            <div class="text-sm" style="color: #8A8B8A;font-weight: 500;">
+            <div class="text-sm sm:text-base font-space-gtotesk-medium" style="color: #8A8B8A;">
               {{ milestone.title.toUpperCase() }}
             </div>
-            <div class="flex flex-row items-center justify-start mt-5 md:mt-10">
-              <img :src="require(`@/images/${milestone.iconSrc}`)" class="mr-5 xl:mr-10 w-20 h-20 xl:w-100px xl:h-100px 2xl:w-155px 2xl:h-155px">
+            <div class="flex flex-row items-center justify-start mt-5 md:mt-8">
+              <img :src="require(`@/images/${milestone.iconSrc}`)" class="mr-5 xl:mr-10 w-20 h-20 xl:w-100px xl:h-100px 2xl:w-40 2xl:h-40">
               <ul>
                 <li
                   v-for="(item, indexItem) in milestone.items"
                   :key="indexItem"
-                  class="flex flex-row items-start justify-start mb-1"
-                  style="font-weight: 300;font-size: 16.4195px;color: #B8B8B8;line-height: 140%;"
+                  class="flex flex-row items-start text-permaGray3 justify-start mb-1 font-space-gtotesk-light text-14px"
                 >
                   <div
-                    style="width: 7.66px;height: 7.66px;border: 1.09464px solid #555555;border-radius:100%;"
-                    class="mr-2.5 relative top-2" />
+                    style="border: 1.09464px solid #555555;"
+                    class="mr-2.5 relative top-1.5 w-1.5 h-1.5 rounded-full" />
                   <div>{{ t(item) }}</div>
                 </li>
               </ul>
@@ -122,8 +121,8 @@ const milestoneArr = [
                 <li
                   v-for="(item, indexItem) in milestone.items"
                   :key="indexItem"
-                  class="flex flex-row items-start justify-start mb-1"
-                  style="font-weight: 300;font-size: 13px;color: #B8B8B8;line-height: 140%;"
+                  class="flex flex-row items-start justify-start mb-1 font-space-gtotesk-light text-permaGray3"
+                  style="font-size: 13px;line-height: 140%;"
                 >
                   <div
                     style="width: 4.64px;height: 4.64px;border:1.09464px solid #555555;border-radius:100%; top:7px;"
@@ -148,19 +147,10 @@ const milestoneArr = [
 }
 @media (min-width: 768px) {
   .milestone-container {
-    background-position: 50px 0;
+    background-position: 54% 0;
   }
 }
-@media (min-width: 1024px) {
-  .milestone-container {
-    background-position: 100px 0;
-  }
-}
-@media (min-width: 1280px) {
-  .milestone-container {
-    background-position: 500px 0;
-  }
-}
+
 </style>
 
 <style>

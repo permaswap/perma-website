@@ -33,11 +33,11 @@ const footerImgSrc:FooterSrcArr[] = [
 
 <template>
   <div
-    class="md:flex flex-row items-center justify-between mx-auto xl:w-1024px 2xl:w-1342px pb-16 sm:py-16 px-6"
+    class="md:flex flex-row items-center justify-between mx-auto xl:w-1024px 2xl:w-1200px pb-16 sm:py-16 px-6"
   >
     <div class="flex flex-col items-center mb-8 md:block md:mb-0">
       <img src="@/images/logo4.png" class="h-8 mb-3">
-      <div class="text-xs font-light" style="color:#8C8C8C">
+      <div class="text-xs font-space-gtotesk-light" style="color:#8C8C8C">
         ©2022 everFinance. All rights reserved
       </div>
     </div>

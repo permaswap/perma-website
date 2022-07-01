@@ -7,7 +7,6 @@ import iconDropdown2 from '../images/icon-dropdown2.png'
 import iconDropdown3 from '../images/icon-dropdown3.png'
 
 const { t } = useI18n()
-// eslint-disable-next-line no-unused-vars
 const windowWidth = ref(document.documentElement.offsetWidth)
 const sortbarVisible = ref(false)
 const showMoreSaleItems = ref(false)
@@ -85,17 +84,17 @@ onMounted(async () => {
 <template>
   <div style="box-sizing:border-box;" class="px-4 xl:w-1200px mx-auto pt-40 lg:pt-60">
     <div class="pb-12 lg:pb-40">
-      <h1 class="pb-2 font-bold text-28px lg:text-55px">
+      <h1 class="pb-2 font-bold text-32px lg:text-5xl">
         {{ t('nft.certified_nft') }}
       </h1>
-      <p class="text-base lg:text-24px font-light" style="color: rgba(255, 255, 255, 0.65);">
+      <p class="text-base lg:text-2xl font-light" style="color: rgba(255, 255, 255, 0.65);">
         {{ t('nft.certified_nft_desc') }}
       </p>
     </div>
 
     <div class="onsale-area">
       <div class="flex flex-row items-center justify-between">
-        <h2 class="text-18px lg:text-24px">
+        <h2 class="text-18px lg:text-2xl">
           {{ t('nft.nft_on_sale') }}
         </h2>
         <div class="text-sm lg:text-18px text-nftGreen cursor-pointer flex flex-row items-center relative" @click="sortbarVisible = !sortbarVisible">
@@ -134,7 +133,7 @@ onMounted(async () => {
             <div class="sale-item-img-wrap mb-2 md:mb-6 flex flex-row items-center justify-center">
               <img class="sale-item-img" :src="item.imageUrl">
             </div>
-            <div class="flex flex-row items-center justify-between text-sm md:text-20px">
+            <div class="flex flex-row items-center justify-between text-sm md:text-xl">
               <span
                 class="w-20 md:w-40 "
                 style="overflow:hidden;text-overflow: ellipsis;white-space: nowrap;color: rgba(255, 255, 255, 0.85);">
@@ -147,7 +146,7 @@ onMounted(async () => {
       </div>
       <div v-if="saleNftLines.length > 2" class="flex flex-row items-center justify-center md:justify-end mt-8 md:mt-16">
         <span
-          class="text-sm md:text-20px cursor-pointer"
+          class="text-sm md:text-xl cursor-pointer"
           style="color:rgba(132, 192, 133, 0.65)"
           @click="showMoreSaleItems = !showMoreSaleItems">{{ showMoreSaleItems ? t('nft.collect') : t('nft.view_more') }}</span>
         <img
@@ -159,7 +158,7 @@ onMounted(async () => {
     </div>
 
     <div class="ethereum-nft-area pt-8 md:pt-24">
-      <h3 class="text-lg md:text-24px">
+      <h3 class="text-lg md:text-2xl">
         Ethereum NFTs
       </h3>
       <div>
@@ -222,7 +221,7 @@ onMounted(async () => {
     </div>
 
     <div class="arweave-nft-area py-8 md:py-24">
-      <h3 class="text-lg md:text-24px">
+      <h3 class="text-lg md:text-2xl">
         Arweave NFTs
       </h3>
       <div
