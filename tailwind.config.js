@@ -40,7 +40,14 @@ module.exports = {
         permaGray3: '#B8B8B8',
         permaGreen: '#5D8F4B',
         permaGreen2: '#70B16E',
+        permaGreen3: '#142617',
+        permaGreen4: '#0D2A14',
+        permaHoverWhite: 'rgba(255, 255, 255, 0.85)',
+        permaWhite: 'rgba(255, 255, 255, 0.65)',
+        permaBorderGreen: 'rgba(46, 187, 72, 0.25)',
+        permaBorderGreen2: '#52C763',
         nftGreen: '#84C085',
+        nftHoverGreen: '#AECCAD',
         permaGrey: 'rgba(233, 233, 233, 0.5)'
       },
       backgroundImage: {

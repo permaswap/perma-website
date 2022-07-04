@@ -2,10 +2,6 @@
 import { getNfts } from '@/lib/api'
 import { computed, onMounted, Ref, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import iconDropdown from '../images/icon-dropdown.png'
-import iconDropdown2 from '../images/icon-dropdown2.png'
-import iconDropdown3 from '../images/icon-dropdown3.png'
-
 const { t } = useI18n()
 const windowWidth = ref(document.documentElement.offsetWidth)
 const sortbarVisible = ref(false)
@@ -101,7 +97,7 @@ onMounted(async () => {
           <span v-if="sortIndex === 0">{{ t('nft.price_low_to_high') }}</span>
           <span v-else-if="sortIndex === 1">{{ t('nft.price_high_to_low') }}</span>
           <span v-else-if="sortIndex === 2">{{ t('nft.sort_by') }}</span>
-          <img :src="iconDropdown" class="transition delay-300 transform" :class="`${sortbarVisible ? 'rotate-180' : 'rotate-0'}`">
+          <img src="@/images/icon-dropdown.png" class="transition delay-300 transform" :class="`${sortbarVisible ? 'rotate-180' : 'rotate-0'}`">
           <ul
             v-if="sortbarVisible"
             class="dropdown-area absolute text-white w-200px right-0 top-10 text-right bg-black opacity-90"
@@ -150,7 +146,7 @@ onMounted(async () => {
           style="color:rgba(132, 192, 133, 0.65)"
           @click="showMoreSaleItems = !showMoreSaleItems">{{ showMoreSaleItems ? t('nft.collect') : t('nft.view_more') }}</span>
         <img
-          :src="iconDropdown2"
+          src="@/images/icon-dropdown2.png"
           class="transition delay-300 transform  cursor-pointer"
           :class="`${showMoreSaleItems ? 'rotate-180' : 'rotate-0'}`"
           @click="showMoreSaleItems=!showMoreSaleItems">
@@ -181,7 +177,7 @@ onMounted(async () => {
                 </p>
               </div>
             </div>
-            <img :src="iconDropdown3" class="transition delay-300 transform" :class="`${activeName === name ? 'rotate-180' : 'rotate-0'}`">
+            <img src="@/images/icon-dropdown3.png" class="transition delay-300 transform" :class="`${activeName === name ? 'rotate-180' : 'rotate-0'}`">
           </div>
           <div class="p-2 md:pb-12 md:px-16" :class="activeName === name ? 'block' : 'hidden'">
             <table style="width:100%">
