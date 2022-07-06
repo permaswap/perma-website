@@ -43,6 +43,14 @@ const messages = {
   nft: {
     certified_nft: 'Certified NFTs',
     certified_nft_desc: 'everPay NFT holders can partake in Permaswap percursos mining.',
+    discover_nft: 'Discover and collect Certified NFTs',
+    discover_nft_desc: 'Certified NFTs (NFTs initial release in everPay Auction) are the tickets to become LP nodes of the Precursor network, hold them to participate in mining, more surprises to come!',
+    discover_now: 'Discover Now',
+    auction: 'On Auction',
+    hot_nfts: 'Hot NFTs',
+    view_more: 'View more',
+    price: 'Price',
+    owned_by: 'Owned By',
     nft_on_sale: 'NFTs on sale',
     price_low_to_high: 'Price: Low to High',
     price_high_to_low: 'Price: High to Low',
@@ -55,7 +63,6 @@ const messages = {
     state_bidding: 'Bidding',
     state_under_bid: 'Under Bid',
     collect: 'Collect',
-    view_more: 'View More',
     click_to_see_more: 'You can expand and see information from each NFT'
   }
 }

@@ -43,6 +43,14 @@ const messages = {
   nft: {
     certified_nft: '认证的 NFT',
     certified_nft_desc: 'everPay NFT 持有者可参与 Permaswap 先驱者挖矿',
+    discover_nft: '探索并收集认证的 NFTs',
+    discover_nft_desc: '认证的 NFTs（在 everPay 拍卖中首发的 NFTs）是成为先驱网络的 LP 节点的门票，持有即可参与挖矿，收获更多惊喜！',
+    discover_now: '探索',
+    auction: '拍卖',
+    hot_nfts: '热门 NFTs',
+    view_more: '更多',
+    price: '价格',
+    owned_by: '拥有者',
     nft_on_sale: '在售的 NFT',
     price_low_to_high: '价格：从低到高',
     price_high_to_low: '价格：从高到低',
@@ -55,7 +63,6 @@ const messages = {
     state_bidding: '去出价',
     state_under_bid: '出价中',
     collect: '收起',
-    view_more: '查看更多',
     click_to_see_more: '点击查看系列下每个NFT状态'
   }
 }
