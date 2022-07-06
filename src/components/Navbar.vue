@@ -55,19 +55,13 @@ const localeList = [
 
 <template>
   <div
-    class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10"
+    class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10 px-4"
     style="transition:margin .4s;height: 80px;"
-    :class="scrollTop === 0 ? 'mt-6 bg-black' : 'mt-0 navbar'"
+    :class="scrollTop === 0 ? 'md:mt-6 bg-black' : 'mt-0 navbar'"
   >
     <!-- PC 端 -->
     <router-link to="/">
-      <!-- <img v-if="+scrollTop === 0" src="../images/logo3.png" class="hidden md:block h-6"> -->
-      <img src="../images/logo4.png" class="hidden md:block h-8">
-      <!-- 移动端 -->
-      <img
-        src="../images/logo1.png"
-        class="h-5 block md:hidden"
-      >
+      <img src="../images/logo4.png" class=" h-8">
     </router-link>
     <!-- PC 端中间 logo -->
     <!-- <img
@@ -82,19 +76,19 @@ const localeList = [
           :key="index"
           :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-16 mr-10'"
           class="flex flex-row items-center text-base">
-          <router-link v-if="!item.open" :to="item.to" class="text-nftGreen hover:text-nftHoverGreen">
+          <router-link v-if="!item.open" :to="item.to" class="text-permaGreen5 hover:text-permaHoverGreen">
             {{ t(item.title) }}
           </router-link>
           <a
             v-else
             :href="item.to"
-            class="text-permaWhite hover:text-permaHoverWhite"
+            class="text-permaWhite hover:text-permaWhite2"
             target="_blank">{{ t(item.title) }}</a>
         </div>
         <div class="flex flex-row items-center lang-wrapper text-14px lg:ml-16 ml-10 md:text-base relative text-permaGrey py-1 px-4 rounded cursor-pointer border-permaBorderGreen border border-solid" @click="languagesVisible = !languagesVisible">
           <span class="flex items-center"><span>{{ locale === 'zh' ? '中文' : 'En' }}</span><img src="@/images/down.png" :class="languagesVisible ? 'rotate-180' : 'rotate-0'" class="w-6 h-6 ml-1 transform transition-all"></span>
           <transition name="fade">
-            <div v-if="languagesVisible" class="absolute top-9 left-0 bg-black w-full">
+            <div v-if="languagesVisible" class="absolute top-9 left-0 bg-black w-full rounded-md">
               <div
                 v-for="(localeItem,index) in localeList"
                 :key="index"
@@ -108,11 +102,10 @@ const localeList = [
       </div>
     </div>
     <div
-      class="menu-bar flex flex-row items-center justify-center cursor-pointer md:hidden p-2"
-      style="background: linear-gradient(277.4deg, #3E583A 3.98%, rgba(128, 158, 123, 0.36) 98.4%);border: 1px solid #84C085;"
+      class="menu-bar flex flex-row items-center justify-center cursor-pointer md:hidden py-1 px-4 border border-solid border-permaBorderGreen rounded-md text-permaWhite"
       @click="mobileMenu = !mobileMenu"
     >
-      <img class="" src="../images/menu.png">
+      Menu
     </div>
     <div
       v-if="mobileMenu"
