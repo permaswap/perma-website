@@ -46,7 +46,7 @@ const ball2Left = computed(() => {
         </div>
       </div>
       <div
-        class="text-center text-permaGray1 cursor-not-allowed font-space-gtotesk-semiBold mt-4 md:mt-16 text-base bg-permaGreenBg md:text-base py-3 mx-auto w-32 md:w-36"
+        class="text-center text-permaGray1 cursor-not-allowed font-space-gtotesk-light bg-permaWhite4 mt-4 md:mt-16 text-base py-3 mx-auto w-32 md:w-36 rounded-lg"
       >
         {{ t('coming_soon') }}
       </div>

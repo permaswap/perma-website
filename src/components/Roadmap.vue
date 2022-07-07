@@ -74,7 +74,7 @@ watch(props, () => {
   <div>
     <!-- <img src="@/images/roadmap-back.png" alt=""> -->
     <div
-      class="px-6 mx-auto xl:w-1024px 2xl:w-1200px mt-16"
+      class="px-6 mx-auto xl:w-1024px 2xl:w-1200px"
     >
       <div class="text-36px text-permaGreen2 font-space-gtotesk-bold sm:mb-20 mb-10">
         {{ t('roadmap') }}
