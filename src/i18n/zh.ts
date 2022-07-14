@@ -1,4 +1,6 @@
 const messages = {
+  lang_zh: '中文',
+  lang_en: 'En',
   slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 滑点损失',
   coming_soon: '敬请期待',
   white_paper: '白皮书',
@@ -54,7 +56,7 @@ const messages = {
     owned_by: '拥有者',
     items: '项目数',
     tab_items: '项目',
-    tab_explore: '更多',
+    tab_explore: '探索',
     owners: '持有者',
     floor_price: '地板价',
     nft_on_sale: '在售的 NFT',
@@ -70,7 +72,20 @@ const messages = {
     state_under_bid: '出价中',
     collect: '收起',
     click_to_see_more: '点击查看系列下每个NFT状态'
-  }
+  },
+  load_more: '加载更多',
+  no_more: '到底了',
+  search: '查询...',
+  searching: '搜索中...',
+  no_results: '查无结果',
+  network_err: '网络不稳定，请稍后重试',
+  price_high_low: '价格降序',
+  price_low_high: '价格升序',
+  recently_listed: '最近上市',
+  all_status: '所有状态',
+  buy_now: '去购买',
+  on_auction: '去拍卖',
+  back: '返回'
 }
 
 export default messages

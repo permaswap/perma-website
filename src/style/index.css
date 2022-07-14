@@ -37,4 +37,12 @@
   opacity: 0;
 }
 
-
+.move-enter-active,
+.move-leave-active {
+    transition: all 0.3s linear;
+    transform: translateX(0%);
+}
+.move-enter-from,
+.move-leave-to {
+  transform: translateX(100%);
+}

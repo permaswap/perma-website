@@ -4,12 +4,12 @@ import Home from '../pages/Home.vue'
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/nft',
-    name: 'NFT',
+    name: 'nft',
     component: async () => await import('../pages/NFT.vue')
   },
   {

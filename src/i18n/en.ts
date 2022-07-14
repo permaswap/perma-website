@@ -1,4 +1,6 @@
 const messages = {
+  lang_zh: '简体中文',
+  lang_en: 'English',
   slogan: 'Omnipresent Peer-to-peer; 100% Permanent 0% slippage.',
   coming_soon: 'Coming Soon',
   white_paper: 'Whitepaper',
@@ -55,7 +57,7 @@ const messages = {
     owners: 'owners',
     floor_price: 'floor price',
     tab_items: 'Items',
-    tab_explore: 'explore',
+    tab_explore: 'Explore',
     nft_on_sale: 'NFTs on sale',
     price_low_to_high: 'Price: Low to High',
     price_high_to_low: 'Price: High to Low',
@@ -69,7 +71,20 @@ const messages = {
     state_under_bid: 'Under Bid',
     collect: 'Collect',
     click_to_see_more: 'You can expand and see information from each NFT'
-  }
+  },
+  load_more: 'Load more Items',
+  no_more: 'No more',
+  search: 'Search...',
+  searching: 'Searching...',
+  no_results: 'No Results...',
+  network_err: 'Network instability，Please try again later.',
+  price_high_low: 'Price high to low',
+  price_low_high: 'Price low to high',
+  recently_listed: 'Recently listed',
+  all_status: 'All status',
+  buy_now: 'Buy Now',
+  on_auction: 'On auction',
+  back: 'Back'
 }
 
 export default messages
