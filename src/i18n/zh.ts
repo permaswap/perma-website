@@ -1,4 +1,6 @@
 const messages = {
+  lang_zh: '中文',
+  lang_en: 'En',
   slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 滑点损失',
   coming_soon: '敬请期待',
   white_paper: '白皮书',
@@ -41,8 +43,22 @@ const messages = {
   roadmap_4_1: '启动 Prophet 网络，开启多 Routers 时代',
   roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营',
   nft: {
+    name_desc: 'lulu',
     certified_nft: '认证的 NFT',
     certified_nft_desc: 'everPay NFT 持有者可参与 Permaswap 先驱者挖矿',
+    discover_nft: '探索并收集认证的 NFTs',
+    discover_nft_desc: '收藏认证 NFTs（在 everPay 拍卖中首发的 NFTs）, 可参与 Permaswap 挖矿！',
+    discover_now: '探索',
+    auction: '拍卖',
+    hot_nfts: '热门 NFTs',
+    view_more: '更多',
+    price: '价格',
+    owned_by: '拥有者',
+    items: '项目数',
+    tab_items: '项目',
+    tab_explore: '探索',
+    owners: '持有者',
+    floor_price: '地板价',
     nft_on_sale: '在售的 NFT',
     price_low_to_high: '价格：从低到高',
     price_high_to_low: '价格：从高到低',
@@ -55,9 +71,21 @@ const messages = {
     state_bidding: '去出价',
     state_under_bid: '出价中',
     collect: '收起',
-    view_more: '查看更多',
     click_to_see_more: '点击查看系列下每个NFT状态'
-  }
+  },
+  load_more: '加载更多',
+  no_more: '到底了',
+  search: '查询...',
+  searching: '搜索中...',
+  no_results: '查无结果',
+  network_err: '网络不稳定，请稍后重试',
+  price_high_low: '价格降序',
+  price_low_high: '价格升序',
+  recently_listed: '最近上市',
+  all_status: '所有状态',
+  buy_now: '去购买',
+  on_auction: '去拍卖',
+  back: '返回'
 }
 
 export default messages

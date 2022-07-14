@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import isObject from 'lodash/isObject'
 import isString from 'lodash/isString'
-
+import { NftArr, Collection } from './types'
 const isProd = window.location.host.includes('permaswap.network')
 const apiHost = `https://nft${isProd ? '' : '-dev'}.permaswap.network`
 
@@ -44,14 +44,47 @@ export const sendRequest = async (config: AxiosRequestConfig): Promise<AxiosResp
   })
 }
 
-export const getNfts = async (): Promise<any[]> => {
+export const getNfts = async (): Promise<NftArr[]> => {
   const url = `${apiHost}/info`
   const result = await sendRequest({
     url,
     method: 'GET'
   })
 
-  console.log('result', result)
+  return result.data
+}
 
+export const getHotNfts = async (): Promise<NftArr[]> => {
+  const url = `${apiHost}/hot`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+
+export const getNftCollections = async (): Promise<Collection[]> => {
+  const url = `${apiHost}/collections`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+
+export const getCollectionNFTs = async (collectionName: string): Promise<NftArr[]> => {
+  const url = `${apiHost}/collection/${collectionName}/nft`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+export const getSearchNFTs = async (query: string): Promise<NftArr[]> => {
+  const url = `${apiHost}/query/${query}`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
   return result.data
 }

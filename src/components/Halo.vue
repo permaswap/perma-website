@@ -33,20 +33,20 @@ const ball2Left = computed(() => {
 
 <template>
   <div class="relative">
-    <img src="../images/halo-ring-big-2.png" class="md:block hidden">
-    <img src="../images/halo-ring-small-3.png" class="w-full md:hidden block" alt="">
+    <img src="../images/halo-ring-big.png" class="md:block hidden w-full">
+    <img src="../images/halo-ring-small.png" class="w-full md:hidden block" alt="">
     <img class="absolute" :style="`width:${gifWidth}px;height:${gifHeight}px;left:50%;transform:translateX(-50%);top:${gifTop}px;`" src="@/images/perma.gif">
     <div class="w-full absolute" :style="`left:0;top:${contentTop}px;`">
-      <div class="text-center font-bold text-white text-48px md:text-88px 2xl:text-122px">
+      <div class="text-center text-white text-48px md:text-88px font-space-gtotesk-bold 2xl:text-120px">
         Permaswap
       </div>
-      <div class="text-center -mt-1 md:-mt-5 text-base md:text-lg 2xl:text-21px text-everGray2">
-        <div class="mx-auto w-72 md:w-auto">
+      <div class="text-center text-base mt-4 md:text-18px 2xl:text-xl text-permaGray2">
+        <div class="mx-auto w-72 md:w-auto font-space-gtotesk-light">
           {{ t('slogan') }}
         </div>
       </div>
       <div
-        class="text-center text-everGray1 cursor-not-allowed font-bold mt-4 md:mt-16 text-15px bg-permaGreenBg md:text-base py-3 mx-auto w-32 md:w-36"
+        class="text-center text-permaGray1 cursor-not-allowed font-space-gtotesk-light bg-permaWhite4 mt-4 md:mt-16 text-base py-3 mx-auto w-32 md:w-36 rounded-lg"
       >
         {{ t('coming_soon') }}
       </div>
