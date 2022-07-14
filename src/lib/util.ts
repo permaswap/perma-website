@@ -1,5 +1,5 @@
 import BN from 'bignumber.js'
-import { NftArr } from './types'
+import { NftInfo } from './types'
 BN.config({
   EXPONENTIAL_AT: 1000
 })
@@ -24,7 +24,7 @@ export const toBN = (x: number | string | BN): BN => {
   return new BN(x)
 }
 
-export const filterNfts = (nfts: NftArr[], value: string): NftArr[] => {
+export const filterNfts = (nfts: NftInfo[], value: string): NftInfo[] => {
   if (value === 'all') {
     return nfts
   } else {
@@ -36,7 +36,7 @@ export const filterNfts = (nfts: NftArr[], value: string): NftArr[] => {
   }
 }
 
-export const sortNfts = (nfts: NftArr[], value: string): NftArr[] => {
+export const sortNfts = (nfts: NftInfo[], value: string): NftInfo[] => {
   if (value === 'listing') {
     return nfts.sort((a, b) => {
       return b.timestamp - a.timestamp
@@ -51,7 +51,7 @@ export const sortNfts = (nfts: NftArr[], value: string): NftArr[] => {
     })
   }
 }
-export const formatNFTList = (nfts: NftArr[], filterOptions: string, sortOptions: string): NftArr[] => {
+export const formatNFTList = (nfts: NftInfo[], filterOptions: string, sortOptions: string): NftInfo[] => {
   const newFilterNfts = filterNfts(nfts, filterOptions)
   return sortNfts(newFilterNfts, sortOptions)
 }
