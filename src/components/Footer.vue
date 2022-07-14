@@ -33,7 +33,7 @@ const footerImgSrc:FooterSrcArr[] = [
 
 <template>
   <div
-    class="md:flex flex-row items-center justify-between mx-auto xl:w-1024px 2xl:w-1200px pb-16 sm:py-16 px-6"
+    class="flex flex-col items-center md:flex-row justify-between mx-auto xl:w-1200px md:mt-52 mt-20 pb-12  px-4 md:px-0"
   >
     <div class="flex flex-col items-center mb-8 md:block md:mb-0">
       <img src="@/images/logo4.png" class="h-8 mb-3">

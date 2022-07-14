@@ -72,7 +72,6 @@ watch(props, () => {
 
 <template>
   <div>
-    <!-- <img src="@/images/roadmap-back.png" alt=""> -->
     <div
       class="px-6 mx-auto xl:w-1024px 2xl:w-1200px"
     >

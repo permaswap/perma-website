@@ -21,6 +21,7 @@ module.exports = {
       },
       width: {
         '1342px': '1342px',
+        '1264px': '1264px',
         '1200px': '1200px',
         '1024px': '1024px',
         '300px': '300px',
@@ -28,17 +29,29 @@ module.exports = {
         '279px': '279px',
         '200px': '200px',
         '164px': '164px',
-        '152px': '152px',
+        '120px': '120px',
         '100px': '100px',
         '49%': '49%'
       },
+      minWidth: {
+        '279px': '279px',
+        '164px': '164px'
+      },
       height: {
+        '528px': '528px',
         '310px': '310px',
         '250px': '250px',
-        '152px': '152px',
+        '120px': '120px',
         '100px': '100px'
       },
+      minHeight: {
+        '44px': '44px'
+      },
       spacing: {
+        '429px': '429px',
+        '280px': '280px',
+        '258px': '258px',
+        '148px': '148px',
         '10px': '10px'
       },
       colors: {
@@ -53,17 +66,23 @@ module.exports = {
         permaGreen5: '#2EBB48',
         permaGreen6: '#84C085',
         permaGreen7: '#1E9437',
-        permaGreen8: 'rgba(3, 33, 13, 0.65)',
+        permaGreen8: 'rgba(24, 59, 33, 0.25);',
+        permaGreen9: '#A4E0A9',
+        permaGreen10: '#79D483',
+        permaGreen11: '#5AAD67',
         permaWhite: 'rgba(255, 255, 255, 0.65)',
         permaWhite2: 'rgba(255, 255, 255, 0.85)',
         permaWhite3: 'rgba(255, 255, 255, 0.45)',
         permaWhite4: 'rgba(255, 255, 255, 0.15)',
+        permaWhite5: 'rgba(255, 255, 255, 0.08)',
         permaBlack: '#141814',
         permaBlack2: '#03210D',
-        permaBorderGreen: 'rgba(46, 187, 72, 0.25)',
-        permaBorderGreen2: '#52C763',
-        permaHoverGreen: '#AECCAD',
-        permaHoverGreen2: '#52C763'
+        permaBlack3: '#074719',
+        permaBlack4: 'rgba(20, 24, 20, 0.85)',
+        permaBlack5: '#183B21',
+        permaBlack6: '#222422',
+        permaBorderGreen: 'rgba(121, 212, 131, 0.25)',
+        permaHoverGreen: '#AECCAD'
       },
       backgroundImage: {
         permaGreenBg: 'linear-gradient(268.01deg, rgba(41, 41, 41, 0.8) -9.16%, rgba(51, 51, 51, 0.8) 109.32%);'
