@@ -1,21 +1,21 @@
 <script lang="ts" setup>
 import { getHotNfts, getNftCollections, getSearchNFTs, getNfts } from '@/lib/api'
-import { onMounted, ref, watch, nextTick, computed } from 'vue'
+import { onMounted, ref, watch, nextTick, computed, onActivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Collection, NftInfo, Options } from '@/lib/types'
-import { goToNfts, checkParentsHas, formatNFTList } from '@/lib/util'
+import { goHTMLPosition, checkParentsHas, formatNFTList } from '@/lib/util'
 import NftCard from '@/components/NftCard.vue'
 import LabelItem from '@/components/LabelItem.vue'
 import NftHeads from './NFT/NftHeads.vue'
 import BatchCard from '../components/BatchCard.vue'
-import Active from '@/components/Active.vue'
+import ViewMore from '@/components/ViewMore.vue'
 import LoadMore from '@/components/LoadMore.vue'
 import Tabs from '@/components/Tabs.vue'
 import SeachInput from '@/components/SearchInput.vue'
 import SelectOptions from '@/components/SelectOptions.vue'
 import Footer from '../components/Footer.vue'
 import notSearchFound from '@/components/notSearchFound.vue'
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const windowWidth = ref(document.documentElement.offsetWidth)
 const hotNfts = ref<NftInfo[]>([])
 const collectionBatchs = ref<Collection[]>([])
@@ -59,6 +59,7 @@ const getNftsInit = async () => {
 getNftsInit()
 
 const searchNfts = async (text: string) => {
+  goHTMLPosition('ethnfts')
   try {
     networkError.value = false
     exploreNftLength.value = 20
@@ -69,7 +70,6 @@ const searchNfts = async (text: string) => {
       sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
       setTimeout(() => {
         searchLoading.value = false
-        goToNfts('ethnfts')
       }, 300)
     } else {
       allNfts.value = await getNfts()
@@ -83,19 +83,30 @@ const searchNfts = async (text: string) => {
 const viewMoreBatchNfts = (batchName: string) => {
   searchText.value = batchName
   tabOptions.value = 2
-  goToNfts('ethnfts')
+  goHTMLPosition('ethnfts')
   searchNfts(batchName)
 }
-const loadMoreBatchNft = () => {
+const updateScrollTop = async () => {
+  nextTick(() => {
+    if (sessionStorage.getItem('scrollTop')) {
+      const top = sessionStorage.getItem('scrollTop')
+      console.log(top)
+      document.documentElement.scrollTop = +(top as string)
+    }
+  })
+}
+const loadMoreBatchNft = async () => {
   if (batchNftLength.value < collectionBatchs.value.length) {
     batchNftLength.value = batchNftLength.value + (window.innerWidth > 768 ? 10 : 2)
     collectionNft.value = collectionBatchs.value.slice(0, batchNftLength.value)
+    await updateScrollTop()
   }
 }
-const loadMoreNft = () => {
+const loadMoreNft = async () => {
   if (exploreNftLength.value < SortFilterNFts.value.length) {
     exploreNftLength.value = exploreNftLength.value + (window.innerWidth > 768 ? 20 : 10)
     sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+    await updateScrollTop()
   }
 }
 const switchTab = (tabId: number) => {
@@ -106,6 +117,7 @@ watch(() => tabOptions.value, () => {
   nextTick(() => {
     nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
   })
+  sessionStorage.removeItem('scrollTop')
 })
 const sortOptionsList = [
   {
@@ -121,7 +133,10 @@ const sortOptionsList = [
     label: 'price_low_high'
   }
 ]
-
+onActivated(() => {
+  document.documentElement.scrollTop = 0
+  sessionStorage.removeItem('scrollTop')
+})
 const sortOptions = ref(sortOptionsList[0])
 const switchSortOptions = async (options: Options) => {
   sortOptions.value = options
@@ -155,10 +170,6 @@ const switchFilterOptions = async (options: Options) => {
 onMounted(async () => {
   window.addEventListener('resize', () => {
     windowWidth.value = document.documentElement.offsetWidth
-    batchNftLength.value = window.innerWidth > 768 ? 10 : 2
-    collectionNft.value = collectionBatchs.value.slice(0, batchNftLength.value)
-    exploreNftLength.value = window.innerWidth > 768 ? 20 : 10
-    sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
   })
   document.addEventListener('click', (e) => {
     if (!isSortSelectTarget(e.target as any)) {
@@ -179,19 +190,19 @@ onMounted(async () => {
       <img src="@/images/hot-nft-bg.png" class="hot-nfts-img absolute" alt="">
       <div class="xl:w-1200px px-4 xl:px-0 mx-auto md:mt-20 mt-14">
         <LabelItem :title="t('nft.hot_nfts')">
-          <Active
-            class-name="border-permaGreen11 text-permaGreen11"
+          <ViewMore
+            class="hover:border-permaGreen9 hover:text-permaGreen9"
             default-class-name="border-permaBorderGreen text-permaWhite2"
-            class="md:py-1.5 py-1 md:px-4 px-2 hover:border-permaGreen9 hover:text-permaGreen9 border border-solid rounded-md text-14px cursor-pointer transition-colors"
-            @click="goToNfts('ethnfts')">
+            class-name="border-permaGreen11 text-permaGreen11"
+            @click="goHTMLPosition('ethnfts')">
             {{ t('nft.view_more') }}
-          </Active>
+          </ViewMore>
         </LabelItem>
         <div class="md:mt-10  mt-4 flex flex-wrap justify-between grid-nft">
           <NftCard
             v-for="(nftItem, index) in (windowWidth > 650 ? hotNfts : hotNfts.slice(0, 4))"
             :key="index"
-            class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-all"
+            class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-colors"
             :image-url="nftItem.imageUrl"
             :owner="nftItem.owner"
             :collection-name="nftItem.collectionName"
@@ -207,7 +218,7 @@ onMounted(async () => {
     <div id="ethnfts" class="ethereum-nft-area pt-8 md:pt-20">
       <div class="xl:w-1200px mx-auto px-4 xl:px-0">
         <LabelItem title="Ethereum NFTs" />
-        <div class="flex justify-between md:items-center items-start flex-col md:flex-row md:mt-6 mt-3">
+        <div class="flex justify-between md:items-center items-start flex-wrap flex-col md:flex-row md:mt-6 mt-3">
           <Tabs :tab="tabOptions" @switch="switchTab" />
           <div v-show="tabOptions === 2" class="flex items-center md:flex-row flex-col md:mt-0 mt-6 md:w-auto w-full">
             <SeachInput
@@ -217,7 +228,8 @@ onMounted(async () => {
               @close="searchText = ''" />
             <div class="flex flex-row mt-4 w-full md:w-auto md:mt-0 justify-between">
               <SelectOptions
-                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none"
+                :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-148px'"
+                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none md:min-w-148px"
                 :options-list="filterOptionsList"
                 :visible="filterOptionsVisible"
                 :current-options="filterOptions.value"
@@ -226,6 +238,7 @@ onMounted(async () => {
                 <span class="md:mr-5">{{ t(filterOptions.label) }}</span>
               </SelectOptions>
               <SelectOptions
+                :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-185px'"
                 class="sortSelect md:mr-6 flex-1 md:flex-none"
                 :options-list="sortOptionsList"
                 :visible="sortOptionsVisible"
@@ -250,6 +263,7 @@ onMounted(async () => {
             :name="collection.name"
             :image-url="collection.image_url"
             :stats="collection.stats"
+            :slug="collection.slug"
             :nft-box-width="nftBoxWidth"
             @viewMore="viewMoreBatchNfts"
             @mousemove="hoverIndex = index"
@@ -344,5 +358,4 @@ onMounted(async () => {
     visibility: hidden;
   }
 }
-
 </style>

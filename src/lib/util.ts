@@ -14,8 +14,11 @@ export const checkParentsHas = (classname: string) => {
     return false
   }
 }
-export const goToNfts = (id: string): void => {
-  ;(document.getElementById(id) as HTMLElement).scrollIntoView()
+export const goHTMLPosition = (id: string): void => {
+  // 平滑前往 id 元素位置
+  (document.getElementById('html') as HTMLElement).setAttribute('style', 'scroll-behavior: smooth')
+  document.documentElement.scrollTop = (document.getElementById(id) as HTMLElement).offsetTop - 50;
+  (document.getElementById('html') as HTMLElement).setAttribute('style', 'scroll-behavior: auto')
 }
 
 export const toBN = (x: number | string | BN): BN => {
@@ -43,10 +46,14 @@ export const sortNfts = (nfts: NftInfo[], value: string): NftInfo[] => {
     })
   } else {
     return nfts.sort((a, b) => {
-      if (value === 'descending') {
-        return +b.price - +a.price
+      if (+a.price === +b.price) {
+        return b.timestamp - a.timestamp
       } else {
-        return +a.price - +b.price
+        if (value === 'descending') {
+          return +b.price - +a.price
+        } else {
+          return +a.price - +b.price
+        }
       }
     })
   }

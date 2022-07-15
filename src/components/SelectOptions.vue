@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-row items-center text-14px relative py-2 px-4 bg-permaGreen8 rounded cursor-pointer border border-solid transition-all"
+    class="flex flex-row items-center text-14px relative py-2 px-4 bg-permaGreen8 rounded cursor-pointer border border-solid transition-colors"
     :class="visible ? 'border-permaGreen11 opacity-100' : 'border-permaBorderGreen opacity-80 hover:border-permaGreen9 hover:opacity-100'">
-    <div class="flex items-center md:w-auto w-full justify-between md:justify-start">
+    <div class="flex items-center w-full justify-between">
       <slot /><img
         src="@/images/down.png"
         :class="visible ? 'rotate-180' : 'rotate-0'"

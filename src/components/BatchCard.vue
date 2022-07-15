@@ -1,5 +1,5 @@
 <template>
-  <div class="batch-nft-card duration-300 transition-all md:p-8 p-4 rounded-2xl md:my-7 my-4">
+  <div class="batch-nft-card duration-300 transition-colors xl:p-8  p-4 rounded-2xl md:my-7 my-4">
     <div class="flex">
       <div class="md:min-w-279px md:w-279px w-164px  min-w-164px md:mr-6 mr-4">
         <div class="md:w-120px md:h-120px w-20 h-20 bg-permaWhite4 md:p-1.5 p-1 md:rounded-xl rounded-lg">
@@ -8,15 +8,11 @@
         <div class="md:mt-6 mt-4 md:text-18px text-14px text-info-two md:truncate  md:block min-h-44px md:min-h-0">
           {{ name }}
         </div>
-        <div class="md:block hidden">
+        <div class="md:block hidden" style="min-height:88px">
           <MoreInfo
             info-class="text-14px mt-3 text-permaWhite text-info-three overflow-hidden"
-            info="BitKeep and everPay's new collection is ready to go! Someone bornin a tiger hhhh year...Someone bornin a tiger
-            hhhh hhh..BitKeep and everPay's new collection is ready to go! Someone bornin a tiger hhhh year...Someone bornin a tiger
-            hhhhBitKeepBitKeepBitKeepBitKeepBitKeepBitKeepBitKeepBitKeep">
-            BitKeep and everPay's new collection is ready to go! Someone bornin a tiger hhhh year...Someone bornin a tiger
-            hhhh hhh..BitKeep and everPay's new collection is ready to go! Someone bornin a tiger hhhh year...Someone bornin a tiger
-            hhhhBitKeepBitKeepBitKeepBitKeepBitKeepBitKeepBitKeepBitKeep
+            :info="batchNftI18">
+            {{ batchNftI18 }}
           </MoreInfo>
         </div>
         <BatchInfoItems :items="stats.count" :owners="stats.num_owners" :floor-price="stats.floor_price" />
@@ -46,7 +42,7 @@
 </template>
 
 <script setup lang='ts'>
-import { defineProps, ref, onMounted, watch, defineEmits } from 'vue'
+import { defineProps, ref, onMounted, watch, defineEmits, computed } from 'vue'
 import BatchInfoItems from './BatchInfoItems.vue'
 import ViewMore from './ViewMore.vue'
 import { NftInfo, Stats } from '@/lib/types'
@@ -54,15 +50,18 @@ import { getCollectionNFTs } from '@/lib/api'
 import NftCard from './NftCard.vue'
 import MoreInfo from '@/components/common/MoreInfo.vue'
 import { floor } from 'lodash'
+import { useI18n } from 'vue-i18n'
 interface Props {
   name: string
   imageUrl: string
   stats: Stats
-  nftBoxWidth:number
+  nftBoxWidth: number
+  slug: string
 }
 interface Emits {
   (e:'viewMore', batchName:string):void
 }
+const { t } = useI18n()
 const emits = defineEmits<Emits>()
 const props = defineProps<Props>()
 const collectionNfts = ref<NftInfo[]>([])
@@ -70,7 +69,9 @@ const getInitNFTs = async () => {
   collectionNfts.value = await getCollectionNFTs(props.name)
   updateCollectionNftLength()
 }
-
+const batchNftI18 = computed(() => {
+  return t(`nft_info.${props.slug}`).replace('=', '@')
+})
 onMounted(() => {
   getInitNFTs()
   window.addEventListener('resize', () => {

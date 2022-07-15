@@ -1,5 +1,5 @@
 <template>
-  <Active class="md:py-1.5 py-1 md:px-4 px-2 border border-solid rounded-md text-14px cursor-pointer" :class-name="className" :default-class-name="defaultClassName">
+  <Active class="md:py-1.5 py-1 md:px-4 px-2 border border-solid rounded-md text-14px cursor-pointer transition-colors" :class-name="className" :default-class-name="defaultClassName">
     {{ t('nft.view_more') }}
   </Active>
 </template>

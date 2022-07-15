@@ -18,7 +18,7 @@
         class-name="bg-permaGreen11"
         default-class-name="bg-permaGreen10"
         class=" md:py-2.5 py-2 md:px-6 px-4 rounded-lg text-black sm:mr-28 cursor-pointer hover:bg-permaGreen9 transition-all"
-        @click="goToNfts('ethnfts')">
+        @click="goHTMLPosition('ethnfts')">
         {{ t('nft.discover_now') }}
       </Active>
       <a href="https://app.everpay.io/nft-auction" target="_blank">
@@ -38,7 +38,7 @@
 
 <script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
-import { goToNfts } from '@/lib/util'
+import { goHTMLPosition } from '@/lib/util'
 import Active from '@/components/Active.vue'
 const { t } = useI18n()
 </script>

@@ -1,6 +1,6 @@
 const messages = {
-  lang_zh: '中文',
-  lang_en: 'En',
+  languages_zh: '简体中文',
+  languages_en: 'English',
   slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 滑点损失',
   coming_soon: '敬请期待',
   white_paper: '白皮书',
@@ -43,7 +43,6 @@ const messages = {
   roadmap_4_1: '启动 Prophet 网络，开启多 Routers 时代',
   roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营',
   nft: {
-    name_desc: 'lulu',
     certified_nft: '认证的 NFT',
     certified_nft_desc: 'everPay NFT 持有者可参与 Permaswap 先驱者挖矿',
     discover_nft: '探索并收集认证的 NFTs',
@@ -85,7 +84,20 @@ const messages = {
   all_status: '所有状态',
   buy_now: '去购买',
   on_auction: '去拍卖',
-  back: '返回'
+  back: '返回',
+  nft_info: {
+    'confi-city-everpay': 'Conflux 是一条 Layer1 公链，跨越国界和协议连接去中心化的经济，采用 PoW/PoS 混合运行的机制。它采用独特的 "树状图 "共识机制--动态区块结构，在不牺牲去中心化和安全性的前提下，促进 3000-6000 TPS 的处理。作为中国唯一符合监管的，无需许可的公链，Conflux 为在亚洲本地或希望进入亚洲市场的项目提供支持。Conflux 的目标是连接去中心化经济体，以加强全球 DeFi 生态系统发展。',
+    'ardrive-everpay': '这次拍卖是由 everPay 与 ArDrive 联合推出。ArDrive 是建立在 Arweave 区块链上的去中心化永久存储应用。得益于 Arweave 所提供的足以改变行业规则的技术， 让任何类型的数据可以保存至少 200 年，甚至更久。一旦你最重要的文件通过 ArDrive 上传，它们将成为你永久的记忆。 来自 ArDrive 社区的 =XaviZedd  为此次拍卖创作了龙龟 NFTs。',
+    'inner-motion': '数字艺术品牌「异星艺想」，是为满足艺术家意志能够自由表达的需要而诞生的。其所有艺术作品的创作灵感来源于将生活、色彩、声音与神圣几何概念之间的结合。 几何存在于我们周围的一切事物中，从最小的物体或生物到最大的天文力量，在形状、比例和对称性之间总是存在着平衡，运用几何图形的各种结构来为艺术品寻找内在的平衡即是「异星艺想」的创作理念。「异星艺想」在创办以来，与来自中国和欧洲各地的 DJ 以及音乐节合作，通过社交媒体、艺术展览和音乐品牌来分享其艺术作品。“享受生活，分享与关爱” 是「异星艺想」的创作哲学。',
+    'nueps-microplants': 'Noelia Puig（1995年，西班牙）是一名数字内容创作者，使用笔名 nueps 进行艺术创作。对荒谬、如梦和超现实艺术作品的兴趣，使她走上了创作的道路。nueps 擅长使用荧光色和数字处理把自然世界的事物转化为高度抽象的版本。她创造了一个神奇的宇宙，从科幻的生物到最日常、平凡物体的重塑。',
+    'year-of-the-tiger-nfts': 'BitKeep and everPay\'s new collection is ready to go! Someone born in a tiger year is kind, adventurous and enthusiastic. Happy year of the Tiger to you all!',
+    breakdaonbdeverpay: '💥 BREAKING all the Boundaries & Getting entirely FREEDOM! 💥🐼 Breaking Panda is a Web 3 trendy art Ip, dynamic combination of 🎨 「cryto art」, 「visual & physical trendy art fashion brand」,🎮 「 immersive social AR experience」, 🎸 「generative music」, 「urban sculptures」 and 「community driven」🎋 . We grant Breaking Panda fans CC0 license and open intellectual property rights, you could do everything you want, such as nft recreation, physical commodity production.',
+    oldgodsremastered: '',
+    'winston-family': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the second batch of NFTs for Arweave Winston Family.',
+    'winston-ever': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the first NFT for Arweave Winston.',
+    'wonderland-and-the-funny-fellows': 'They once lived happily on the planet Wonderland. Now the doomsday is coming, will they survive?',
+    'everpay-other': ''
+  }
 }
 
 export default messages

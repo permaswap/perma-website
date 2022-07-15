@@ -15,7 +15,7 @@
           @input="handleInput"
           @focus="isFocus = true"
           @blur="isFocus = false">
-        <div class="absolute top-0 right-1 flex items-center h-full cursor-pointer" @click="emits('close')">
+        <div v-if="modelValue" class="absolute top-0 right-1 flex items-center h-full cursor-pointer" @click="emits('close')">
           <img src="@/images/close.svg" class="w-6 h-6" alt="">
         </div>
       </div>

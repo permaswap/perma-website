@@ -1,6 +1,6 @@
 const messages = {
-  lang_zh: '简体中文',
-  lang_en: 'English',
+  languages_zh: '简体中文',
+  languages_en: 'English',
   slogan: 'Omnipresent Peer-to-peer; 100% Permanent 0% slippage.',
   coming_soon: 'Coming Soon',
   white_paper: 'Whitepaper',
@@ -46,7 +46,7 @@ const messages = {
     certified_nft: 'Certified NFTs',
     certified_nft_desc: 'everPay NFT holders can partake in Permaswap percursos mining.',
     discover_nft: 'Discover and collect Certified NFTs',
-    discover_nft_desc: 'Collect Certified NFTs (NFTs Initial release in everPay auction), to participate in Permaswap mining!',
+    discover_nft_desc: 'Collect Certified NFTs (NFTs initial release in everPay auction), to participate in Permaswap mining!',
     discover_now: 'Discover Now',
     auction: 'On Auction',
     hot_nfts: 'Hot NFTs',
@@ -84,7 +84,20 @@ const messages = {
   all_status: 'All status',
   buy_now: 'Buy Now',
   on_auction: 'On auction',
-  back: 'Back'
+  back: 'Back',
+  nft_info: {
+    'confi-city-everpay': 'Conflux is a permissionless Layer 1 public blockchain connecting decentralized economies across borders & protocols and operates as a PoW/PoS hybrid chain. Built with a unique Tree-Graph consensus mechanism — a dynamic block structure is used to facilitate the processing of 3000–6000 TPS without sacrificing decentralization or security. As the only regulatory compliant, public, and permissionless blockchain in China, Conflux provides a unique advantage for projects building and expanding into Asia. As well as, Conflux aims to connect decentralized economies to strengthen the overall DeFi ecosystem globally. ',
+    'ardrive-everpay': 'The auction was jointly launched by everPay and ArDrive. ArDrive is built upon the Arweave blockchain, which provides game changing technology that enables any type of digital data to be stored for at least 200 years but probably much longer. Once your most important files are uploaded through ArDrive they will outlive you, your children, and your great-grandchildren. =Xavizedd from the ArDrive community created Dragon Turtle NFTs for the auction.',
+    'inner-motion': 'Alien Art is a Digital Art Label born from a need for free personal expression. All the inspirations come from life experiences, colors and sounds, but mostly from the concept of Sacred Geometry. Geometry is in everything around us, from the smallest object or living thing to the largest astronomical forces and there is always a balance between shapes, proportions and symmetries.Often in collaboration with DJs and Music Festivals around China and Europe, Alien Art is shared through social medias, art exhibitions and music labels. “Enjoy Life, Share & Care”. A series of animations inspired by one of the oldest form of art in human history, Mandala. Used as sacred guidance tool to help embark on a spiritual journey starting from the outside to the inner core. This collection embraces this ancient tradition and expresses a true balance between geometric shapes and precise movements.',
+    'nueps-microplants': 'Noelia Puig (1995, Spain) is a digital content creator who works under the pseudonym nueps. Her artistic process and her projects are defined by her interest in absurd, dream-like and surreal imagery. Using fluorescent colors and digitally manipulating highly abstracted versions of the natural (and human-made) world, nueps creates an alternate universe that ranges from fantastical-psychedelic creatures to reinventions of the most every day, mundane objects.',
+    'year-of-the-tiger-nfts': 'BitKeep and everPay\'s new collection is ready to go! Someone born in a tiger year is kind, adventurous and enthusiastic. Happy year of the Tiger to you all!',
+    breakdaonbdeverpay: '💥 BREAKING all the Boundaries & Getting entirely FREEDOM! 💥🐼 Breaking Panda is a Web 3 trendy art Ip, dynamic combination of 🎨 「cryto art」, 「visual & physical trendy art fashion brand」,🎮 「 immersive social AR experience」, 🎸 「generative music」, 「urban sculptures」 and 「community driven」🎋 . We grant Breaking Panda fans CC0 license and open intellectual property rights, you could do everything you want, such as nft recreation, physical commodity production.',
+    oldgodsremastered: '',
+    'winston-family': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the second batch of NFTs for Arweave Winston Family.',
+    'winston-ever': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the first NFT for Arweave Winston.',
+    'wonderland-and-the-funny-fellows': 'They once lived happily on the planet Wonderland. Now the doomsday is coming, will they survive?',
+    'everpay-other': ''
+  }
 }
 
 export default messages
