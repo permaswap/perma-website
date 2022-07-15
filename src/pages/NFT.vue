@@ -90,7 +90,6 @@ const updateScrollTop = async () => {
   nextTick(() => {
     if (sessionStorage.getItem('scrollTop')) {
       const top = sessionStorage.getItem('scrollTop')
-      console.log(top)
       document.documentElement.scrollTop = +(top as string)
     }
   })

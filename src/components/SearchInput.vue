@@ -44,7 +44,6 @@ const { t } = useI18n()
 const isFocus = ref(false)
 const isHover = ref(false)
 const handleInput = (e:any) => {
-  console.log(123123, e.target.value)
   emits('update:modelValue', e.target.value)
 }
 
