@@ -35,8 +35,7 @@ interface Props {
   amount: string
   symbol: string
 }
-const props = defineProps<Props>()
-console.log(props.amount)
+defineProps<Props>()
 </script>
 
 <style>

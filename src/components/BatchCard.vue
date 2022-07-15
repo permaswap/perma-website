@@ -83,7 +83,6 @@ const updateCollectionNftLength = () => {
   const width = (document.getElementById('collection') as HTMLElement).offsetWidth ? (document.getElementById('collection') as HTMLElement).offsetWidth : props.nftBoxWidth
   const collectionSliceLength = floor((width / (window.innerWidth > 768 ? 299 : 170))) ? floor((width / (window.innerWidth > 768 ? 299 : 170))) : 1
   collectionNft.value = collectionNfts.value.slice(0, collectionSliceLength).sort((a, b) => +b.price - +a.price)
-  console.log(collectionNft.value)
 }
 watch(() => props.nftBoxWidth, () => {
   updateCollectionNftLength()
