@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row items-center justify-between">
-    <h2 class="md:text-36px text-xl font-space-gtotesk-medium">
+    <h2 class="md:text-36px text-18px font-space-gtotesk-medium">
       {{ title }}
     </h2>
     <slot />

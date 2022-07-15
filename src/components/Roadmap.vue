@@ -59,9 +59,9 @@ const roadmaps:RoadmapsArr[] = [
   }
 ]
 const activeIndex = ref(-1)
-watch(props, () => {
+watch(() => props, () => {
   const eleContainer = document.getElementById('roadmap-container')
-  if (eleContainer && eleContainer.getBoundingClientRect) {
+  if (eleContainer && eleContainer.getBoundingClientRect()) {
     const offTop = (eleContainer as any).getBoundingClientRect().top + window.scrollY
     // 滚动到 2/3 屏幕开始点亮
     const active = Math.floor((props.scrollTop + window.innerHeight / 3 * 2 - offTop) / 205)
@@ -87,7 +87,7 @@ watch(props, () => {
           <div
             class="w-12 h-12 sm:w-12 sm:h-12 flex flex-row items-center justify-center relative rounded-full mr-6 sm:mr-24"
             style="transition:background .6s;"
-            :style="`background:${activeIndex >= index ? '#fff' : 'rgba(255, 255, 255, 0.1)'};`"
+            :style="`background:${activeIndex >= index ? '#fff' : 'rgba(255, 255, 255, 0.1)'};min-height:48px;min-width:48px`"
           >
             <img :src="require(`@/images/${activeIndex >= index ? roadmap.activeIcon : roadmap.icon}`)">
             <div

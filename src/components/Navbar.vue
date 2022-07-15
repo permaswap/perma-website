@@ -66,11 +66,11 @@ const languagesVisible = ref(false)
 const localeList = [
   {
     value: 'zh',
-    label: '简体中文'
+    label: 'languages_zh'
   },
   {
     value: 'en',
-    label: 'English'
+    label: 'languages_en'
   }
 ]
 const meunLanguagesVisible = ref(false)
