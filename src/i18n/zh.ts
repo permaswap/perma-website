@@ -43,7 +43,6 @@ const messages = {
   roadmap_4_1: '启动 Prophet 网络，开启多 Routers 时代',
   roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营',
   nft: {
-    name_desc: 'lulu',
     certified_nft: '认证的 NFT',
     certified_nft_desc: 'everPay NFT 持有者可参与 Permaswap 先驱者挖矿',
     discover_nft: '探索并收集认证的 NFTs',

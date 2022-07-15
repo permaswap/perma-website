@@ -110,6 +110,7 @@ const meunLanguagesVisible = ref(false)
           </Active>
           <a
             v-else
+            target="_blank"
             class="hover:text-permaWhite2 text-permaWhite"
             :href="item.to">
             {{ t(item.title) }}
