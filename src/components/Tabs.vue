@@ -4,10 +4,10 @@
       v-for="item in itemsTab"
       :key="item.id"
       class="cursor-pointer text-center md:text-xl text-base relative md:mr-8 mr-6 flex-col flex justify-between"
-      :class="`${ item.id === tab ? 'text-permaGreen10 ' : 'text-permaWhite' } `"
+      :class="`${ item.id === tab ? 'text-permaGreen10 ' : 'text-permaWhite hover:text-white' } `"
       @click="switchTab(item.id)">
       <span>{{ t(item.value) }}</span>
-      <div class="w-full rounded-lg bg-permaGreen10 md:mt-2 mt-1" :class="item.id === tab ? '' : 'hidden'" style="height:3px" />
+      <div class="w-full rounded-lg bg-permaGreen10 md:mt-9px mt-1" :class="item.id === tab ? '' : 'hidden'" style="height:3px" />
     </div>
   </div>
 </template>

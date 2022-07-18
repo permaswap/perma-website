@@ -15,6 +15,7 @@ import SeachInput from '@/components/SearchInput.vue'
 import SelectOptions from '@/components/SelectOptions.vue'
 import Footer from '../components/Footer.vue'
 import notSearchFound from '@/components/notSearchFound.vue'
+import Dashed from '@/components/common/Dashed.vue'
 const { t, locale } = useI18n()
 const windowWidth = ref(document.documentElement.offsetWidth)
 const hotNfts = ref<NftInfo[]>([])
@@ -166,6 +167,13 @@ const switchFilterOptions = async (options: Options) => {
   SortFilterNFts.value = formatNFTList(allNfts.value, options.value, value)
   sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
+const closeSearch = async () => {
+  searchText.value = ''
+  allNfts.value = await getNfts()
+  SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
+  sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+  goHTMLPosition('ethnfts')
+}
 onMounted(async () => {
   window.addEventListener('resize', () => {
     windowWidth.value = document.documentElement.offsetWidth
@@ -190,9 +198,8 @@ onMounted(async () => {
       <div class="xl:w-1200px px-4 xl:px-0 mx-auto md:mt-20 mt-14">
         <LabelItem :title="t('nft.hot_nfts')">
           <ViewMore
-            class="hover:border-permaGreen9 hover:text-permaGreen9"
-            default-class-name="border-permaBorderGreen text-permaWhite2"
-            class-name="border-permaGreen11 text-permaGreen11"
+            class="hover:border-permaGreen9 hover:text-permaGreen9 border-permaBorderGreen text-permaWhite2"
+            type="viewMoreActive"
             @click="goHTMLPosition('ethnfts')">
             {{ t('nft.view_more') }}
           </ViewMore>
@@ -228,9 +235,10 @@ onMounted(async () => {
             <div class="flex flex-row mt-4 w-full md:w-auto md:mt-0 justify-between">
               <SelectOptions
                 :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-148px'"
-                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none md:min-w-148px"
+                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none md:min-w-148px py-2 h-10"
                 :options-list="filterOptionsList"
                 :visible="filterOptionsVisible"
+                border-radius="rounded-lg"
                 :current-options="filterOptions.value"
                 @click="filterOptionsVisible = !filterOptionsVisible; sortOptionsVisible = false"
                 @switchOptions="switchFilterOptions">
@@ -238,9 +246,10 @@ onMounted(async () => {
               </SelectOptions>
               <SelectOptions
                 :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-185px'"
-                class="sortSelect md:mr-6 flex-1 md:flex-none"
+                class="sortSelect md:mr-6 flex-1 md:flex-none h-10"
                 :options-list="sortOptionsList"
                 :visible="sortOptionsVisible"
+                border-radius="rounded-lg"
                 :current-options="sortOptions.value"
                 @click="sortOptionsVisible = !sortOptionsVisible; filterOptionsVisible = false"
                 @switchOptions="switchSortOptions">
@@ -251,7 +260,7 @@ onMounted(async () => {
               v-model="searchText"
               class="md:block hidden"
               @search="searchNfts(searchText)"
-              @close="searchText = ''" />
+              @close="closeSearch" />
           </div>
         </div>
       </div>
@@ -267,9 +276,7 @@ onMounted(async () => {
             @viewMore="viewMoreBatchNfts"
             @mousemove="hoverIndex = index"
             @mouseout="hoverIndex = 0" />
-          <div
-            class="border border-b border-dashed line border-permaWhite5"
-            :class="(hoverIndex - 1) === index || (index === collectionNft.length - 1) ? 'invisible' : ''" />
+          <Dashed class="h-px line xl:mx-8 mx-4" :class="(hoverIndex - 1) === index || (index === collectionNft.length - 1) ? 'invisible' : ''" />
         </div>
         <LoadMore :no-more="batchNftLength >= collectionBatchs.length" @loadMore="loadMoreBatchNft" />
       </div>
@@ -278,12 +285,12 @@ onMounted(async () => {
         <notSearchFound v-if="networkError" :title="t('network_err')" />
         <notSearchFound v-else-if="searchLoading" :title="t('searching')" />
         <notSearchFound v-else-if="noResults" :title="t('no_results')" />
-        <div v-else>
+        <div v-else class="lg:pt-5">
           <div class="flex flex-wrap justify-between grid-nft md:mt-10 mt-6">
             <NftCard
               v-for="(nftItem, index) in sliceNfts"
               :key="index"
-              class="sm:mb-6 mb-4"
+              class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-colors"
               :image-url="nftItem.imageUrl"
               :owner="nftItem.owner"
               :collection-name="nftItem.collectionName"
@@ -297,14 +304,14 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="arweave-nft-area md:mt-32 mt-12">
+    <div class="arweave-nft-area md:mt-20 mt-12">
       <div class="xl:w-1200px mx-auto px-4 xl:px-0">
-        <h3 class="text-lg md:text-2xl">
+        <h3 class="text-xl md:text-4xl text-permaWhite">
           Arweave NFTs
         </h3>
         <div
-          class="text-center cursor-not-allowed font-bold mt-4 md:mt-8 text-sm md:text-base py-3 w-32 md:w-36"
-          style="color:#5D806E;background: linear-gradient(268.01deg, rgba(41, 41, 41, 0.8) -9.16%, rgba(51, 51, 51, 0.8) 109.32%);">
+          class=" cursor-not-allowed mt-2 md:mt-6 text-sm md:text-base"
+          style="color:rgba(255,255,255,0.25)">
           {{ t('coming_soon') }}
         </div>
       </div>

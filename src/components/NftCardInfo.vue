@@ -5,16 +5,16 @@
       <span>{{ t('nft.owned_by') }}</span>
     </div>
     <div class="flex md:mt-0.5 justify-between md:text-base text-14px">
-      <div v-if="amount" class="flex items-center">
+      <div v-if="amount" class="flex items-center font-medium">
         <TokenLogo :symbol="symbol" class="mr-1 w-5 h-5" />
         <span>{{ price }}</span>
       </div>
       <div v-else class="hover:text-permaGreen9 transition-all">
         <a :href="permaLink" target="_blank">
-          Make offer
+          {{ t('make_offer') }}
         </a>
       </div>
-      <div class="hover:text-permaGreen9 text-permaWhite2 transition-all">
+      <div class="hover:text-permaGreen9 text-permaWhite2 transition-all font-medium">
         <a :href="ownerLink" target="_blank">
           {{ formatAddress }}
         </a>

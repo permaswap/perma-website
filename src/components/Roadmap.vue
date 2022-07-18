@@ -75,7 +75,7 @@ watch(props, () => {
     <div
       class="px-6 mx-auto xl:w-1024px 2xl:w-1200px"
     >
-      <div class="text-36px text-permaGreen2 font-space-gtotesk-bold sm:mb-20 mb-10">
+      <div class="text-36px text-permaGreen10 font-space-gtotesk-bold sm:mb-20 mb-10">
         {{ t('roadmap') }}
       </div>
       <div id="roadmap-container" style="max-width:500px;margin:0 auto;color: rgba(255, 255, 255, 0.2);">
@@ -101,15 +101,15 @@ watch(props, () => {
           </div>
           <div>
             <div
-              class="text-2xl sm:text-32px mb-4 font-space-gtotesk-bold"
+              class="text-2xl sm:text-32px mb-6 font-space-gtotesk-bold"
               style="transition:color .6s;"
               :style="`color:${activeIndex >= index ? '#fff' : ''}`"
             >
               {{ roadmap.title }}
             </div>
             <ul
-              class="w-64 sm:w-80 font-space-gtotesk-light"
-              style="font-size: 15px;transition:color .6s;"
+              class="w-64 sm:w-80 font-space-gtotesk-light text-base"
+              style="transition:color .6s;"
               :style="`color:${activeIndex >= index ? '#D7D7D7' : ''}`"
             >
               <li v-for="(item, index2) in roadmap.items" :key="index2" class="mb-2">

@@ -1,24 +1,18 @@
 <template>
-  <Active class="md:py-1.5 py-1 md:px-4 px-2 border border-solid rounded-md text-14px cursor-pointer transition-colors" :class-name="className" :default-class-name="defaultClassName">
+  <ButtonActive :type="type" class="md:py-1.5 py-1 md:px-4 px-2 border border-solid rounded-md text-14px cursor-pointer transition-colors">
     {{ t('nft.view_more') }}
-  </Active>
+  </ButtonActive>
 </template>
 
 <script setup lang='ts'>
-import { defineProps, withDefaults } from 'vue'
-import Active from './Active.vue'
+import { defineProps } from 'vue'
+import ButtonActive from './ButtonActive.vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 interface Props {
-  className: string
-  defaultClassName: string
+  type: 'nftBatchActive' | 'viewMoreActive'| 'onAuctionActive'
 }
-
-withDefaults(defineProps<Props>(), {
-  className: '',
-  defaultClassName: ''
-})
-
+defineProps<Props>()
 </script>
 
 <style>

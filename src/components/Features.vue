@@ -62,7 +62,7 @@ onMounted(() => {
             {{ t(feature.desc) }}
           </div>
         </div>
-        <div :id="`feature-anima-${index}`" class="feature-anima" />
+        <div :id="`feature-anima-${index}`" class="feature-anima transform" :class="index % 2 ? '-translate-x-16' : 'translate-x-5'" />
       </div>
     </div>
   </div>
