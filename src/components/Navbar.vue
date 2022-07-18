@@ -45,7 +45,6 @@ onMounted(() => {
 })
 // const drakMode = () => {
 //   const clsList = document.documentElement.classList
-//   console.log(clsList)
 //   if (!clsList.contains('dark')) {
 //     document.documentElement.classList.add('dark')
 //   }
