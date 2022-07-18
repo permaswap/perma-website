@@ -1,5 +1,5 @@
 <template>
-  <div class="h-528px w-full flex justify-center items-center">
+  <div class="h-528px w-full flex justify-center opacity-50 items-center">
     {{ title }}
   </div>
 </template>

@@ -7,31 +7,27 @@
         {{ t('nft.discover_nft') }}
       </h1>
       <p
-        class="md:text-xl text-12px font-light mt-6 text-center text-permaWhite  font-space-gtotesk-light"
-        style="max-width:800px;">
+        class="md:text-xl text-12px font-light mt-6 text-center text-permaWhite font-space-gtotesk-light">
         {{ t('nft.discover_nft_desc') }}
       </p>
     </div>
     <div
       class="md:mt-20 mt-10 flex md:mb-32 mb-10 justify-between sm:px-0 px-10 sm:w-auto w-full md:text-base text-14px">
-      <Active
-        class-name="bg-permaGreen11"
-        default-class-name="bg-permaGreen10"
-        class=" md:py-2.5 py-2 md:px-6 px-4 rounded-lg text-black sm:mr-28 cursor-pointer hover:bg-permaGreen9 transition-all"
+      <ButtonActiveVue
+        type="nftBatchActive"
+        :class="locale === 'zh' ? 'md:px-9 px-7' : 'md:px-6 px-4'"
+        class="bg-permaGreen10 md:py-2.5 py-2 rounded-lg text-black sm:mr-28 cursor-pointer hover:bg-permaGreen9 transition-colors"
         @click="goHTMLPosition('ethnfts')">
         {{ t('nft.discover_now') }}
-      </Active>
-      <a href="https://app.everpay.io/nft-auction" target="_blank">
-        <Active
-          class-name="border-permaGreen11 text-permaGreen11"
-          default-class-name="border-permaBorderGreen text-permaWhite2"
-          class="border border-solid  md:py-2.5 py-2 md:px-6 px-4 rounded-lg cursor-pointer  hover:border-permaGreen9 hover:text-permaGreen9 flex transition-all">
+      </ButtonActiveVue>
+      <ButtonActiveVue type="onAuctionActive" class="border border-solid border-permaBorderGreen text-permaWhite2 md:py-2.5 py-2 md:px-6 px-4 rounded-lg cursor-pointer  hover:border-permaGreen9 hover:text-permaGreen9 flex transition-all" @click="goHTMLPosition('ethnfts')">
+        <a href="https://app.everpay.io/nft-auction" target="_blank">
           <div class="flex">
-            <img src="@/images/arrow-right-green.svg" alt="" class="mr-2">
+            <div class="onAuctionSvg w-6 h-6 mr-2" />
             <span>{{ t('nft.auction') }}</span>
           </div>
-        </Active>
-      </a>
+        </a>
+      </ButtonActiveVue>
     </div>
   </div>
 </template>
@@ -39,9 +35,17 @@
 <script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
 import { goHTMLPosition } from '@/lib/util'
-import Active from '@/components/Active.vue'
-const { t } = useI18n()
+import ButtonActiveVue from '@/components/ButtonActive.vue'
+const { t, locale } = useI18n()
 </script>
 
 <style>
+.onAuctionSvg{
+  background-image: url('../../images/arrow-right-green.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.onAuctionActive:hover .onAuctionSvg {
+  background-image: url('../../images/arrow-right-green-hover.svg');
+}
 </style>

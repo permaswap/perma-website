@@ -1,5 +1,5 @@
 <template>
-  <div class="batch-nft-card duration-300 transition-colors xl:p-8  p-4 rounded-2xl md:my-7 my-4">
+  <div class="batch-nft-card duration-300 transition-colors xl:p-8  p-4 rounded-3xl md:my-7 my-4 hover:bg-opacity-90">
     <div class="flex">
       <div class="md:min-w-279px md:w-279px w-164px  min-w-164px md:mr-6 mr-4">
         <div class="md:w-120px md:h-120px w-20 h-20 bg-permaWhite4 md:p-1.5 p-1 md:rounded-xl rounded-lg">
@@ -8,7 +8,7 @@
         <div class="md:mt-6 mt-4 md:text-18px text-14px text-info-two md:truncate  md:block min-h-44px md:min-h-0">
           {{ name }}
         </div>
-        <div class="md:block hidden" style="min-height:88px">
+        <div class="md:block hidden" style="min-height:66px">
           <MoreInfo
             info-class="text-14px mt-3 text-permaWhite text-info-three overflow-hidden"
             :info="batchNftI18">
@@ -17,15 +17,15 @@
         </div>
         <BatchInfoItems :items="stats.count" :owners="stats.num_owners" :floor-price="stats.floor_price" />
         <ViewMore
-          class="md:mt-8 mt-6 inline-block text-black hover:bg-permaGreen9 border-none"
-          default-class-name="bg-permaGreen10"
-          class-name="bg-permaGreen11"
+          class="md:mt-12 mt-6 inline-block text-black hover:bg-permaGreen9 border-none bg-permaGreen10"
+          type="nftBatchActive"
           @click="emits('viewMore',name)" />
       </div>
       <div id="collection" class="flex-1 flex flex-wrap" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
         <NftCard
           v-for="(item, index) in collectionNft"
           :key="index"
+          class="nftCard"
           :amount="item.price"
           :image-url="item.imageUrl"
           :owner="item.owner"
@@ -94,7 +94,7 @@ watch(() => props.nftBoxWidth, () => {
 .text-info-three {
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -113,7 +113,9 @@ watch(() => props.nftBoxWidth, () => {
   }
 }
 .batch-nft-card:hover{
-background: rgba(34, 36, 34, 0.65);
-backdrop-filter: blur(200px);
+  background: #141814;
+  .nftCard{
+    background-color: #222422;
+  }
 }
 </style>

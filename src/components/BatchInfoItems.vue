@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between md:mt-8 mt-6">
+  <div class="flex justify-between md:mt-12 mt-6">
     <div v-for="(item,index) in ItemsArr" :key="index" class="text-center">
       <div class="md:text-2xl text-xl" :class="index === ItemsArr.length - 1 ? 'text-permaWhite3 flex mr-1 items-center justify-center' : 'cursor-pointer'">
         <TokenLogo v-if="index === ItemsArr.length - 1 && floorPrice" symbol="eth" class="w-6 h-6" />
