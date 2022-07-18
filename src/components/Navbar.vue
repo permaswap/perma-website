@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { savedI18nStorageKey } from '@/constants'
 import { checkParentsHas } from '@/lib/util'
 import SelectOptions from './SelectOptions.vue'
-import Active from '@/components/Active.vue'
+// import Active from '@/components/Active.vue'
 import ModalWrapper from '@/components/common/ModalWrapper.vue'
 import { Options } from '@/lib/types'
 defineProps<{
@@ -23,6 +23,16 @@ const changeLocale = (lang: Options) => {
 }
 onMounted(() => {
   window.addEventListener('resize', () => {
+    if (window.innerWidth >= 640) {
+      mobileMenu.value = false
+      meunLanguagesVisible.value = false
+    }
+    languagesVisible.value = false
+  })
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth >= 640) {
+      languagesVisible.value = false
+    }
     mobileMenu.value = false
   })
   document.addEventListener('click', (e) => {
@@ -99,15 +109,13 @@ const meunLanguagesVisible = ref(false)
           :key="index"
           :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-16 mr-10'"
           class="flex flex-row items-center text-base">
-          <Active
+          <div
             v-if="!item.open"
-            class-name="text-permaGreen10"
-            class="hover:text-permaWhite2"
-            :default-class-name="item.routeNames.includes(routeName) ? 'text-permaGreen10' : 'text-permaWhite'">
+            :class="item.routeNames.includes(routeName) ? 'text-permaGreen10 font-medium' : 'text-permaWhite hover:text-permaWhite2'">
             <router-link :to="item.to">
               {{ t(item.title) }}
             </router-link>
-          </Active>
+          </div>
           <a
             v-else
             target="_blank"
@@ -117,10 +125,11 @@ const meunLanguagesVisible = ref(false)
           </a>
         </div>
         <SelectOptions
-          class="lang-wrapper lg:ml-16 ml-10"
+          class="lang-wrapper lg:ml-16 ml-10 text-base py-1"
           :current-options="locale"
           :visible="languagesVisible"
           :options-list="localeList"
+          border-radius="rounded-md"
           @click="languagesVisible = !languagesVisible"
           @switch-options="changeLocale">
           <span>{{ locale === 'zh' ? '简体中文' : 'English' }}</span>
@@ -137,7 +146,7 @@ const meunLanguagesVisible = ref(false)
     <ModalWrapper :visible="mobileMenu">
       <div>
         <div
-          class="fixed right-0 text-14px w-4/6"
+          class="fixed right-0 text-base w-4/6"
         >
           <div class="bg-permaBlack h-screen pt-8">
             <div
@@ -172,7 +181,7 @@ const meunLanguagesVisible = ref(false)
                   :key="item.value"
                   class="py-2 mb-2 text-permaWhite cursor-pointer"
                   @click="changeLocale(item)">
-                  {{ item.label }}
+                  {{ t(item.label) }}
                 </div>
               </div>
             </div>

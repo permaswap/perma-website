@@ -67,9 +67,9 @@ const milestoneArr = [
   <div class="milestone-container milestone-Bg bg-no-repeat" style="">
     <div class="milestone-Bg2 pb-52  bg-no-repeat">
       <div
-        class="px-6 mx-auto xl:w-1024px 2xl:w-1200px "
+        class="px-6 xl:px-0 mx-auto xl:w-1024px 2xl:w-1200px "
       >
-        <div class="text-36px mb-9 font-space-gtotesk-bold text-permaGreen2">
+        <div class="text-36px mb-9 font-space-gtotesk-bold text-permaGreen10">
           {{ t('milestone') }}
         </div>
         <!-- PC 端 -->
@@ -82,12 +82,12 @@ const milestoneArr = [
             <div
               v-for="milestone in milestones"
               :key="milestone.title"
-              class="pt-7 pb-16 pl-7 mb-5 w-49% 2xl:h-310px h-300px rounded-3xl"
+              class="py-8 pl-8 mb-5 w-49% 2xl:h-310px h-300px rounded-3xl"
               :style="`
               background: #171717;;box-sizing:border-box;
             `"
             >
-              <div class="text-sm sm:text-base font-space-gtotesk-medium" style="color: #8A8B8A;">
+              <div class="text-sm sm:text-base font-space-gtotesk-medium text-permaWhite">
                 {{ milestone.title.toUpperCase() }}
               </div>
               <div class="flex flex-row items-center justify-start mt-5 md:mt-8">
@@ -96,11 +96,11 @@ const milestoneArr = [
                   <li
                     v-for="(item, indexItem) in milestone.items"
                     :key="indexItem"
-                    class="flex flex-row items-start text-permaGray3 justify-start mb-1 font-space-gtotesk-light text-14px"
+                    class="flex flex-row items-center text-permaWhite justify-start mb-1 font-space-gtotesk-light text-14px"
                   >
                     <div
                       style="border: 1.09464px solid #555555;"
-                      class="mr-2.5 relative top-1.5 w-1.5 h-1.5 rounded-full" />
+                      class="mr-2 w-1.5 h-1.5 rounded-full" />
                     <div>{{ t(item) }}</div>
                   </li>
                 </ul>

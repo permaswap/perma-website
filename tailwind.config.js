@@ -56,7 +56,8 @@ module.exports = {
         '280px': '280px',
         '258px': '258px',
         '148px': '148px',
-        '10px': '10px'
+        '10px': '10px',
+        '9px': '9px'
       },
       colors: {
         permaGrey: 'rgba(233, 233, 233, 0.5)',
