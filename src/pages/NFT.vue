@@ -25,13 +25,13 @@ const isFilterSelectTarget = checkParentsHas('filterSelect')
 const allNfts = ref<NftInfo[]>([])
 const SortFilterNFts = ref<NftInfo[]>([])
 const collectionNft = ref<Collection[]>([])
-const sliceNfts = ref<NftInfo[]>([])
+const nftResults = ref<NftInfo[]>([])
 const batchNftLength = ref(0)
 const exploreNftLength = ref(0)
 const searchText = ref('')
 const searchLoading = ref(false)
 const networkError = ref(false)
-const noResults = computed(() => !sliceNfts.value.length)
+const noResults = computed(() => !nftResults.value.length)
 const nftBoxWidth = ref(0)
 const tabOptions = ref(1)
 const sortOptionsVisible = ref(false)
@@ -41,13 +41,17 @@ const getNftsInit = async () => {
   try {
     networkError.value = false
     searchLoading.value = true
-    const hotNftArr = await getHotNfts()
-    hotNfts.value = hotNftArr.sort((a, b) => {
+    const [hotNftReslut, collectionBatchReslut, allNftsReslut] = await Promise.all([getHotNfts(), getNftCollections(), getNfts()])
+    console.log(collectionBatchReslut)
+    hotNfts.value = hotNftReslut.sort((a, b) => {
       return +b.price - +a.price
     })
-    collectionBatchs.value = await getNftCollections()
-    allNfts.value = await getNfts()
+    collectionBatchs.value = collectionBatchReslut
+    allNfts.value = allNftsReslut
     SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
+    nextTick(() => {
+      document.documentElement.scrollTop = 0
+    })
     loadMoreBatchNft()
     loadMoreNft()
     setTimeout(() => {
@@ -60,7 +64,6 @@ const getNftsInit = async () => {
 getNftsInit()
 
 const searchNfts = async (text: string) => {
-  goHTMLPosition('ethnfts')
   try {
     networkError.value = false
     exploreNftLength.value = 20
@@ -68,23 +71,25 @@ const searchNfts = async (text: string) => {
       searchLoading.value = true
       allNfts.value = await getSearchNFTs(text)
       SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-      sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+      nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
       setTimeout(() => {
         searchLoading.value = false
+        isViewMore.value = false
       }, 300)
     } else {
       allNfts.value = await getNfts()
       SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-      sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+      nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
     }
   } catch (error) {
     networkError.value = true
   }
 }
+const isViewMore = ref(false)
 const viewMoreBatchNfts = (batchName: string) => {
+  isViewMore.value = true
   searchText.value = batchName
   tabOptions.value = 2
-  goHTMLPosition('ethnfts')
   searchNfts(batchName)
 }
 const updateScrollTop = async () => {
@@ -105,19 +110,32 @@ const loadMoreBatchNft = async () => {
 const loadMoreNft = async () => {
   if (exploreNftLength.value < SortFilterNFts.value.length) {
     exploreNftLength.value = exploreNftLength.value + (window.innerWidth > 768 ? 20 : 10)
-    sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
-    await updateScrollTop()
+    nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
   }
 }
 const switchTab = (tabId: number) => {
   tabOptions.value = tabId
+  if (tabId === 1) {
+    searchText.value = ''
+    searchNfts('')
+  }
 }
 
 watch(() => tabOptions.value, () => {
   nextTick(() => {
     nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
   })
-  sessionStorage.removeItem('scrollTop')
+})
+watch(() => nftResults.value, async () => {
+  if (isViewMore.value) {
+    nextTick(() => {
+      document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
+    })
+  } else {
+    const scrollTop = document.documentElement.scrollTop
+    sessionStorage.setItem('scrollTop', scrollTop.toString())
+    await updateScrollTop()
+  }
 })
 const sortOptionsList = [
   {
@@ -134,7 +152,6 @@ const sortOptionsList = [
   }
 ]
 onActivated(() => {
-  document.documentElement.scrollTop = 0
   sessionStorage.removeItem('scrollTop')
 })
 const sortOptions = ref(sortOptionsList[0])
@@ -142,7 +159,7 @@ const switchSortOptions = async (options: Options) => {
   sortOptions.value = options
   const { value } = filterOptions.value
   SortFilterNFts.value = formatNFTList(allNfts.value, value, options.value)
-  sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 
 const filterOptionsList = [
@@ -165,14 +182,13 @@ const switchFilterOptions = async (options: Options) => {
   filterOptions.value = options
   const { value } = sortOptions.value
   SortFilterNFts.value = formatNFTList(allNfts.value, options.value, value)
-  sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 const closeSearch = async () => {
   searchText.value = ''
   allNfts.value = await getNfts()
   SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-  sliceNfts.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
-  goHTMLPosition('ethnfts')
+  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 onMounted(async () => {
   window.addEventListener('resize', () => {
@@ -288,8 +304,8 @@ onMounted(async () => {
         <div v-else class="lg:pt-5">
           <div class="flex flex-wrap justify-between grid-nft md:mt-10 mt-6">
             <NftCard
-              v-for="(nftItem, index) in sliceNfts"
-              :key="index"
+              v-for="nftItem in nftResults"
+              :key="nftItem.name"
               class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-colors"
               :image-url="nftItem.imageUrl"
               :owner="nftItem.owner"

@@ -62,3 +62,8 @@ export const formatNFTList = (nfts: NftInfo[], filterOptions: string, sortOption
   const newFilterNfts = filterNfts(nfts, filterOptions)
   return sortNfts(newFilterNfts, sortOptions)
 }
+
+export const sessionScrollTop = (): void => {
+  const scrollTop = document.documentElement.scrollTop
+  sessionStorage.setItem('scrollTop', scrollTop.toString())
+}
