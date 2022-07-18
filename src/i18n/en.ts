@@ -72,6 +72,7 @@ const messages = {
     collect: 'Collect',
     click_to_see_more: 'You can expand and see information from each NFT'
   },
+  make_offer: 'Make offer',
   load_more: 'Load more Items',
   no_more: 'No more',
   search: 'Search...',

@@ -72,6 +72,7 @@ const messages = {
     collect: '收起',
     click_to_see_more: '点击查看系列下每个NFT状态'
   },
+  make_offer: '去出价',
   load_more: '加载更多',
   no_more: '到底了',
   search: '查询...',

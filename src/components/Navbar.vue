@@ -5,7 +5,6 @@ import { useI18n } from 'vue-i18n'
 import { savedI18nStorageKey } from '@/constants'
 import { checkParentsHas } from '@/lib/util'
 import SelectOptions from './SelectOptions.vue'
-// import Active from '@/components/Active.vue'
 import ModalWrapper from '@/components/common/ModalWrapper.vue'
 import { Options } from '@/lib/types'
 defineProps<{
