@@ -36,10 +36,11 @@ module.exports = {
       },
       minWidth: {
         '279px': '279px',
-        '185px': '185px',
+        '198px': '198px',
         '164px': '164px',
+        '160px': '160px',
         '148px': '148px',
-        '134px': '134px'
+        '145px': '145px'
       },
       height: {
         '528px': '528px',

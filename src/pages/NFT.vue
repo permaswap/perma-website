@@ -252,18 +252,18 @@ onMounted(async () => {
               @close="closeSearch" />
             <div class="flex flex-row mt-4 w-full md:w-auto md:mt-0 justify-between">
               <SelectOptions
-                :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-148px'"
-                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none md:min-w-148px py-2 h-10"
+                :class="locale === 'zh' ? 'md:min-w-145px' : 'md:min-w-160px'"
+                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none py-2 h-10"
                 :options-list="filterOptionsList"
                 :visible="filterOptionsVisible"
                 border-radius="rounded-lg"
                 :current-options="filterOptions.value"
                 @click="filterOptionsVisible = !filterOptionsVisible; sortOptionsVisible = false"
                 @switchOptions="switchFilterOptions">
-                <span class="md:mr-5">{{ t(filterOptions.label) }}</span>
+                <span class="md:mr-5 whitespace-nowrap">{{ t(filterOptions.label) }}</span>
               </SelectOptions>
               <SelectOptions
-                :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-185px'"
+                :class="locale === 'zh' ? 'md:min-w-145px' : 'md:min-w-198px'"
                 class="sortSelect md:mr-6 flex-1 md:flex-none h-10"
                 :options-list="sortOptionsList"
                 :visible="sortOptionsVisible"
