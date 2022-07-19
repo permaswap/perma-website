@@ -14,7 +14,7 @@ defineProps<Props>()
 </script>
 
 <style lang="scss">
-.nftHeadsActive:active{
+.nftBatchActive:active{
   background-color: #5AAD67;
 }
 .viewMoreActive:active{

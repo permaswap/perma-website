@@ -42,7 +42,6 @@ const getNftsInit = async () => {
     networkError.value = false
     searchLoading.value = true
     const [hotNftReslut, collectionBatchReslut, allNftsReslut] = await Promise.all([getHotNfts(), getNftCollections(), getNfts()])
-    console.log(collectionBatchReslut)
     hotNfts.value = hotNftReslut.sort((a, b) => {
       return +b.price - +a.price
     })
@@ -67,19 +66,21 @@ const searchNfts = async (text: string) => {
   try {
     networkError.value = false
     exploreNftLength.value = 20
+    searchLoading.value = true
     if (text) {
-      searchLoading.value = true
       allNfts.value = await getSearchNFTs(text)
       SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
       nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
-      setTimeout(() => {
+      setTimeout(async () => {
         searchLoading.value = false
-        isViewMore.value = false
       }, 300)
     } else {
       allNfts.value = await getNfts()
       SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
       nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+      setTimeout(async () => {
+        searchLoading.value = false
+      }, 300)
     }
   } catch (error) {
     networkError.value = true
@@ -91,6 +92,7 @@ const viewMoreBatchNfts = (batchName: string) => {
   searchText.value = batchName
   tabOptions.value = 2
   searchNfts(batchName)
+  document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
 }
 const updateScrollTop = async () => {
   nextTick(() => {
@@ -115,19 +117,17 @@ const loadMoreNft = async () => {
 }
 const switchTab = (tabId: number) => {
   tabOptions.value = tabId
-  if (tabId === 1) {
-    searchText.value = ''
-    searchNfts('')
-  }
+  isViewMore.value = tabId === 1
 }
 
 watch(() => tabOptions.value, () => {
   nextTick(() => {
     nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
   })
+  sessionStorage.removeItem('scrollTop')
 })
-watch(() => nftResults.value, async () => {
-  if (isViewMore.value) {
+watch(() => [nftResults.value, searchLoading.value], async (newVal, oldVal) => {
+  if (isViewMore.value && !newVal[1]) {
     nextTick(() => {
       document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
     })
@@ -185,6 +185,7 @@ const switchFilterOptions = async (options: Options) => {
   nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 const closeSearch = async () => {
+  isViewMore.value = false
   searchText.value = ''
   allNfts.value = await getNfts()
   SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
@@ -206,10 +207,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="md:pt-52 pt-32 relative">
+  <div class="relative">
     <img src="@/images/ar-nft-bg.png" class="ar-nfts-img absolute bottom-0 right-0" alt="">
-    <NftHeads />
-    <div class="hot-nfts relative">
+    <NftHeads class="md:pt-52 pt-32" />
+    <div class="hot-nfts relative" style="min-height: 500px;">
       <img src="@/images/hot-nft-bg.png" class="hot-nfts-img absolute" alt="">
       <div class="xl:w-1200px px-4 xl:px-0 mx-auto md:mt-20 mt-14">
         <LabelItem :title="t('nft.hot_nfts')">
@@ -224,7 +225,8 @@ onMounted(async () => {
           <NftCard
             v-for="(nftItem, index) in (windowWidth > 650 ? hotNfts : hotNfts.slice(0, 4))"
             :key="index"
-            class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-colors"
+            class="sm:mb-6 mb-4 transform transition-colors"
+            :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
             :image-url="nftItem.imageUrl"
             :owner="nftItem.owner"
             :collection-name="nftItem.collectionName"
@@ -247,7 +249,7 @@ onMounted(async () => {
               v-model="searchText"
               class="md:hidden block"
               @search="searchNfts(searchText)"
-              @close="searchText = ''" />
+              @close="closeSearch" />
             <div class="flex flex-row mt-4 w-full md:w-auto md:mt-0 justify-between">
               <SelectOptions
                 :class="locale === 'zh' ? 'md:min-w-134px' : 'md:min-w-148px'"
@@ -306,7 +308,8 @@ onMounted(async () => {
             <NftCard
               v-for="nftItem in nftResults"
               :key="nftItem.name"
-              class="sm:mb-6 mb-4 hover:-translate-y-2 hover:bg-permaBlack6 transform transition-colors"
+              class="sm:mb-6 mb-4 transform transition-colors"
+              :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
               :image-url="nftItem.imageUrl"
               :owner="nftItem.owner"
               :collection-name="nftItem.collectionName"

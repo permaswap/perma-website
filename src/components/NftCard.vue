@@ -4,15 +4,17 @@
       <a :href="permaLink" target="_blank">
         <!-- <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px" :style="`background-image: url(${imageUrl});`" />
          -->
-        <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px flex">
+        <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px flex items-end justify-center bg-permaBlack6">
           <img
+            v-if="imageUrl"
             :src="imageUrl"
             :class="collectionName.includes('Winston-EVER') ? 'scale-125 translate-y-4' : ''"
             class="h-full w-full transform"
             style="object-fit:cover">
+          <img v-else src="@/images/occupancy.png" class="w-3/4 h-3/4">
         </div>
       </a>
-      <div class="md:mt-4 mt-10px md:px-1 px-0.5">
+      <div class="md:mt-4 mt-10px md:px-1 px-0.5 nftCardMInHeight">
         <div class="text-14px md:text-base truncate font-medium">
           {{ name }}
         </div>
@@ -49,4 +51,12 @@ defineProps<Props>()
 </script>
 
 <style>
+.nftCardMInHeight{
+  min-height: 42px
+}
+@media (min-width:768px) {
+.nftCardMInHeight {
+  min-height: 48px
+}
+}
 </style>

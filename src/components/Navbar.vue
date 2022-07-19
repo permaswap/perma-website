@@ -56,20 +56,22 @@ onMounted(() => {
 const routeName = computed(() => {
   return route.name as string
 })
-const navbarList = [
-  {
-    title: 'white_paper',
-    to: locale.value === 'zh' ? 'https://mirror.xyz/permaswap.eth/kdg0iXx1jB-vXYEc_WEAeTNX_sGjv8BXksHxcFdoKjo' : 'https://mirror.xyz/permaswap.eth/ustZcDgavlm4xmYI26thEAj8W2cXlZpRkG5Jqz0iS14',
-    routeNames: [],
-    open: true
-  },
-  {
-    title: 'nft.certified_nft',
-    to: '/nft',
-    routeNames: ['nft'],
-    open: false
-  }
-]
+const navbarList = computed(() => {
+  return [
+    {
+      title: 'white_paper',
+      to: locale.value === 'zh' ? 'https://mirror.xyz/permaswap.eth/kdg0iXx1jB-vXYEc_WEAeTNX_sGjv8BXksHxcFdoKjo' : 'https://mirror.xyz/permaswap.eth/ustZcDgavlm4xmYI26thEAj8W2cXlZpRkG5Jqz0iS14',
+      routeNames: [],
+      open: true
+    },
+    {
+      title: 'nft.certified_nft',
+      to: '/nft',
+      routeNames: ['nft'],
+      open: false
+    }
+  ]
+})
 const languagesVisible = ref(false)
 const localeList = [
   {
@@ -88,7 +90,7 @@ const meunLanguagesVisible = ref(false)
   <div
     class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10 px-4"
     style="transition:margin .4s;height: 80px;"
-    :class="scrollTop === 0 ? 'md:mt-6 bg-black' : 'mt-0 navbar'"
+    :class="scrollTop === 0 ? 'md:mt-6' : 'mt-0 navbar'"
   >
     <!-- PC 端 -->
     <router-link to="/">
