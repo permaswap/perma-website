@@ -91,6 +91,7 @@ const viewMoreBatchNfts = (batchName: string) => {
   isViewMore.value = true
   searchText.value = batchName
   tabOptions.value = 2
+  filterOptions.value = filterOptionsList[0]
   searchNfts(batchName)
   document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
 }
