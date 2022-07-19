@@ -8,6 +8,9 @@ const { t } = useI18n()
 const contentTop = computed(() => {
   return props.windowWidth > 768 ? props.windowWidth / 1720 * 300 : props.windowWidth / 375 * 150
 })
+const containerH = computed(() => {
+  return props.windowWidth > 768 ? props.windowWidth / 1720 * 945 : props.windowWidth / 375 * 413
+})
 const gifWidth = computed(() => {
   return props.windowWidth > 768 ? props.windowWidth / 1720 * 359 : props.windowWidth / 375 * 177
 })
@@ -32,7 +35,7 @@ const ball2Left = computed(() => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative" :style="`height:${containerH}px;`">
     <img src="../images/halo-ring-big.png" class="md:block hidden w-full">
     <img src="../images/halo-ring-small.png" class="w-full md:hidden block" alt="">
     <img class="absolute" :style="`width:${gifWidth}px;height:${gifHeight}px;left:50%;transform:translateX(-50%);top:${gifTop}px;`" src="@/images/perma.gif">

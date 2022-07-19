@@ -1,7 +1,6 @@
 <template>
   <div
-    class="flex items-center flex-col"
-    style="background: linear-gradient(359.8deg, rgba(3, 33, 13, 0.65) 0.16%, rgba(0, 0, 0, 0) 99.81%);">
+    class="flex items-center flex-col nftHaeadsBanner">
     <div class="flex items-center flex-col px-9">
       <h1 class="font-bold md:text-48px text-2xl text-center font-space-gtotesk-bold">
         {{ t('nft.discover_nft') }}
@@ -47,5 +46,18 @@ const { t, locale } = useI18n()
 }
 .onAuctionActive:hover .onAuctionSvg {
   background-image: url('../../images/arrow-right-green-hover.svg');
+}
+.nftHaeadsBanner{
+  background-image: url('../../images/small_banner.png');
+  background-size: 100% 378px;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+@media (min-width:400px) {
+  .nftHaeadsBanner{
+    background-image: url('../../images/banner.png');
+    background-size: 1920px 568px;
+    background-position: top center;
+  }
 }
 </style>

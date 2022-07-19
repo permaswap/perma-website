@@ -9,9 +9,10 @@
     <transition name="fade">
       <div
         v-show="hoverd"
-        class="absolute bottom-32 left-36 z-40  w-80"
+        class="absolute left-36 z-40 w-80"
+        style="bottom:115px;"
       >
-        <div class="relative mb-5 p-2 text-white break-all bg-permaBlack4 text-14px" style="border-radius: 6px;">
+        <div class="relative mb-5 p-2 text-white break-all text-14px" style="border-radius: 12px;background: rgba(20, 24, 20, 0.92);">
           <slot />
         </div>
         <div class="divArrowRadius absolute left-3.5" />
@@ -43,7 +44,7 @@ const handleMouseLeave = () => {
 
 <style scoped>
 .divArrowRadius {
-  border: 7px solid rgba(20, 24, 20, 0.85);
+  border: 7px solid rgba(20, 24, 20, 0.92);
   border-left: 7px solid transparent;
   border-top: 7px solid transparent;
   border-bottom-right-radius: 5px;
