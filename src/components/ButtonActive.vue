@@ -24,8 +24,11 @@ defineProps<Props>()
 .onAuctionActive:active{
   border-color: #5AAD67;
   color: #5AAD67;
-  .onAuctionSvg{
-    background-image: url('../images/arrow-right-green-active.svg') !important;
+  .activeSvg {
+    display: block;
+  }
+  .onAuctionSvg {
+    display: none;
   }
 }
 
