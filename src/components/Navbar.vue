@@ -89,8 +89,8 @@ const meunLanguagesVisible = ref(false)
 <template>
   <div
     class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10 px-4"
-    style="transition:margin .4s;height: 80px;"
-    :class="scrollTop === 0 ? 'md:mt-6' : 'mt-0 navbar'"
+    style="transition:padding .4s;height: 80px;"
+    :class="scrollTop === 0 ? 'md:pt-6' : 'pt-0 navbar'"
   >
     <!-- PC 端 -->
     <router-link to="/">

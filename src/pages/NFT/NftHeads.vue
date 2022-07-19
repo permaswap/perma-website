@@ -23,6 +23,7 @@
         <a href="https://app.everpay.io/nft-auction" target="_blank">
           <div class="flex">
             <div class="onAuctionSvg w-6 h-6 mr-2" />
+            <div class="activeSvg w-6 h-6 mr-2" />
             <span>{{ t('nft.auction') }}</span>
           </div>
         </a>
@@ -43,6 +44,12 @@ const { t, locale } = useI18n()
   background-image: url('../../images/arrow-right-green.svg');
   background-repeat: no-repeat;
   background-position: center;
+}
+.activeSvg{
+  background-image: url('../../images/arrow-right-green-active.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
 }
 .onAuctionActive:hover .onAuctionSvg {
   background-image: url('../../images/arrow-right-green-hover.svg');
