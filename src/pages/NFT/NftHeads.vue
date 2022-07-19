@@ -63,7 +63,14 @@ const { t, locale } = useI18n()
 @media (min-width:400px) {
   .nftHaeadsBanner{
     background-image: url('../../images/banner.png');
-    background-size: 1920px 568px;
+    background-size: 1728px 568px;
+    background-position: top center;
+  }
+}
+@media (min-width:1728px) {
+  .nftHaeadsBanner{
+    background-image: url('../../images/banner.png');
+    background-size: 100%;
     background-position: top center;
   }
 }
