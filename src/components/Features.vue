@@ -2,17 +2,10 @@
 import { onMounted, defineProps } from 'vue'
 import { useI18n } from 'vue-i18n'
 import lottie from 'lottie-web'
-import featureBack from '../images/feature-back.png'
-import featureBackSmall from '../images/feature-back-small.png'
-
-// eslint-disable-next-line no-undef
-// eslint-disable-next-line no-unused-vars
-const props = defineProps<{
+defineProps<{
   windowWidth: number
 }>()
-
 const { t } = useI18n()
-
 const features = [
   {
     title: 'advantage_1_title',
@@ -51,10 +44,10 @@ onMounted(() => {
 <template>
   <div
     class="feature-container"
-    :style="`background-image:url(${windowWidth > 640 ? featureBack : featureBackSmall});background-position:0 0;background-repeat:no-repeat;`"
+    :style="`background-image:url(${windowWidth > 640 ? require('../images/feature-back.png') : require('../images/feature-back-small.png')});background-position:0 0;background-repeat:no-repeat;`"
   >
     <div
-      class="px-6 pt-16 mx-auto xl:w-1024px 2xl:w-1342px"
+      class="pt-16 mx-auto px-6 xl:w-1024px 2xl:px-0 2xl:w-1200px"
     >
       <div
         v-for="(feature, index) in features"
@@ -62,14 +55,14 @@ onMounted(() => {
         class="md:flex items-center justify-between"
         :class="index % 2 ? 'flex-row-reverse' : 'flex-row'">
         <div class="feature-content text-white lg:w-1/2">
-          <div class="font-semibold text-24px mb-4 md:text-36px lg:text-48px lg:font-bold lg:mb-6">
+          <div class="text-2xl mb-4 md:text-36px font-space-gtotesk-semiBold lg:text-48px lg:font-space-gtotesk-bold lg:mb-8">
             {{ t(feature.title) }}
           </div>
-          <div class="font-light text-sm lg:text-21px leading-relaxed" style="color:#DDDDDD;">
+          <div class="font-space-gtotesk-light text-sm lg:text-xl leading-relaxed" style="color:#DDDDDD;">
             {{ t(feature.desc) }}
           </div>
         </div>
-        <div :id="`feature-anima-${index}`" class="feature-anima" />
+        <div :id="`feature-anima-${index}`" class="feature-anima transform" :class="index % 2 ? '-translate-x-16' : 'translate-x-5'" />
       </div>
     </div>
   </div>

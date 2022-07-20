@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'Space Gtotesk Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('./fonts/SpaceGrotesk-Light.ttf');
+}
+@font-face {
+  font-family: 'Space Gtotesk Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/SpaceGrotesk-Medium.ttf');
+}
+@font-face {
+  font-family: 'Space Gtotesk SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./fonts/SpaceGrotesk-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'Space Gtotesk Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/SpaceGrotesk-Bold.ttf');
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.move-enter-active,
+.move-leave-active {
+    transition: all 0.3s linear;
+    transform: translateX(0%);
+}
+.move-enter-from,
+.move-leave-to {
+  transform: translateX(100%);
+}

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-
 import { onMounted, ref } from 'vue'
 import Halo from '../components/Halo.vue'
 import Features from '../components/Features.vue'
@@ -27,6 +24,14 @@ onMounted(() => {
   <Halo :window-width="windowWidth" />
   <Features :window-width="windowWidth" />
   <Milestones :scroll-top="scrollTop" />
-  <Roadmap :scroll-top="scrollTop" />
-  <Footer :window-width="windowWidth" />
+  <div class="bg-no-repeat roadmap-Bg">
+    <Roadmap :scroll-top="scrollTop" />
+    <Footer :window-width="windowWidth" />
+  </div>
 </template>
+<style>
+.roadmap-Bg{
+  background-image: url('../images/roadmap-back.png');
+  background-position: right;
+}
+</style>
