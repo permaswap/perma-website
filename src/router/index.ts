@@ -23,5 +23,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+router.afterEach(() => {
+  document.documentElement.scrollTop = 0
+})
 
 export default router
