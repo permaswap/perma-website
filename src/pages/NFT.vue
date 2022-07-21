@@ -226,7 +226,7 @@ onMounted(async () => {
           <NftCard
             v-for="(nftItem, index) in (windowWidth > 650 ? hotNfts : hotNfts.slice(0, 4))"
             :key="index"
-            class="sm:mb-6 mb-4 transform transition-colors"
+            class="sm:mb-6 mb-4 transform transition-all"
             :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
             :image-url="nftItem.imageUrl"
             :owner="nftItem.owner"
@@ -309,7 +309,7 @@ onMounted(async () => {
             <NftCard
               v-for="nftItem in nftResults"
               :key="nftItem.name"
-              class="sm:mb-6 mb-4 transform transition-colors"
+              class="sm:mb-6 mb-4 transform transition-all"
               :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
               :image-url="nftItem.imageUrl"
               :owner="nftItem.owner"
