@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
+import { useStore } from './store'
 const scrollTop = ref(0)
-
+const store = useStore()
+store.dispatch('updateHotNftsInfoAsync')
+store.dispatch('updateCollectionBatchInfoAsync')
+store.dispatch('updateAllNftsInfoAsync')
 const windowWidth = ref(document.documentElement.offsetWidth)
 
 onMounted(() => {
