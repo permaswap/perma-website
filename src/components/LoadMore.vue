@@ -32,8 +32,6 @@ const loading = ref(false)
 const emits = defineEmits<Emits>()
 const loadMore = () => {
   loading.value = true
-  const scrollTop = document.documentElement.scrollTop
-  sessionStorage.setItem('scrollTop', scrollTop.toString())
   setTimeout(() => {
     emits('loadMore')
     loading.value = false

@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { getHotNfts, getNftCollections, getSearchNFTs, getNfts } from '@/lib/api'
-import { onMounted, ref, watch, nextTick, computed, onActivated } from 'vue'
+import { getSearchNFTs } from '@/lib/api'
+import { onMounted, ref, nextTick, computed, onActivated, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Collection, NftInfo, Options } from '@/lib/types'
-import { goHTMLPosition, checkParentsHas, formatNFTList } from '@/lib/util'
+import { Options } from '@/lib/types'
+import { useStore } from '@/store'
+import { NftInfo } from '@/store/state'
+import { goHTMLPosition, checkParentsHas, formatNFTList, sessionScrollTop } from '@/lib/util'
 import NftCard from '@/components/NftCard.vue'
 import LabelItem from '@/components/LabelItem.vue'
 import NftHeads from './NFT/NftHeads.vue'
@@ -17,17 +19,21 @@ import Footer from '../components/Footer.vue'
 import notSearchFound from '@/components/notSearchFound.vue'
 import Dashed from '@/components/common/Dashed.vue'
 const { t, locale } = useI18n()
+const store = useStore()
 const windowWidth = ref(document.documentElement.offsetWidth)
-const hotNfts = ref<NftInfo[]>([])
-const collectionBatchs = ref<Collection[]>([])
+const allNftsList = computed(() => store.state.allNfts)
+const hotNftsList = computed(() => store.state.hotNfts)
+const collectionBatchs = computed(() => store.state.collectionBatchNfts)
 const isSortSelectTarget = checkParentsHas('sortSelect')
 const isFilterSelectTarget = checkParentsHas('filterSelect')
 const allNfts = ref<NftInfo[]>([])
 const SortFilterNFts = ref<NftInfo[]>([])
-const collectionNft = ref<Collection[]>([])
+const collectionNft = computed(() => {
+  return collectionBatchs.value.slice(0, batchNftLength.value)
+})
 const nftResults = ref<NftInfo[]>([])
-const batchNftLength = ref(0)
-const exploreNftLength = ref(0)
+const batchNftLength = ref(10)
+const exploreNftLength = ref(20)
 const searchText = ref('')
 const searchLoading = ref(false)
 const networkError = ref(false)
@@ -37,47 +43,32 @@ const tabOptions = ref(1)
 const sortOptionsVisible = ref(false)
 const filterOptionsVisible = ref(false)
 const hoverIndex = ref(0)
-const getNftsInit = async () => {
-  try {
+const getNftsInit = () => {
+  if (allNftsList.value.length) {
     networkError.value = false
     searchLoading.value = true
-    const [hotNftReslut, collectionBatchReslut, allNftsReslut] = await Promise.all([getHotNfts(), getNftCollections(), getNfts()])
-    hotNfts.value = hotNftReslut.sort((a, b) => {
-      return +b.price - +a.price
-    })
-    collectionBatchs.value = collectionBatchReslut
-    allNfts.value = allNftsReslut
-    SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-    nextTick(() => {
-      document.documentElement.scrollTop = 0
-    })
-    loadMoreBatchNft()
-    loadMoreNft()
+    console.log(allNftsList.value)
+    allNfts.value = allNftsList.value
+    // loadMoreNft()
     setTimeout(() => {
       searchLoading.value = false
     }, 300)
-  } catch (error) {
+  } else {
     networkError.value = true
   }
 }
-getNftsInit()
 
 const searchNfts = async (text: string) => {
   try {
     networkError.value = false
-    exploreNftLength.value = 20
     searchLoading.value = true
     if (text) {
       allNfts.value = await getSearchNFTs(text)
-      SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-      nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
       setTimeout(async () => {
         searchLoading.value = false
       }, 300)
     } else {
-      allNfts.value = await getNfts()
-      SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-      nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+      allNfts.value = allNftsList.value
       setTimeout(async () => {
         searchLoading.value = false
       }, 300)
@@ -96,6 +87,7 @@ const viewMoreBatchNfts = (batchName: string) => {
   document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
 }
 const updateScrollTop = async () => {
+  sessionScrollTop()
   nextTick(() => {
     if (sessionStorage.getItem('scrollTop')) {
       const top = sessionStorage.getItem('scrollTop')
@@ -104,40 +96,25 @@ const updateScrollTop = async () => {
   })
 }
 const loadMoreBatchNft = async () => {
-  if (batchNftLength.value < collectionBatchs.value.length) {
-    batchNftLength.value = batchNftLength.value + (window.innerWidth > 768 ? 10 : 2)
-    collectionNft.value = collectionBatchs.value.slice(0, batchNftLength.value)
-    await updateScrollTop()
-  }
+  batchNftLength.value = batchNftLength.value + (window.innerWidth > 768 ? 10 : 2)
+  await updateScrollTop()
 }
 const loadMoreNft = async () => {
   if (exploreNftLength.value < SortFilterNFts.value.length) {
     exploreNftLength.value = exploreNftLength.value + (window.innerWidth > 768 ? 20 : 10)
     nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
   }
+  // await updateScrollTop()
 }
 const switchTab = (tabId: number) => {
   tabOptions.value = tabId
   isViewMore.value = tabId === 1
-}
-
-watch(() => tabOptions.value, () => {
-  nextTick(() => {
-    nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
-  })
-  sessionStorage.removeItem('scrollTop')
-})
-watch(() => [nftResults.value, searchLoading.value], async (newVal, oldVal) => {
-  if (isViewMore.value && !newVal[1]) {
+  if (tabId === 1) {
     nextTick(() => {
-      document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
+      nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
     })
-  } else {
-    const scrollTop = document.documentElement.scrollTop
-    sessionStorage.setItem('scrollTop', scrollTop.toString())
-    await updateScrollTop()
   }
-})
+}
 const sortOptionsList = [
   {
     value: 'listing',
@@ -158,9 +135,6 @@ onActivated(() => {
 const sortOptions = ref(sortOptionsList[0])
 const switchSortOptions = async (options: Options) => {
   sortOptions.value = options
-  const { value } = filterOptions.value
-  SortFilterNFts.value = formatNFTList(allNfts.value, value, options.value)
-  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 
 const filterOptionsList = [
@@ -181,18 +155,15 @@ const filterOptionsList = [
 const filterOptions = ref(filterOptionsList[0])
 const switchFilterOptions = async (options: Options) => {
   filterOptions.value = options
-  const { value } = sortOptions.value
-  SortFilterNFts.value = formatNFTList(allNfts.value, options.value, value)
-  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
 }
 const closeSearch = async () => {
   isViewMore.value = false
   searchText.value = ''
-  allNfts.value = await getNfts()
-  SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-  nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+  allNfts.value = allNftsList.value
 }
 onMounted(async () => {
+  getNftsInit()
+  document.documentElement.scrollTop = 0
   window.addEventListener('resize', () => {
     windowWidth.value = document.documentElement.offsetWidth
   })
@@ -204,6 +175,19 @@ onMounted(async () => {
       filterOptionsVisible.value = false
     }
   })
+})
+watchEffect(async () => {
+  if (!searchLoading.value && isViewMore.value) {
+    nextTick(() => {
+      document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
+      isViewMore.value = false
+    })
+  }
+  if (allNfts.value.length && !searchLoading.value) {
+    SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
+    nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
+    await updateScrollTop()
+  }
 })
 </script>
 
@@ -224,7 +208,7 @@ onMounted(async () => {
         </LabelItem>
         <div class="md:mt-10  mt-4 flex flex-wrap justify-between grid-nft">
           <NftCard
-            v-for="(nftItem, index) in (windowWidth > 650 ? hotNfts : hotNfts.slice(0, 4))"
+            v-for="(nftItem, index) in (windowWidth > 650 ? hotNftsList : hotNftsList.slice(0, 4))"
             :key="index"
             class="sm:mb-6 mb-4 transform transition-all"
             :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
@@ -297,7 +281,7 @@ onMounted(async () => {
             @mouseout="hoverIndex = 0" />
           <Dashed class="h-px line xl:mx-8 mx-4" :class="(hoverIndex - 1) === index || (index === collectionNft.length - 1) ? 'invisible' : ''" />
         </div>
-        <LoadMore :no-more="batchNftLength >= collectionBatchs.length" @loadMore="loadMoreBatchNft" />
+        <LoadMore :no-more="batchNftLength >= collectionBatchs.length" @loadMore="loadMoreBatchNft()" />
       </div>
 
       <div v-show="tabOptions === 2" class="xl:w-1200px mx-auto px-4 xl:px-0">
