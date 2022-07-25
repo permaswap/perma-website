@@ -5,24 +5,28 @@
   font-family: 'Space Gtotesk Light';
   font-style: normal;
   font-weight: 300;
+  font-display: block;
   src: url('./fonts/SpaceGrotesk-Light.ttf');
 }
 @font-face {
   font-family: 'Space Gtotesk Medium';
   font-style: normal;
   font-weight: 500;
+  font-display: block;
   src: url('./fonts/SpaceGrotesk-Medium.ttf');
 }
 @font-face {
   font-family: 'Space Gtotesk SemiBold';
   font-style: normal;
   font-weight: 600;
+  font-display: block;
   src: url('./fonts/SpaceGrotesk-SemiBold.ttf');
 }
 @font-face {
   font-family: 'Space Gtotesk Bold';
   font-style: normal;
   font-weight: 700;
+  font-display: block;
   src: url('./fonts/SpaceGrotesk-Bold.ttf');
 }
 .fade-enter-active,
