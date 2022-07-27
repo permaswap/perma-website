@@ -1,5 +1,5 @@
 import BN from 'bignumber.js'
-import { NftInfo } from './types'
+import { NftInfo } from '@/store/state'
 BN.config({
   EXPONENTIAL_AT: 1000
 })

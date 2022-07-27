@@ -45,7 +45,7 @@
 import { defineProps, ref, onMounted, watch, defineEmits, computed } from 'vue'
 import BatchInfoItems from './BatchInfoItems.vue'
 import ViewMore from './ViewMore.vue'
-import { NftInfo, Stats } from '@/lib/types'
+import { NftInfo, Stats } from '@/store/state'
 import { getCollectionNFTs } from '@/lib/api'
 import NftCard from './NftCard.vue'
 import MoreInfo from '@/components/common/MoreInfo.vue'

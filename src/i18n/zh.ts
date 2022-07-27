@@ -1,7 +1,7 @@
 const messages = {
   languages_zh: '简体中文',
   languages_en: 'English',
-  slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 滑点损失',
+  slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 抢跑损失',
   coming_soon: '敬请期待',
   white_paper: '白皮书',
   advantage_1_title: '抗审查点对点网络',
@@ -17,7 +17,7 @@ const messages = {
   milestone: '里程碑',
   milestone_1_1: '去信任化的节点网络',
   milestone_1_2: '有限的 LP 节点（需持有 NFT）',
-  milestone_1_3: 'LP 成员获得 PSN 奖励',
+  milestone_1_3: 'LP 成员获得更多 PSN 奖励',
   milestone_1_4: 'PSN 不流通',
   milestone_2_1: '去准入的节点网络',
   milestone_2_2: '更多的 LP 节点（需质押 PSN）',

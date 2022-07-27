@@ -31,10 +31,7 @@
 <script setup lang='ts'>
 import { defineProps, defineEmits, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-interface Options{
-  label: string
-  value: string
-}
+import { Options } from '@/lib/types'
 interface Props {
   currentOptions: string
   visible: boolean

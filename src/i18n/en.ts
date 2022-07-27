@@ -1,7 +1,7 @@
 const messages = {
   languages_zh: '简体中文',
   languages_en: 'English',
-  slogan: 'Omnipresent Peer-to-peer; 100% Permanent 0% slippage.',
+  slogan: 'Omnipresent Peer-to-peer; 100% Permanent 0% front running slippage.',
   coming_soon: 'Coming Soon',
   white_paper: 'Whitepaper',
   advantage_1_title: 'Censor-resistant peer-to-peer networks',
@@ -17,7 +17,7 @@ const messages = {
   milestone: 'Milestone',
   milestone_1_1: 'Trustless node network',
   milestone_1_2: 'Limited LP nodes',
-  milestone_1_3: 'LPs get rewarded with PSN tokens',
+  milestone_1_3: 'LPs get rewarded with more PSN tokens',
   milestone_1_4: 'PSN is Non-Negotiable',
   milestone_2_1: 'Permissionless Node Network',
   milestone_2_2: 'More LP nodes (staking PSN)',
