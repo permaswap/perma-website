@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row items-center justify-between">
     <h2 class="md:text-36px text-18px font-space-gtotesk-medium">
-      {{ title }}
+      {{ label }}
     </h2>
     <slot />
   </div>
@@ -10,7 +10,7 @@
 <script setup lang='ts'>
 import { defineProps } from 'vue'
 interface Props {
-  title: string
+  label: string
 }
 defineProps<Props>()
 

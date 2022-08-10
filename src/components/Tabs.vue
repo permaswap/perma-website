@@ -24,7 +24,7 @@ interface Emits {
 }
 const emits = defineEmits<Emits>()
 const { t } = useI18n()
-const switchTab = (tabId:number) => {
+const switchTab = (tabId: number) => {
   emits('switch', tabId)
 }
 const itemsTab = [

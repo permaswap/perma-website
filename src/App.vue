@@ -4,10 +4,12 @@ import Navbar from './components/Navbar.vue'
 import { useStore } from './store'
 const scrollTop = ref(0)
 const store = useStore()
-store.dispatch('updateHotNftsInfoAsync')
-store.dispatch('updateCollectionBatchInfoAsync')
-store.dispatch('updateAllNftsInfoAsync')
 const windowWidth = ref(document.documentElement.offsetWidth)
+store.dispatch('updateHotNftsInfoAsync')
+store.dispatch('updateArNftsInfoAsync')
+store.dispatch('updateArBatchInfoAsync')
+store.dispatch('updateEthBatchInfoAsync')
+store.dispatch('updateEthNftsInfoAsync')
 
 onMounted(() => {
   window.addEventListener('scroll', () => {

@@ -97,7 +97,8 @@ const messages = {
     'winston-family': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the second batch of NFTs for Arweave Winston Family.',
     'winston-ever': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the first NFT for Arweave Winston.',
     'wonderland-and-the-funny-fellows': 'They once lived happily on the planet Wonderland. Now the doomsday is coming, will they survive?',
-    'everpay-other': ''
+    'everpay-other': '',
+    'The Crypto Slang Gang 2022': 'Akord invited artist Serge Seidlitz to create a set of 9 NFTs to celebrate the launch of the new smartweave version of Akord Protocol. The Crypto Slang Gang was his creation, and these iconic characters will be the first Atomic Arweave NFTs minted by Akord! Serge Seidlitz is represented by global creative agency B&A. During his 20-year career, his clients have included, The New York Times, The Washington Post, The Guardian, British Airways, Apple, Sony, Samsung, MTV, Coca-Cola, Uber, and KFC.'
   }
 }
 

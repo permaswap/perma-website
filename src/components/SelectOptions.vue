@@ -10,7 +10,7 @@
     </div>
     <transition name="fade">
       <div
-        v-if="visible"
+        v-show="visible"
         class="absolute top-12 left-0 bg-black w-full overflow-hidden py-2 z-20"
         :class="borderRadius ? borderRadius : ''"
         @mousemove="isHover= true"

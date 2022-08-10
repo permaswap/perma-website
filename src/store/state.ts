@@ -4,13 +4,15 @@ export interface Stats {
   num_owners: number
 }
 export interface Collection {
-  created_date: string
-  image_url: string
+  created_date?: string
+  image_url?: string
   name: string
-  slug: string
-  stats: Stats
+  slug?: string
+  stats?: Stats
 }
 export interface NftInfo {
+  tokenId: string
+  contractAddr: string
   auctionType: string
   collection: Collection
   collectionName: string
@@ -29,13 +31,29 @@ export interface NftInfo {
   topOfferSymbol: string
   timestamp: number
 }
+export interface ArCollectionNfts {
+  name: string
+}
+export interface ArNftInfo {
+  contractAddr: string
+  tokenId: string
+  owner: string
+  name: string
+  collectionName: string
+  imageUrl: string
+  timestamp: number
+}
 export interface State {
-  allNfts: NftInfo[]
+  arNfts: ArNftInfo[]
+  ethNfts: NftInfo[]
   hotNfts: NftInfo[]
-  collectionBatchNfts: Collection[]
+  ethBatchNfts: Collection[]
+  arBatchNfts: ArCollectionNfts[]
 }
 export const defaultState: State = {
-  allNfts: [],
+  arNfts: [],
+  ethNfts: [],
   hotNfts: [],
-  collectionBatchNfts: []
+  ethBatchNfts: [],
+  arBatchNfts: []
 }

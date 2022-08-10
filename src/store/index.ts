@@ -1,28 +1,37 @@
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
 import { State, defaultState } from './state'
-import { getAllNftsCollections, getHotNfts, getAllNfts } from '@/lib/api'
+import { getEthCollections, getHotNfts, getEthNfts, getArNfts, getArCollections } from '@/lib/api'
 import createPersistedState from 'vuex-persistedstate'
 // eslint-disable-next-line symbol-description
 export const vuexStoreKey: InjectionKey<Store<State>> = Symbol()
 export default createStore<State>({
   state: defaultState,
   mutations: {
-    updateAllNfts (state, nfts) {
-      state.allNfts = nfts
+    updateEthNfts (state, nfts) {
+      state.ethNfts = nfts
     },
     updateHotNfts (state, hotNfts) {
       state.hotNfts = hotNfts
     },
-    updateCollectNfts (state, nfts) {
-      console.log(nfts)
-      state.collectionBatchNfts = nfts
+    updatEthBatchNfts (state, nfts) {
+      state.ethBatchNfts = nfts
+    },
+    updateArNfts (state, nfts) {
+      state.arNfts = nfts
+    },
+    updateArCollectNfts (state, nfts) {
+      state.arBatchNfts = nfts
     }
   },
   actions: {
-    async updateAllNftsInfoAsync ({ commit }) {
-      const allNfts = await getAllNfts()
-      commit('updateAllNfts', allNfts)
+    async updateEthNftsInfoAsync ({ commit }) {
+      const allNfts = await getEthNfts()
+      commit('updateEthNfts', allNfts)
+    },
+    async updateArNftsInfoAsync ({ commit }) {
+      const allNfts = await getArNfts()
+      commit('updateArNfts', allNfts)
     },
     async updateHotNftsInfoAsync ({ commit }) {
       const nfts = await getHotNfts()
@@ -31,10 +40,13 @@ export default createStore<State>({
       })
       commit('updateHotNfts', hotNfts)
     },
-    async updateCollectionBatchInfoAsync ({ commit }) {
-      const nfts = await getAllNftsCollections()
-      console.log(nfts)
-      commit('updateCollectNfts', nfts)
+    async updateEthBatchInfoAsync ({ commit }) {
+      const nfts = await getEthCollections()
+      commit('updatEthBatchNfts', nfts)
+    },
+    async updateArBatchInfoAsync ({ commit }) {
+      const nfts = await getArCollections()
+      commit('updateArCollectNfts', nfts)
     }
   },
   plugins: [createPersistedState()]
