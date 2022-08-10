@@ -1,121 +1,52 @@
 <script lang="ts" setup>
-import { getSearchNFTs } from '@/lib/api'
-import { onMounted, ref, nextTick, computed, onActivated, watchEffect } from 'vue'
+import { onMounted, ref, computed, onActivated } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Options } from '@/lib/types'
 import { useStore } from '@/store'
-import { NftInfo } from '@/store/state'
-import { goHTMLPosition, checkParentsHas, formatNFTList, sessionScrollTop } from '@/lib/util'
+import { goHTMLPosition } from '@/lib/util'
 import NftCard from '@/components/NftCard.vue'
 import LabelItem from '@/components/LabelItem.vue'
 import NftHeads from './NFT/NftHeads.vue'
-import BatchCard from '../components/BatchCard.vue'
 import ViewMore from '@/components/ViewMore.vue'
-import LoadMore from '@/components/LoadMore.vue'
-import Tabs from '@/components/Tabs.vue'
-import SeachInput from '@/components/SearchInput.vue'
-import SelectOptions from '@/components/SelectOptions.vue'
 import Footer from '../components/Footer.vue'
-import notSearchFound from '@/components/notSearchFound.vue'
-import Dashed from '@/components/common/Dashed.vue'
-const { t, locale } = useI18n()
+import NftModel from './NFT/NftModel.vue'
+const { t } = useI18n()
 const store = useStore()
+const ethNetworkErr = ref(false)
+const arNetworkErr = ref(false)
 const windowWidth = ref(document.documentElement.offsetWidth)
-const allNftsList = computed(() => store.state.allNfts)
+const allEthNfts = computed(() => store.state.ethNfts)
+const allArNfts = computed(() => store.state.arNfts)
 const hotNftsList = computed(() => store.state.hotNfts)
-const collectionBatchs = computed(() => store.state.collectionBatchNfts)
-const isSortSelectTarget = checkParentsHas('sortSelect')
-const isFilterSelectTarget = checkParentsHas('filterSelect')
-const allNfts = ref<NftInfo[]>([])
-const SortFilterNFts = ref<NftInfo[]>([])
-const collectionNft = computed(() => {
-  return collectionBatchs.value.slice(0, batchNftLength.value)
-})
-const nftResults = ref<NftInfo[]>([])
-const batchNftLength = ref(10)
-const exploreNftLength = ref(20)
-const searchText = ref('')
-const searchLoading = ref(false)
-const networkError = ref(false)
-const noResults = computed(() => !nftResults.value.length)
-const nftBoxWidth = ref(0)
-const tabOptions = ref(1)
-const sortOptionsVisible = ref(false)
-const filterOptionsVisible = ref(false)
-const hoverIndex = ref(0)
-const getNftsInit = () => {
-  if (allNftsList.value.length) {
-    networkError.value = false
-    searchLoading.value = true
-    console.log(allNftsList.value)
-    allNfts.value = allNftsList.value
-    // loadMoreNft()
-    setTimeout(() => {
-      searchLoading.value = false
-    }, 300)
-  } else {
-    networkError.value = true
-  }
-}
+const ethBatchsNfts = computed(() => store.state.ethBatchNfts)
+const arBatchsNfts = computed(() => store.state.arBatchNfts)
 
-const searchNfts = async (text: string) => {
-  try {
-    networkError.value = false
-    searchLoading.value = true
-    if (text) {
-      allNfts.value = await getSearchNFTs(text)
-      setTimeout(async () => {
-        searchLoading.value = false
-      }, 300)
-    } else {
-      allNfts.value = allNftsList.value
-      setTimeout(async () => {
-        searchLoading.value = false
-      }, 300)
+onActivated(() => {
+  sessionStorage.removeItem('scrollTop')
+})
+onMounted(async () => {
+  await store.dispatch('updateHotNftsInfoAsync')
+  if (!allEthNfts.value.length || !ethBatchsNfts.value.length) {
+    try {
+      await store.dispatch('updateEthBatchInfoAsync')
+      await store.dispatch('updateEthNftsInfoAsync')
+    } catch {
+      ethNetworkErr.value = true
     }
-  } catch (error) {
-    networkError.value = true
   }
-}
-const isViewMore = ref(false)
-const viewMoreBatchNfts = (batchName: string) => {
-  isViewMore.value = true
-  searchText.value = batchName
-  tabOptions.value = 2
-  filterOptions.value = filterOptionsList[0]
-  searchNfts(batchName)
-  document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
-}
-const updateScrollTop = async () => {
-  sessionScrollTop()
-  nextTick(() => {
-    if (sessionStorage.getItem('scrollTop')) {
-      const top = sessionStorage.getItem('scrollTop')
-      document.documentElement.scrollTop = +(top as string)
+  if (!allArNfts.value.length || !arBatchsNfts.value.length) {
+    try {
+      await store.dispatch('updateArNftsInfoAsync')
+      await store.dispatch('updateArBatchInfoAsync')
+    } catch {
+      arNetworkErr.value = true
     }
+  }
+  document.documentElement.scrollTop = 0
+  window.addEventListener('resize', () => {
+    windowWidth.value = document.documentElement.offsetWidth
   })
-}
-const loadMoreBatchNft = async () => {
-  batchNftLength.value = batchNftLength.value + (window.innerWidth > 768 ? 10 : 2)
-  await updateScrollTop()
-}
-const loadMoreNft = async () => {
-  if (exploreNftLength.value < SortFilterNFts.value.length) {
-    exploreNftLength.value = exploreNftLength.value + (window.innerWidth > 768 ? 20 : 10)
-    nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
-  }
-  // await updateScrollTop()
-}
-const switchTab = (tabId: number) => {
-  tabOptions.value = tabId
-  isViewMore.value = tabId === 1
-  if (tabId === 1) {
-    nextTick(() => {
-      nftBoxWidth.value = (document.getElementById('collection') as HTMLElement).offsetWidth
-    })
-  }
-}
-const sortOptionsList = [
+})
+const ethSortOptions = [
   {
     value: 'listing',
     label: 'recently_listed'
@@ -129,15 +60,7 @@ const sortOptionsList = [
     label: 'price_low_high'
   }
 ]
-onActivated(() => {
-  sessionStorage.removeItem('scrollTop')
-})
-const sortOptions = ref(sortOptionsList[0])
-const switchSortOptions = async (options: Options) => {
-  sortOptions.value = options
-}
-
-const filterOptionsList = [
+const ethFilterOptions = [
   {
     value: 'all',
     label: 'all_status'
@@ -151,44 +74,12 @@ const filterOptionsList = [
     label: 'on_auction'
   }
 ]
-
-const filterOptions = ref(filterOptionsList[0])
-const switchFilterOptions = async (options: Options) => {
-  filterOptions.value = options
-}
-const closeSearch = async () => {
-  isViewMore.value = false
-  searchText.value = ''
-  allNfts.value = allNftsList.value
-}
-onMounted(async () => {
-  getNftsInit()
-  document.documentElement.scrollTop = 0
-  window.addEventListener('resize', () => {
-    windowWidth.value = document.documentElement.offsetWidth
-  })
-  document.addEventListener('click', (e) => {
-    if (!isSortSelectTarget(e.target as any)) {
-      sortOptionsVisible.value = false
-    }
-    if (!isFilterSelectTarget(e.target as any)) {
-      filterOptionsVisible.value = false
-    }
-  })
-})
-watchEffect(async () => {
-  if (!searchLoading.value && isViewMore.value) {
-    nextTick(() => {
-      document.documentElement.scrollTop = (document.getElementById('ethnfts') as HTMLElement).offsetTop - 50
-      isViewMore.value = false
-    })
+const arSortOptions = [
+  {
+    value: 'listing',
+    label: 'recently_listed'
   }
-  if (allNfts.value.length && !searchLoading.value) {
-    SortFilterNFts.value = formatNFTList(allNfts.value, filterOptions.value.value, sortOptions.value.value)
-    nftResults.value = SortFilterNFts.value.slice(0, exploreNftLength.value)
-    await updateScrollTop()
-  }
-})
+]
 </script>
 
 <template>
@@ -198,7 +89,7 @@ watchEffect(async () => {
     <div class="hot-nfts relative" style="min-height: 500px;">
       <img src="@/images/hot-nft-bg.png" class="hot-nfts-img absolute" alt="">
       <div class="xl:w-1200px px-4 xl:px-0 mx-auto md:mt-20 mt-14">
-        <LabelItem :title="t('nft.hot_nfts')">
+        <LabelItem :label="t('nft.hot_nfts')">
           <ViewMore
             class="hover:border-permaGreen9 hover:text-permaGreen9 border-permaBorderGreen text-permaWhite2"
             type="viewMoreActive"
@@ -223,110 +114,31 @@ watchEffect(async () => {
         </div>
       </div>
     </div>
-
-    <div id="ethnfts" class="ethereum-nft-area pt-8 md:pt-20">
-      <div class="xl:w-1200px mx-auto px-4 xl:px-0">
-        <LabelItem title="Ethereum NFTs" />
-        <div class="flex justify-between md:items-center items-start flex-wrap flex-col md:flex-row md:mt-6 mt-3">
-          <Tabs :tab="tabOptions" @switch="switchTab" />
-          <div v-show="tabOptions === 2" class="flex items-center md:flex-row flex-col md:mt-0 mt-6 md:w-auto w-full">
-            <SeachInput
-              v-model="searchText"
-              class="md:hidden block"
-              @search="searchNfts(searchText)"
-              @close="closeSearch" />
-            <div class="flex flex-row mt-4 w-full md:w-auto md:mt-0 justify-between">
-              <SelectOptions
-                :class="locale === 'zh' ? 'md:min-w-145px' : 'md:min-w-160px'"
-                class="filterSelect md:mr-6 mr-4 flex-1 md:flex-none py-2 h-10"
-                :options-list="filterOptionsList"
-                :visible="filterOptionsVisible"
-                border-radius="rounded-lg"
-                :current-options="filterOptions.value"
-                @click="filterOptionsVisible = !filterOptionsVisible; sortOptionsVisible = false"
-                @switchOptions="switchFilterOptions">
-                <span class="md:mr-5 whitespace-nowrap">{{ t(filterOptions.label) }}</span>
-              </SelectOptions>
-              <SelectOptions
-                :class="locale === 'zh' ? 'md:min-w-145px' : 'md:min-w-198px'"
-                class="sortSelect md:mr-6 flex-1 md:flex-none h-10"
-                :options-list="sortOptionsList"
-                :visible="sortOptionsVisible"
-                border-radius="rounded-lg"
-                :current-options="sortOptions.value"
-                @click="sortOptionsVisible = !sortOptionsVisible; filterOptionsVisible = false"
-                @switchOptions="switchSortOptions">
-                <span class="md:mr-5 whitespace-nowrap">{{ t(sortOptions.label) }}</span>
-              </SelectOptions>
-            </div>
-            <SeachInput
-              v-model="searchText"
-              class="md:block hidden"
-              @search="searchNfts(searchText)"
-              @close="closeSearch" />
-          </div>
-        </div>
-      </div>
-      <div v-show="tabOptions === 1">
-        <div v-for="(collection, index) in collectionNft" :key="collection.name" class="xl:w-1264px mx-auto batch-box">
-          <BatchCard
-            :key="collection.name"
-            :name="collection.name"
-            :image-url="collection.image_url"
-            :stats="collection.stats"
-            :slug="collection.slug"
-            :nft-box-width="nftBoxWidth"
-            @viewMore="viewMoreBatchNfts"
-            @mousemove="hoverIndex = index"
-            @mouseout="hoverIndex = 0" />
-          <Dashed class="h-px line xl:mx-8 mx-4" :class="(hoverIndex - 1) === index || (index === collectionNft.length - 1) ? 'invisible' : ''" />
-        </div>
-        <LoadMore :no-more="batchNftLength >= collectionBatchs.length" @loadMore="loadMoreBatchNft()" />
-      </div>
-
-      <div v-show="tabOptions === 2" class="xl:w-1200px mx-auto px-4 xl:px-0">
-        <notSearchFound v-if="networkError" :title="t('network_err')" />
-        <notSearchFound v-else-if="searchLoading" :title="t('searching')" />
-        <notSearchFound v-else-if="noResults" :title="t('no_results')" />
-        <div v-else class="lg:pt-5">
-          <div class="flex flex-wrap justify-between grid-nft md:mt-10 mt-6">
-            <NftCard
-              v-for="nftItem in nftResults"
-              :key="nftItem.name"
-              class="sm:mb-6 mb-4 transform transition-all"
-              :class="nftItem.imageUrl ? 'hover:-translate-y-2 hover:bg-permaBlack6' : ''"
-              :image-url="nftItem.imageUrl"
-              :owner="nftItem.owner"
-              :collection-name="nftItem.collectionName"
-              :name="nftItem.name"
-              :amount="nftItem.price"
-              :symbol="nftItem.priceSymbol"
-              :perma-link="nftItem.permaLink"
-              :owner-link="nftItem.ownerLink" />
-          </div>
-          <LoadMore :no-more="exploreNftLength >= SortFilterNFts.length" @loadMore="loadMoreNft" />
-        </div>
-      </div>
-    </div>
-    <div class="arweave-nft-area md:mt-20 mt-12">
-      <div class="xl:w-1200px mx-auto px-4 xl:px-0">
-        <h3 class="text-xl md:text-4xl text-permaWhite">
-          Arweave NFTs
-        </h3>
-        <div
-          class=" cursor-not-allowed mt-2 md:mt-6 text-sm md:text-base"
-          style="color:rgba(255,255,255,0.25)">
-          {{ t('coming_soon') }}
-        </div>
-      </div>
-    </div>
+    <NftModel
+      id="ethnfts"
+      :check-parents="['sortEthSelect','filterEthSelect']"
+      label="Ethereum NFTs"
+      :sort-options-arr="ethSortOptions"
+      :filter-options-arr="ethFilterOptions"
+      :collection-batchs="ethBatchsNfts"
+      :net-work-err="ethNetworkErr"
+      :all-nfts-list="allEthNfts" />
+    <NftModel
+      id="arnfts"
+      :check-parents="['sortArSelect','filterArSelect']"
+      label="Arweave NFTs"
+      :sort-options-arr="arSortOptions"
+      :filter-options-arr="[]"
+      :collection-batchs="arBatchsNfts"
+      :net-work-err="arNetworkErr"
+      :all-nfts-list="allArNfts" />
     <div>
       <Footer :window-width="windowWidth" />
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .grid-nft {
   display: grid;
   grid-template-columns: repeat(auto-fill, 164px);
