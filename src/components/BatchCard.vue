@@ -21,7 +21,7 @@
           type="nftBatchActive"
           @click="emits('viewMore',name)" />
       </div>
-      <div class="flex-1 flex flex-wrap collection" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
+      <div class="flex-1 flex flex-wrap collection z-10" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
         <NftCard
           v-for="(item, index) in collectionNft"
           :key="index"
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang='ts'>
-import { defineProps, ref, onMounted, watch, defineEmits, computed, withDefaults } from 'vue'
+import { defineProps, ref, onMounted, watch, defineEmits, computed, withDefaults, onDeactivated, onActivated } from 'vue'
 import BatchInfoItems from './BatchInfoItems.vue'
 import ViewMore from './ViewMore.vue'
 import { Stats } from '@/store/state'
@@ -80,9 +80,12 @@ const batchNftI18 = computed(() => {
 })
 onMounted(() => {
   getInitNFTs()
-  window.addEventListener('resize', () => {
-    updateCollectionNftLength()
-  })
+})
+onDeactivated(() => {
+  window.removeEventListener('resize', updateCollectionNftLength)
+})
+onActivated(() => {
+  window.addEventListener('resize', updateCollectionNftLength)
 })
 const collectionNft = ref<any[]>([])
 const updateCollectionNftLength = () => {
