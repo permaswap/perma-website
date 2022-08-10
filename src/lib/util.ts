@@ -1,5 +1,5 @@
 import BN from 'bignumber.js'
-import { NftInfo } from '@/store/state'
+import { ArNftInfo, NftInfo } from '@/store/state'
 BN.config({
   EXPONENTIAL_AT: 1000
 })
@@ -58,12 +58,31 @@ export const sortNfts = (nfts: NftInfo[], value: string): NftInfo[] => {
     })
   }
 }
-export const formatNFTList = (nfts: NftInfo[], filterOptions: string, sortOptions: string): NftInfo[] => {
+export const formatNFTList = (nfts: NftInfo[] | ArNftInfo[], filterOptions: string, sortOptions: string, id: string): NftInfo[] | ArNftInfo[] => {
+  if (id === 'ethnfts') {
+    return ethereumFormatNFT(nfts as NftInfo[], filterOptions, sortOptions)
+  } else {
+    return arweaveFormatNft(nfts, filterOptions, sortOptions)
+  }
+}
+export const ethereumFormatNFT = (nfts: NftInfo[], filterOptions: string, sortOptions: string): NftInfo[] => {
   const newFilterNfts = filterNfts(nfts, filterOptions)
   return sortNfts(newFilterNfts, sortOptions)
 }
-
+export const arweaveFormatNft = (nfts: ArNftInfo[], filterOptions: string, sortOptions: string): ArNftInfo[] => {
+  if (sortOptions === 'listing') {
+    return nfts.sort((a, b) => {
+      return b.timestamp - a.timestamp
+    })
+  }
+  return nfts
+}
 export const sessionScrollTop = (): void => {
   const scrollTop = document.documentElement.scrollTop
   sessionStorage.setItem('scrollTop', scrollTop.toString())
+}
+export const openLink = (link: string): void => {
+  if (link.length > 0) {
+    window.open(link)
+  }
 }

@@ -97,7 +97,8 @@ const messages = {
     'winston-family': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the second batch of NFTs for Arweave Winston Family.',
     'winston-ever': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the first NFT for Arweave Winston.',
     'wonderland-and-the-funny-fellows': 'They once lived happily on the planet Wonderland. Now the doomsday is coming, will they survive?',
-    'everpay-other': ''
+    'everpay-other': '',
+    'The Crypto Slang Gang 2022': 'Akord 邀请了艺术家 Serge Seidlitz 为此次 NFT 拍卖活动创作了 Crypto Slang Gang 系列的 9 个NFTs，以庆祝 Akord 协议 smartweave 新版的推出。Crypto Slang Gang 所包含的标志性人物是由 Akord 所铸造的第一个在 Arweave 上的原子 NFTs。 Serge Seidlitz 是知名经纪人机构 B&A 旗下艺术家，在他 20 年的职业生涯中，他曾为《纽约时报》、《华盛顿邮报》、《卫报》、英国航空公司、苹果、索尼、三星、MTV、可口可乐、Uber 和 KFC 提供设计。'
   }
 }
 

@@ -15,13 +15,13 @@
             {{ batchNftI18 }}
           </MoreInfo>
         </div>
-        <BatchInfoItems :items="stats.count" :owners="stats.num_owners" :floor-price="stats.floor_price" />
+        <BatchInfoItems :items="stats ? stats.count : 0" :owners="stats ? stats.num_owners : 0" :floor-price="stats ? stats.floor_price : 0" />
         <ViewMore
           class="md:mt-12 mt-6 inline-block text-black hover:bg-permaGreen9 border-none bg-permaGreen10"
           type="nftBatchActive"
           @click="emits('viewMore',name)" />
       </div>
-      <div id="collection" class="flex-1 flex flex-wrap" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
+      <div class="flex-1 flex flex-wrap collection z-10" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
         <NftCard
           v-for="(item, index) in collectionNft"
           :key="index"
@@ -42,19 +42,20 @@
 </template>
 
 <script setup lang='ts'>
-import { defineProps, ref, onMounted, watch, defineEmits, computed } from 'vue'
+import { defineProps, ref, onMounted, watch, defineEmits, computed, withDefaults, onDeactivated, onActivated } from 'vue'
 import BatchInfoItems from './BatchInfoItems.vue'
 import ViewMore from './ViewMore.vue'
-import { NftInfo, Stats } from '@/store/state'
-import { getCollectionNFTs } from '@/lib/api'
+import { Stats } from '@/store/state'
+import { getArCollectionNFTs, getEthCollectionNFTs } from '@/lib/api'
 import NftCard from './NftCard.vue'
 import MoreInfo from '@/components/common/MoreInfo.vue'
 import { floor } from 'lodash'
+
 import { useI18n } from 'vue-i18n'
 interface Props {
   name: string
   imageUrl: string
-  stats: Stats
+  stats: Stats | null
   nftBoxWidth: number
   slug: string
 }
@@ -63,26 +64,40 @@ interface Emits {
 }
 const { t } = useI18n()
 const emits = defineEmits<Emits>()
-const props = defineProps<Props>()
-const collectionNfts = ref<NftInfo[]>([])
+const props = withDefaults(defineProps<Props>(), {
+  name: '',
+  imageUrl: require('../images/occupancy.png'),
+  nftBoxWidth: 0,
+  slug: ''
+})
+const collectionNfts = ref<any[]>([])
 const getInitNFTs = async () => {
-  collectionNfts.value = await getCollectionNFTs(props.name)
+  collectionNfts.value = await (props.stats ? getEthCollectionNFTs(props.name) : getArCollectionNFTs(props.name))
   updateCollectionNftLength()
 }
 const batchNftI18 = computed(() => {
-  return t(`nft_info.${props.slug}`).replace('=', '@')
+  return t(`nft_info.${props.slug ? props.slug : props.name}`).replace('=', '@')
 })
 onMounted(() => {
   getInitNFTs()
-  window.addEventListener('resize', () => {
-    updateCollectionNftLength()
-  })
 })
-const collectionNft = ref<NftInfo[]>([])
+onDeactivated(() => {
+  window.removeEventListener('resize', updateCollectionNftLength)
+})
+onActivated(() => {
+  window.addEventListener('resize', updateCollectionNftLength)
+})
+const collectionNft = ref<any[]>([])
 const updateCollectionNftLength = () => {
-  const width = (document.getElementById('collection') as HTMLElement).offsetWidth ? (document.getElementById('collection') as HTMLElement).offsetWidth : props.nftBoxWidth
+  const width = (document.querySelector('.collection') as Element).clientWidth ? (document.querySelector('.collection') as Element).clientWidth : props.nftBoxWidth
   const collectionSliceLength = floor((width / (window.innerWidth > 768 ? 299 : 170))) ? floor((width / (window.innerWidth > 768 ? 299 : 170))) : 1
-  collectionNft.value = collectionNfts.value.slice(0, collectionSliceLength).sort((a, b) => +b.price - +a.price)
+  collectionNft.value = collectionNfts.value.sort((a, b) => {
+    if (a.price !== undefined && b.price !== undefined) {
+      return b.price - a.price
+    } else {
+      return b.timestamp - a.timestamp
+    }
+  }).slice(0, collectionSliceLength)
 }
 watch(() => props.nftBoxWidth, () => {
   updateCollectionNftLength()

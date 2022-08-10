@@ -88,7 +88,7 @@ const meunLanguagesVisible = ref(false)
 
 <template>
   <div
-    class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-10 px-4"
+    class="md:px-8 xl:px-14 w-full fixed mt-0 flex flex-row items-center justify-between z-30 px-4"
     style="transition:padding .4s;height: 80px;"
     :class="scrollTop === 0 ? 'md:pt-6' : 'pt-0 navbar'"
   >
