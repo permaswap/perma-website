@@ -27,11 +27,11 @@ const ItemsArr = computed(() => {
   return [
     {
       title: 'nft.items',
-      value: props.items
+      value: props.items ? props.items : '--'
     },
     {
       title: 'nft.owners',
-      value: props.owners
+      value: props.owners ? props.owners : '--'
     },
     {
       title: 'nft.floor_price',
