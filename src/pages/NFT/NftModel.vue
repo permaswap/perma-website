@@ -148,6 +148,7 @@ const viewMoreBatchNfts = (batchName: string) => {
   isViewMore.value = true
   text.value = batchName
   tabOptions.value = 2
+  sortOptions.value = props.sortOptionsArr.length ? props.sortOptionsArr[0] : {} as Options
   filterOptions.value = props.filterOptionsArr.length ? props.filterOptionsArr[0] : {} as Options
   searchNfts(batchName)
   nextTick(() => {
@@ -193,6 +194,8 @@ const switchTab = (tabId: number) => {
       nftBoxWidth.value = (document.querySelector('.collection') as Element).clientWidth
     })
   } else {
+    sortOptions.value = props.sortOptionsArr.length ? props.sortOptionsArr[0] : {} as Options
+    filterOptions.value = props.filterOptionsArr.length ? props.filterOptionsArr[0] : {} as Options
     clearSearch()
   }
   updateScrollTop()
@@ -213,7 +216,6 @@ const switchFilterOptions = async (options: Options) => {
 }
 
 const updateScrollTop = async () => {
-  console.log('131313')
   sessionScrollTop()
   nextTick(() => {
     if (sessionStorage.getItem('scrollTop')) {
