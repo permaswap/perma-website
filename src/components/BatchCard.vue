@@ -21,7 +21,7 @@
           type="nftBatchActive"
           @click="emits('viewMore',name)" />
       </div>
-      <div class="flex-1 flex flex-wrap collection z-10" :class="collectionNft.length > 2 ? 'justify-between' : 'justify-start'">
+      <div class="flex-1 flex flex-wrap z-10 " :class="`${collectionNft.length > 2 ? 'justify-between' : 'justify-start'} ${className}`">
         <NftCard
           v-for="(item, index) in collectionNft"
           :key="index"
@@ -58,6 +58,7 @@ interface Props {
   stats: Stats | null
   nftBoxWidth: number
   slug: string
+  className:string
 }
 interface Emits {
   (e:'viewMore', batchName:string):void
@@ -89,7 +90,7 @@ onActivated(() => {
 })
 const collectionNft = ref<any[]>([])
 const updateCollectionNftLength = () => {
-  const width = (document.querySelector('.collection') as Element).clientWidth ? (document.querySelector('.collection') as Element).clientWidth : props.nftBoxWidth
+  const width = (document.querySelector(`.${props.className}`) as Element).clientWidth ? (document.querySelector(`.${props.className}`) as Element).clientWidth : props.nftBoxWidth
   const collectionSliceLength = floor((width / (window.innerWidth > 768 ? 299 : 170))) ? floor((width / (window.innerWidth > 768 ? 299 : 170))) : 1
   collectionNft.value = collectionNfts.value.sort((a, b) => {
     if (a.price !== undefined && b.price !== undefined) {
