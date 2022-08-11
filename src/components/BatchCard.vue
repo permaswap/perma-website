@@ -66,7 +66,7 @@ const { t } = useI18n()
 const emits = defineEmits<Emits>()
 const props = withDefaults(defineProps<Props>(), {
   name: '',
-  imageUrl: require('../images/occupancy.png'),
+  imageUrl: require('../images/the-bull.png'),
   nftBoxWidth: 0,
   slug: ''
 })
