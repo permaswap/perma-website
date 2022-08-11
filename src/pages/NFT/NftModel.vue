@@ -47,7 +47,7 @@
     <div v-show="tabOptions === 1">
       <div v-for="(collection, index) in collectionNft" :key="collection.name" class="xl:w-1264px mx-auto batch-box">
         <BatchCard
-          :key="collection.name"
+          :class-name="id"
           :name="collection.name"
           :image-url="collection.image_url"
           :stats="collection.stats ? collection.stats : null"
@@ -191,7 +191,7 @@ const switchTab = (tabId: number) => {
   isViewMore.value = tabId === 1
   if (tabId === 1) {
     nextTick(() => {
-      nftBoxWidth.value = (document.querySelector('.collection') as Element).clientWidth
+      nftBoxWidth.value = (document.querySelector(`.${props.id}`) as Element).clientWidth
     })
   } else {
     sortOptions.value = props.sortOptionsArr.length ? props.sortOptionsArr[0] : {} as Options
