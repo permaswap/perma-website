@@ -10,23 +10,26 @@
         <span>{{ price }}</span>
       </div>
       <div v-else class="hover:text-permaGreen9 transition-all">
-        <a :href="permaLink" target="_blank">
+        <a v-if="permaLink" :href="permaLink" target="_blank">
           {{ t('make_offer') }}
         </a>
+        <div v-else class="text-permaWhite2">
+          -
+        </div>
       </div>
-      <div class="hover:text-permaGreen9 text-permaWhite2 transition-all font-medium">
-        <a :href="ownerLink" target="_blank">
+      <div class="hover:text-permaGreen9 text-permaWhite2 transition-all font-medium cursor-pointer">
+        <div @click="openLink(ownerLink)">
           {{ formatAddress }}
-        </a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
-import { computed, defineProps } from 'vue'
+import { computed, defineProps, withDefaults } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { toBN } from '@/lib/util'
+import { toBN, openLink } from '@/lib/util'
 import TokenLogo from '@/components/TokenLogo.vue'
 interface Props {
   symbol: string
@@ -36,13 +39,25 @@ interface Props {
   permaLink: string
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  symbol: '',
+  amount: '',
+  address: '',
+  ownerLink: '',
+  permaLink: ''
+})
 const { t } = useI18n()
 const price = computed(() => {
-  return toBN(props.amount).toFormat(2)
+  if (props.amount) {
+    return toBN(props.amount).toFormat(2)
+  }
+  return ''
 })
 const formatAddress = computed(() => {
-  return props.address.slice(0, 4) + '...' + props.address.slice(-2)
+  if (props.address) {
+    return props.address.slice(0, 4) + '...' + props.address.slice(-2)
+  }
+  return ''
 })
 </script>
 

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import isObject from 'lodash/isObject'
 import isString from 'lodash/isString'
-import { NftInfo, Collection } from '@/store/state'
+import { NftInfo, Collection, ArNftInfo, ArCollectionNfts } from '@/store/state'
 const isProd = window.location.host.includes('permaswap.network') && !window.location.host.includes('dev')
 const apiHost = `https://nft${isProd ? '' : '-dev'}.permaswap.network`
 
@@ -43,8 +43,7 @@ export const sendRequest = async (config: AxiosRequestConfig): Promise<AxiosResp
     })
   })
 }
-
-export const getAllNfts = async (): Promise<NftInfo[]> => {
+export const getEthNfts = async (): Promise<NftInfo[]> => {
   const url = `${apiHost}/info`
   const result = await sendRequest({
     url,
@@ -53,7 +52,15 @@ export const getAllNfts = async (): Promise<NftInfo[]> => {
 
   return result.data
 }
+export const getArNfts = async (): Promise<ArNftInfo[]> => {
+  const url = `${apiHost}/ar/info`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
 
+  return result.data
+}
 export const getHotNfts = async (): Promise<NftInfo[]> => {
   const url = `${apiHost}/hot`
   const result = await sendRequest({
@@ -63,7 +70,7 @@ export const getHotNfts = async (): Promise<NftInfo[]> => {
   return result.data
 }
 
-export const getAllNftsCollections = async (): Promise<Collection[]> => {
+export const getEthCollections = async (): Promise<Collection[]> => {
   const url = `${apiHost}/collections`
   const result = await sendRequest({
     url,
@@ -72,7 +79,7 @@ export const getAllNftsCollections = async (): Promise<Collection[]> => {
   return result.data
 }
 
-export const getCollectionNFTs = async (collectionName: string): Promise<NftInfo[]> => {
+export const getEthCollectionNFTs = async (collectionName: string): Promise<NftInfo[]> => {
   const url = `${apiHost}/collection/${collectionName}/nft`
   const result = await sendRequest({
     url,
@@ -80,8 +87,32 @@ export const getCollectionNFTs = async (collectionName: string): Promise<NftInfo
   })
   return result.data
 }
-export const getSearchNFTs = async (query: string): Promise<NftInfo[]> => {
+export const getSearchEthNFTs = async (query: string): Promise<NftInfo[]> => {
   const url = `${apiHost}/query/${query}`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+export const getArCollections = async (): Promise<ArCollectionNfts[]> => {
+  const url = `${apiHost}/ar/collections`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+export const getArCollectionNFTs = async (collectionName: string): Promise<ArNftInfo[]> => {
+  const url = `${apiHost}/ar/collection/${collectionName}/nft`
+  const result = await sendRequest({
+    url,
+    method: 'GET'
+  })
+  return result.data
+}
+export const getSearchArNFTs = async (query: string): Promise<ArNftInfo[]> => {
+  const url = `${apiHost}/ar/query/${query}`
   const result = await sendRequest({
     url,
     method: 'GET'

@@ -1,19 +1,19 @@
 <template>
   <div class="md:pt-3 md:pb-4 pb-10px md:px-3 pt-2 px-2 rounded-2xl bg-permaBlack md:w-282px w-164px">
     <div class="md:pb-4 pb-10px">
-      <a :href="permaLink" target="_blank">
-        <!-- <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px" :style="`background-image: url(${imageUrl});`" />
-         -->
+      <div class="cursor-pointer" @click="openLink(permaLink)">
         <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px flex items-end justify-center bg-permaBlack6">
-          <img
-            v-if="imageUrl"
-            :src="imageUrl"
-            :class="collectionName.includes('Winston-EVER') ? 'scale-125 translate-y-4' : ''"
-            class="h-full w-full transform"
-            style="object-fit:cover">
+          <div v-if="imageUrl" class="h-full">
+            <img
+              decoding="async"
+              :src="imageUrl"
+              :class="collectionName.includes('Winston-EVER') ? 'scale-125 translate-y-4' : ''"
+              class="h-full w-full transform"
+              style="object-fit:cover">
+          </div>
           <img v-else src="@/images/occupancy.png" class="w-3/4 h-3/4">
         </div>
-      </a>
+      </div>
       <div class="md:mt-4 mt-10px md:px-1 px-0.5 nftCardMInHeight">
         <div class="text-14px md:text-base truncate font-medium">
           {{ name }}
@@ -34,9 +34,10 @@
 </template>
 
 <script setup lang='ts'>
-import { defineProps } from 'vue'
+import { defineProps, withDefaults } from 'vue'
 import NftCardInfo from './NftCardInfo.vue'
 import Dashed from './common/Dashed.vue'
+import { openLink } from '@/lib/util'
 interface Props {
   imageUrl: string
   owner: string
@@ -47,7 +48,16 @@ interface Props {
   amount: string
   symbol: string
 }
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  imageUrl: require('../images/occupancy.png'),
+  owner: '',
+  name: '',
+  collectionName: '',
+  permaLink: '',
+  ownerLink: '',
+  amount: '',
+  symbol: ''
+})
 </script>
 
 <style>
