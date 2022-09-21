@@ -108,11 +108,11 @@ watch(props, () => {
               {{ roadmap.title }}
             </div>
             <ul
-              class="w-72 sm:w-80 font-space-gtotesk-light text-base"
+              class=" sm:w-80 font-space-gtotesk-light text-base"
               style="transition:color .6s;"
               :style="`color:${activeIndex >= index ? '#D7D7D7' : ''}`"
             >
-              <li v-for="(item, index2) in roadmap.items" :key="index2" class="mb-2">
+              <li v-for="(item, index2) in roadmap.items" :key="index2" class="mb-2 break-all">
                 {{ t(item) }}
               </li>
             </ul>
