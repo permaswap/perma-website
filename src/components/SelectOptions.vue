@@ -1,7 +1,7 @@
 <template>
   <div
-    class="flex flex-row items-center relative px-4 bg-permaGreen8 cursor-pointer border border-solid transition-colors"
-    :class="`${visible ? 'border-permaGreen11 opacity-100' : 'border-permaBorderGreen opacity-80 hover:border-permaGreen9 hover:opacity-100'} ${borderRadius ? borderRadius : ''}`">
+    class="flex flex-row items-center relative px-4  cursor-pointer border border-solid transition-colors"
+    :class="`${ borderNone ? 'bg-transparent opacity-80' : visible ? 'border-permaGreen11 opacity-100 bg-permaGreen8' : 'border-permaBorderGreen opacity-80 bg-permaGreen8 hover:border-permaGreen9 hover:opacity-100'} ${borderRadius ? borderRadius : ''}`">
     <div class="flex items-center w-full justify-between">
       <slot /><img
         src="@/images/down.png"
@@ -37,6 +37,7 @@ interface Props {
   visible: boolean
   optionsList: Options[]
   borderRadius: string
+  borderNone: boolean
 }
 interface Emits {
   (e:'switchOptions', options:Options):void

@@ -100,7 +100,10 @@ module.exports = {
       borderWidth: ['last'],
       padding: ['last'],
       margin: ['last'],
-      width: ['last']
+      width: ['last'],
+      textColor: ['active'],
+      backgroundColor: ['active'],
+      borderColor: ['active']
     }
   },
   plugins: []

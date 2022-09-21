@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { isProd } from '@/constants'
 const props = defineProps<{
   windowWidth: number
 }>()
@@ -48,10 +49,19 @@ const ball2Left = computed(() => {
           {{ t('slogan') }}
         </div>
       </div>
-      <div
-        class="text-center text-permaWhite3 cursor-not-allowed font-space-gtotesk-light bg-permaWhite4 mt-4 md:mt-16 text-base py-3 mx-auto w-32 md:w-36 rounded-lg"
-      >
-        {{ t('coming_soon') }}
+      <div class="flex justify-center md:mt-16 mt-4">
+        <a
+          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
+          target="_blank"
+          class=" border-permaBorderGreen border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-6 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+          {{ t('download_lp') }}
+        </a>
+        <a
+          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+          target="_blank"
+          class="bg-permaGreen10  active:bg-permaGreen11 bg-opacity-80 rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
+          {{ t('launch') }}
+        </a>
       </div>
     </div>
     <img
