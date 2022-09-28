@@ -99,51 +99,42 @@ const meunLanguagesVisible = ref(false)
     :class="scrollTop === 0 ? 'md:pt-6' : 'pt-0 navbar'"
   >
     <!-- PC 端 -->
-    <router-link to="/">
-      <img src="../images/logo4.png" class=" h-7">
-    </router-link>
+    <div class="flex-1">
+      <router-link to="/" class="w-max">
+        <img src="../images/logo4.png" class=" h-7">
+      </router-link>
+    </div>
     <!-- PC 端中间 logo -->
     <!-- <img
       :src="logo1"
       class="h-8 absolute left-1/2 -translate-x-1/2"
       :class="scrollTop === 0 ? 'hidden lg:block' : 'hidden'"
     > -->
-    <div class="flex items-center">
-      <div class="lg:block hidden">
-        <div class="flex items-center">
+    <div class="lg:block hidden flex-1">
+      <div class="flex items-center justify-center">
+        <div
+          v-for="(item,index) in navbarList"
+          :key="index"
+          :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-10 mr-6'"
+          class="flex flex-row items-center text-base">
           <div
-            v-for="(item,index) in navbarList"
-            :key="index"
-            :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-10 mr-6'"
-            class="flex flex-row items-center text-base">
-            <div
-              v-if="!item.open"
-              :class="item.routeNames.includes(routeName) ? 'text-permaGreen10 font-medium' : 'text-permaWhite hover:text-permaWhite2'">
-              <router-link :to="item.to">
-                {{ item.title }}
-              </router-link>
-            </div>
-            <a
-              v-else
-              target="_blank"
-              class="hover:text-permaWhite2 text-permaWhite"
-              :href="item.to">
+            v-if="!item.open"
+            :class="item.routeNames.includes(routeName) ? 'text-permaGreen10 font-medium' : 'text-permaWhite hover:text-permaWhite2'">
+            <router-link :to="item.to">
               {{ item.title }}
-            </a>
+            </router-link>
           </div>
-          <SelectOptions
-            class="lang-wrapper lg:ml-10 ml-6 text-base py-1 border-opacity-0 hover:text-white hover:opacity-100"
-            :current-options="locale"
-            :visible="languagesVisible"
-            :options-list="localeList"
-            border-radius="rounded-md"
-            :border-none="true"
-            @click="languagesVisible = !languagesVisible"
-            @switch-options="changeLocale">
-            <span>{{ locale === 'zh' ? '简体中文' : 'English' }}</span>
-          </SelectOptions>
+          <a
+            v-else
+            target="_blank"
+            class="hover:text-permaWhite2 text-permaWhite"
+            :href="item.to">
+            {{ item.title }}
+          </a>
         </div>
       </div>
+    </div>
+    <div class="flex items-center flex-1 justify-end">
       <div
         class="menu-bar flex flex-row items-center justify-center cursor-pointer lg:hidden py-1 px-4 border border-solid rounded-md transition-all"
         :class="mobileMenu || meunLanguagesVisible ? 'border-permaGreen10 text-white' : 'border-permaBorderGreen text-permaWhite'"
@@ -151,10 +142,23 @@ const meunLanguagesVisible = ref(false)
       >
         Menu
       </div>
+      <div class="lg:block hidden">
+        <SelectOptions
+          class="lang-wrapper text-base py-1 border-opacity-0 hover:text-white hover:opacity-100 "
+          :current-options="locale"
+          :visible="languagesVisible"
+          :options-list="localeList"
+          border-radius="rounded-md"
+          :border-none="true"
+          @click="languagesVisible = !languagesVisible"
+          @switch-options="changeLocale">
+          <span>{{ locale === 'zh' ? '中文' : 'En' }}</span>
+        </SelectOptions>
+      </div>
       <a
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
         target="_blank"
-        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-6 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
         {{ t('download_lp') }}
       </a>
       <a

@@ -1,6 +1,6 @@
 const messages = {
-  languages_zh: '简体中文',
-  languages_en: 'English',
+  languages_zh: '中文',
+  languages_en: 'En',
   slogan: '无处不在的 P2P 兑换网络，100% 永续运行和 0% 抢跑损失',
   coming_soon: '敬请期待',
   white_paper: '白皮书',
