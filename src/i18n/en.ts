@@ -41,7 +41,7 @@ const messages = {
   roadmap_3_2: 'Start Staking liquidity mining',
   roadmap_3_3: 'Negotiable Token',
   roadmap_4_1: 'Start the Prophet network and open the era of multiple Routers',
-  roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation.",
+  roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation",
   certified_nft: 'Certified NFTs',
   launch: 'Launch App',
   download_lp: 'Download LP'
