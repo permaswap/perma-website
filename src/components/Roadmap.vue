@@ -83,7 +83,7 @@ watch(props, () => {
           v-for="(roadmap, index) in roadmaps"
           :key="index"
           class="flex flex-row items-start justify-start"
-          style="height: 205px;">
+          style="min-height: 205px;">
           <div
             class="w-12 h-12 sm:w-12 sm:h-12 flex flex-row items-center justify-center relative rounded-full mr-6 sm:mr-24"
             style="transition:background .6s;"
@@ -112,7 +112,7 @@ watch(props, () => {
               style="transition:color .6s;"
               :style="`color:${activeIndex >= index ? '#D7D7D7' : ''}`"
             >
-              <li v-for="(item, index2) in roadmap.items" :key="index2" class="mb-2 break-all">
+              <li v-for="(item, index2) in roadmap.items" :key="index2" class="mb-2">
                 {{ t(item) }}
               </li>
             </ul>

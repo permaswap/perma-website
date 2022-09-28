@@ -55,7 +55,7 @@ onMounted(() => {
         class="md:flex items-center justify-between"
         :class="index % 2 ? 'flex-row-reverse' : 'flex-row'">
         <div class="feature-content text-white lg:w-1/2">
-          <div class="text-2xl mb-4 md:text-36px font-space-gtotesk-semiBold lg:text-48px lg:font-space-gtotesk-bold lg:mb-8">
+          <div class="text-2xl mb-4 md:text-36px lg:text-48px font-space-gtotesk-bold font-bold lg:mb-8">
             {{ t(feature.title) }}
           </div>
           <div class="font-space-gtotesk-light text-sm lg:text-xl leading-relaxed" style="color:#DDDDDD;">
