@@ -108,9 +108,9 @@ const meunLanguagesVisible = ref(false)
       class="h-8 absolute left-1/2 -translate-x-1/2"
       :class="scrollTop === 0 ? 'hidden lg:block' : 'hidden'"
     > -->
-    <div class="flex items-center">
-      <div class="lg:block hidden">
-        <div class="flex items-center">
+    <div class="flex items-center flex-1 justify-end">
+      <div class="lg:block hidden flex-1">
+        <div class="flex items-center justify-center">
           <div
             v-for="(item,index) in navbarList"
             :key="index"
@@ -131,17 +131,6 @@ const meunLanguagesVisible = ref(false)
               {{ item.title }}
             </a>
           </div>
-          <SelectOptions
-            class="lang-wrapper lg:ml-10 ml-6 text-base py-1 border-opacity-0 hover:text-white hover:opacity-100"
-            :current-options="locale"
-            :visible="languagesVisible"
-            :options-list="localeList"
-            border-radius="rounded-md"
-            :border-none="true"
-            @click="languagesVisible = !languagesVisible"
-            @switch-options="changeLocale">
-            <span>{{ locale === 'zh' ? '简体中文' : 'English' }}</span>
-          </SelectOptions>
         </div>
       </div>
       <div
@@ -151,10 +140,23 @@ const meunLanguagesVisible = ref(false)
       >
         Menu
       </div>
+      <div class="lg:block hidden">
+        <SelectOptions
+          class="lang-wrapper text-base py-1 border-opacity-0 hover:text-white hover:opacity-100 "
+          :current-options="locale"
+          :visible="languagesVisible"
+          :options-list="localeList"
+          border-radius="rounded-md"
+          :border-none="true"
+          @click="languagesVisible = !languagesVisible"
+          @switch-options="changeLocale">
+          <span>{{ locale === 'zh' ? '简体中文' : 'English' }}</span>
+        </SelectOptions>
+      </div>
       <a
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
         target="_blank"
-        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-6 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-5 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
         {{ t('download_lp') }}
       </a>
       <a
