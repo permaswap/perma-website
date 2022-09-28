@@ -1,6 +1,6 @@
 const messages = {
-  languages_zh: '简体中文',
-  languages_en: 'English',
+  languages_zh: '中文',
+  languages_en: 'En',
   slogan: 'Omnipresent Peer-to-peer; 100% Permanent 0% front running slippage.',
   coming_soon: 'Coming Soon',
   white_paper: 'Whitepaper',
