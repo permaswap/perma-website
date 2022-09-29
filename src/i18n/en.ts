@@ -47,7 +47,7 @@ const messages = {
   roadmap_3_3: 'Negotiable Token',
   roadmap_4_1: 'Start the Prophet network and open the era of multiple Routers',
   roadmap_5_1:
-    "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation.",
+    "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation",
   nft: {
     certified_nft: 'Certified NFTs',
     certified_nft_desc:
