@@ -98,7 +98,9 @@ const messages = {
     'winston-ever': 'Winston is arweaves mascot and the smallest unit of the arweave token. everPay designers present the first NFT for Arweave Winston.',
     'wonderland-and-the-funny-fellows': 'They once lived happily on the planet Wonderland. Now the doomsday is coming, will they survive?',
     'everpay-other': '',
-    'The Crypto Slang Gang 2022': 'Akord 邀请了艺术家 Serge Seidlitz 为此次 NFT 拍卖活动创作了 Crypto Slang Gang 系列的 9 个NFTs，以庆祝 Akord 协议 smartweave 新版的推出。Crypto Slang Gang 所包含的标志性人物是由 Akord 所铸造的第一个在 Arweave 上的原子 NFTs。 Serge Seidlitz 是知名经纪人机构 B&A 旗下艺术家，在他 20 年的职业生涯中，他曾为《纽约时报》、《华盛顿邮报》、《卫报》、英国航空公司、苹果、索尼、三星、MTV、可口可乐、Uber 和 KFC 提供设计。'
+    'The Crypto Slang Gang 2022': 'Akord 邀请了艺术家 Serge Seidlitz 为此次 NFT 拍卖活动创作了 Crypto Slang Gang 系列的 9 个NFTs，以庆祝 Akord 协议 smartweave 新版的推出。Crypto Slang Gang 所包含的标志性人物是由 Akord 所铸造的第一个在 Arweave 上的原子 NFTs。 Serge Seidlitz 是知名经纪人机构 B&A 旗下艺术家，在他 20 年的职业生涯中，他曾为《纽约时报》、《华盛顿邮报》、《卫报》、英国航空公司、苹果、索尼、三星、MTV、可口可乐、Uber 和 KFC 提供设计。',
+    'arks-by-decent-land': '经过数百代人的寻觅，Arks 是最终首批 43 艘到达 Yowunas Maias 定居并开始生活的方舟。该系列 NFT 将发行在以太坊上并在 Arweave 上进行托管。 Arks 系列还是 decent.land 早期用户的通行证 -- web3 dapps 的社会和身份协议。Arks 持有者将被列入白名单，可用于未来的 decent.land 、代币和更多使用场景。除了在协议中的使用场景， decent.land 传说的故事前奏将通过 Arks 来展开。每个 Ark 的元数据都包含了创作者兼艺术总监 Lee Tyrrell 的丰富背景故事，其特征与叙述中的事件相互呼应。Jrdsctt 是 Arks 背后的视觉艺术家，他是一位多产的平面设计师和摄影师，以突出的美术 1/1 而闻名，并利用代码操纵艺术进行创新。',
+    'Bird Song': '《鳥鳴集》是以一系列瀕危鳥類的歌聲為靈感製作的專輯，旨在提高人們保護鳥類的意識以及籌集資金。在以前的專輯取得巨大成功後，本次在 everPay 上推出了新的合輯包含九首鳥類歌曲。所有的歌曲將被永遠儲存在 Arweave上。 這個項目是由非營利組織 Shika Shika 和音樂藝術家 El Búho 進行策劃。全部收入將用於保護瀕危鳥類。本次音樂輯都發行在 Pianity 平台之上，Pianity 是一個音樂 NFT 平台，音樂家和社區成員聚集在此，創造、收集和交易限量版的歌曲。 Pianity 開創了一種全新的模式：讓所有人可免費收聽音樂，並將智能合約與音樂文件永久存儲在 Arweave 上，這使藝術家和他的聽眾之間有了更深的聯繫。'
   }
 }
 

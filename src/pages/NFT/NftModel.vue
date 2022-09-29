@@ -76,6 +76,7 @@
             :owner="nftItem.owner"
             :collection-name="nftItem.collectionName"
             :name="nftItem.name"
+            :data-url="nftItem.dataUrl"
             :amount="nftItem.price"
             :symbol="nftItem.priceSymbol"
             :perma-link="nftItem.permaLink"
