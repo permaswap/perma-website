@@ -3,7 +3,7 @@
     <div class="flex">
       <div class="md:min-w-279px md:w-279px w-164px  min-w-164px md:mr-6 mr-4">
         <div class="md:w-120px md:h-120px w-20 h-20 bg-permaWhite4 md:p-1.5 p-1 md:rounded-xl rounded-lg">
-          <div class="md:rounded-lg rounded-md overflow-hidden h-full bg-no-repeat" :style="`background-image:url(${ imageUrl }); background-size:cover;background-position:bottom`" />
+          <div class="md:rounded-lg rounded-md overflow-hidden h-full bg-no-repeat" :style="`background-image:url(${collectImg }); background-size:cover;background-position:bottom`" />
         </div>
         <div class="md:mt-6 mt-4 md:text-18px text-14px text-info-two md:truncate  md:block min-h-44px md:min-h-0">
           {{ name }}
@@ -31,6 +31,7 @@
           :owner="item.owner"
           :collection-name="item.collectionName"
           :name="item.name"
+          :data-url="item.dataUrl"
           :symbol="item.priceSymbol"
           :perma-link="item.permaLink"
           :owner-link="item.ownerLink"
@@ -67,7 +68,7 @@ const { t } = useI18n()
 const emits = defineEmits<Emits>()
 const props = withDefaults(defineProps<Props>(), {
   name: '',
-  imageUrl: require('../images/the-bull.png'),
+  imageUrl: '',
   nftBoxWidth: 0,
   slug: ''
 })
@@ -88,6 +89,7 @@ onDeactivated(() => {
 onActivated(() => {
   window.addEventListener('resize', updateCollectionNftLength)
 })
+const collectImg = ref(require('../images/occupancy.png'))
 const collectionNft = ref<any[]>([])
 const updateCollectionNftLength = () => {
   const width = (document.querySelector(`.${props.className}`) as Element).clientWidth ? (document.querySelector(`.${props.className}`) as Element).clientWidth : props.nftBoxWidth
@@ -99,6 +101,7 @@ const updateCollectionNftLength = () => {
       return b.timestamp - a.timestamp
     }
   }).slice(0, collectionSliceLength)
+  collectImg.value = props.imageUrl ? props.imageUrl : collectionNft.value[0].imageUrl
 }
 watch(() => props.nftBoxWidth, () => {
   updateCollectionNftLength()

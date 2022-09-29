@@ -30,6 +30,7 @@ export interface NftInfo {
   topOffer: string
   topOfferSymbol: string
   timestamp: number
+  dataUrl?: string
 }
 export interface ArCollectionNfts {
   name: string
@@ -42,6 +43,7 @@ export interface ArNftInfo {
   collectionName: string
   imageUrl: string
   timestamp: number
+  dataUrl?: string
 }
 export interface State {
   arNfts: ArNftInfo[]

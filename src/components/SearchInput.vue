@@ -10,7 +10,7 @@
           :value="modelValue"
           type="text"
           :placeholder="t('search')"
-          class="focus:outline-none w-full h-full rounded-l-lg pl-3 pr-6 py-2 text-14px bg-permaGreen8"
+          class="focus:outline-none w-full h-full rounded-l-lg pl-3 pr-6 py-2 text-14px bg-permaGreen8 text-white"
           @keyup.enter="emits('search')"
           @input="handleInput"
           @focus="isFocus = true"

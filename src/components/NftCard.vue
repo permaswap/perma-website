@@ -3,13 +3,20 @@
     <div class="md:pb-4 pb-10px">
       <div class="cursor-pointer" @click="openLink(permaLink)">
         <div class="rounded-lg overflow-hidden md:w-258px md:h-258px w-148px h-148px flex items-end justify-center bg-permaBlack6">
-          <div v-if="imageUrl" class="h-full">
+          <div v-if="imageUrl" class="h-full relative">
             <img
               decoding="async"
               :src="imageUrl"
               :class="collectionName.includes('Winston-EVER') ? 'scale-125 translate-y-4' : ''"
               class="h-full w-full transform"
               style="object-fit:cover">
+            <div v-if="dataUrl.length > 0" class="absolute bottom-0 left-0 w-full">
+              <audio
+                class="w-full audio"
+                muted
+                controls
+                :src="dataUrl" />
+            </div>
           </div>
           <img v-else src="@/images/occupancy.png" class="w-3/4 h-3/4">
         </div>
@@ -47,6 +54,7 @@ interface Props {
   ownerLink: string
   amount: string
   symbol: string
+  dataUrl: string
 }
 withDefaults(defineProps<Props>(), {
   imageUrl: require('../images/occupancy.png'),
@@ -56,7 +64,8 @@ withDefaults(defineProps<Props>(), {
   permaLink: '',
   ownerLink: '',
   amount: '',
-  symbol: ''
+  symbol: '',
+  dataUrl: ''
 })
 </script>
 
@@ -68,5 +77,20 @@ withDefaults(defineProps<Props>(), {
 .nftCardMInHeight {
   min-height: 48px
 }
+}
+audio {
+  width: 100%;
+}
+audio::-webkit-media-controls-enclosure {
+  max-width: none;
+  border-radius: 0% !important;
+  background-color: rgba(255, 255, 255, 0.65) !important;
+}
+audio::-webkit-media-controls-panel {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+}
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: #1e140d
 }
 </style>
