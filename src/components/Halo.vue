@@ -54,7 +54,7 @@ const ball2Left = computed(() => {
           :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
           target="_blank"
           class=" border-permaBorderGreen border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-6 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
-          {{ t('download_lp') }}
+          {{ t('run_node') }}
         </a>
         <a
           :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"

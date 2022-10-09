@@ -159,7 +159,7 @@ const meunLanguagesVisible = ref(false)
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
         target="_blank"
         class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
-        {{ t('download_lp') }}
+        {{ t('run_node') }}
       </a>
       <a
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
@@ -215,7 +215,7 @@ const meunLanguagesVisible = ref(false)
               <a
                 :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
                 class="transition-colors py-2 flex"
-                target="_blank">{{ t('download_lp') }}</a>
+                target="_blank">{{ t('run_node') }}</a>
               <a
                 :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
                 class="transition-colors py-2 flex "
