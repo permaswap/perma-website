@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import isObject from 'lodash/isObject'
 import isString from 'lodash/isString'
 import { NftInfo, Collection, ArNftInfo, ArCollectionNfts } from '@/store/state'
-const isProd = window.location.host.includes('permaswap.network') && !window.location.host.includes('dev')
+import { isProd } from '@/constants'
 const apiHost = `https://nft${isProd ? '' : '-dev'}.permaswap.network`
 
 // `validateStatus` defines whether to resolve or reject the promise for a given

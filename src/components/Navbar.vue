@@ -2,7 +2,7 @@
 import { ref, defineProps, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { savedI18nStorageKey } from '@/constants'
+import { savedI18nStorageKey, isProd } from '@/constants'
 import { checkParentsHas } from '@/lib/util'
 import SelectOptions from './SelectOptions.vue'
 import ModalWrapper from '@/components/common/ModalWrapper.vue'
@@ -59,16 +59,22 @@ const routeName = computed(() => {
 const navbarList = computed(() => {
   return [
     {
-      title: 'white_paper',
-      to: locale.value === 'zh' ? 'https://mirror.xyz/permaswap.eth/kdg0iXx1jB-vXYEc_WEAeTNX_sGjv8BXksHxcFdoKjo' : 'https://mirror.xyz/permaswap.eth/ustZcDgavlm4xmYI26thEAj8W2cXlZpRkG5Jqz0iS14',
-      routeNames: [],
+      title: 'PermaDao',
+      to: 'https://www.notion.so/permadao/PermaDAO-052d694af9f841f1a07916df7f9d19b7',
+      routeNames: [''],
       open: true
     },
     {
-      title: 'nft.certified_nft',
-      to: '/nft',
-      routeNames: ['nft'],
-      open: false
+      title: t('certified_nft'),
+      to: `https://app${isProd ? '' : '-dev'}.permaswap.network/#/nft`,
+      routeNames: [''],
+      open: true
+    },
+    {
+      title: t('white_paper'),
+      to: locale.value === 'zh' ? 'https://mirror.xyz/permaswap.eth/kdg0iXx1jB-vXYEc_WEAeTNX_sGjv8BXksHxcFdoKjo' : 'https://mirror.xyz/permaswap.eth/ustZcDgavlm4xmYI26thEAj8W2cXlZpRkG5Jqz0iS14',
+      routeNames: [''],
+      open: true
     }
   ]
 })
@@ -93,27 +99,29 @@ const meunLanguagesVisible = ref(false)
     :class="scrollTop === 0 ? 'md:pt-6' : 'pt-0 navbar'"
   >
     <!-- PC 端 -->
-    <router-link to="/">
-      <img src="../images/logo4.png" class=" h-8">
-    </router-link>
+    <div class="flex-1">
+      <router-link to="/" class="w-max">
+        <img src="../images/logo4.png" class=" h-7">
+      </router-link>
+    </div>
     <!-- PC 端中间 logo -->
     <!-- <img
       :src="logo1"
       class="h-8 absolute left-1/2 -translate-x-1/2"
       :class="scrollTop === 0 ? 'hidden lg:block' : 'hidden'"
     > -->
-    <div class="md:block hidden">
-      <div class="flex items-center">
+    <div class="lg:block hidden flex-1">
+      <div class="flex items-center justify-center">
         <div
           v-for="(item,index) in navbarList"
           :key="index"
-          :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-16 mr-10'"
+          :class="index === navbarList.length - 1 ? 'mr-0' : 'lg:mr-10 mr-6'"
           class="flex flex-row items-center text-base">
           <div
             v-if="!item.open"
             :class="item.routeNames.includes(routeName) ? 'text-permaGreen10 font-medium' : 'text-permaWhite hover:text-permaWhite2'">
             <router-link :to="item.to">
-              {{ t(item.title) }}
+              {{ item.title }}
             </router-link>
           </div>
           <a
@@ -121,27 +129,44 @@ const meunLanguagesVisible = ref(false)
             target="_blank"
             class="hover:text-permaWhite2 text-permaWhite"
             :href="item.to">
-            {{ t(item.title) }}
+            {{ item.title }}
           </a>
         </div>
+      </div>
+    </div>
+    <div class="flex items-center flex-1 justify-end">
+      <div
+        class="menu-bar flex flex-row items-center justify-center cursor-pointer lg:hidden py-1 px-4 border border-solid rounded-md transition-all"
+        :class="mobileMenu || meunLanguagesVisible ? 'border-permaGreen10 text-white' : 'border-permaBorderGreen text-permaWhite'"
+        @click="mobileMenu = !mobileMenu"
+      >
+        Menu
+      </div>
+      <div class="lg:block hidden">
         <SelectOptions
-          class="lang-wrapper lg:ml-16 ml-10 text-base py-1"
+          class="lang-wrapper text-base py-1 border-opacity-0 hover:text-white hover:opacity-100 "
           :current-options="locale"
           :visible="languagesVisible"
           :options-list="localeList"
           border-radius="rounded-md"
+          :border-none="true"
           @click="languagesVisible = !languagesVisible"
           @switch-options="changeLocale">
-          <span>{{ locale === 'zh' ? '简体中文' : 'English' }}</span>
+          <span>{{ locale === 'zh' ? '中文' : 'En' }}</span>
         </SelectOptions>
       </div>
-    </div>
-    <div
-      class="menu-bar flex flex-row items-center justify-center cursor-pointer md:hidden py-1 px-4 border border-solid rounded-md transition-all"
-      :class="mobileMenu || meunLanguagesVisible ? 'border-permaGreen10 text-white' : 'border-permaBorderGreen text-permaWhite'"
-      @click="mobileMenu = !mobileMenu"
-    >
-      Menu
+      <a
+        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
+        target="_blank"
+        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+        {{ t('run_node') }}
+      </a>
+      <a
+        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+        target="_blank"
+        class="bg-permaGreen10  active:bg-permaGreen11 lg:block hidden rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
+        {{ t('launch') }}
+      </a>
     </div>
     <ModalWrapper :visible="mobileMenu">
       <div>
@@ -158,14 +183,14 @@ const meunLanguagesVisible = ref(false)
                 :to="item.to"
                 :class="item.routeNames.includes(routeName) ? 'text-permaGreen10' : ''"
                 class="transition-colors py-2 flex">
-                {{ t(item.title) }}
+                {{ item.title }}
               </router-link>
               <a
                 v-else
                 :href="item.to"
                 :class="item.routeNames.includes(routeName) ? 'text-permaGreen10' : ''"
                 class="transition-colors py-2 flex"
-                target="_blank">{{ t(item.title) }}</a>
+                target="_blank">{{ item.title }}</a>
             </div>
             <div class="border-t mt-6 border-permaWhite5" />
             <div class="pl-8 mt-6">
@@ -184,6 +209,17 @@ const meunLanguagesVisible = ref(false)
                   {{ t(item.label) }}
                 </div>
               </div>
+            </div>
+            <div class="border-t mt-6 border-permaWhite5" />
+            <div class=" lg:hidden block pl-8 mt-6">
+              <a
+                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
+                class="transition-colors py-2 flex"
+                target="_blank">{{ t('run_node') }}</a>
+              <a
+                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+                class="transition-colors py-2 flex "
+                target="_blank">{{ t('launch') }}</a>
             </div>
           </div>
         </div>

@@ -108,7 +108,7 @@ watch(props, () => {
               {{ roadmap.title }}
             </div>
             <ul
-              class="sm:w-80 font-space-gtotesk-light text-base"
+              class=" sm:w-80 font-space-gtotesk-light text-base"
               style="transition:color .6s;"
               :style="`color:${activeIndex >= index ? '#D7D7D7' : ''}`"
             >
