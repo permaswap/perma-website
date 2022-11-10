@@ -60,7 +60,7 @@ const navbarList = computed(() => {
   return [
     {
       title: 'PermaDao',
-      to: 'https://www.notion.so/permadao/PermaDAO-052d694af9f841f1a07916df7f9d19b7',
+      to: 'https://permadao.com/',
       routeNames: [''],
       open: true
     },
