@@ -53,13 +53,15 @@ const ball2Left = computed(() => {
         <a
           :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
           target="_blank"
-          class=" border-permaBorderGreen border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 md:ml-6 ml-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+          style="width:168px"
+          class=" border-permaBorderGreen flex justify-center items-center border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2 md:py-3  md:ml-6 sm:ml-4 ml-0 text-white text-opacity-80  cursor-pointer  transition-colors">
           {{ t('run_node') }}
         </a>
         <a
           :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
           target="_blank"
-          class="bg-permaGreen10  active:bg-permaGreen11 bg-opacity-80 rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
+          style="width:168px"
+          class="bg-permaGreen10 flex justify-center items-center  active:bg-permaGreen11 bg-opacity-80 rounded-lg text-black py-2 md:py-3 md:ml-12 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
           {{ t('launch') }}
         </a>
       </div>
