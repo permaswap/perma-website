@@ -101,7 +101,7 @@ const meunLanguagesVisible = ref(false)
     <!-- PC 端 -->
     <div class="flex-1">
       <router-link to="/" class="w-max">
-        <img src="../images/logo4.png" class=" h-7">
+        <img src="../images/logo4.png" class=" h-8">
       </router-link>
     </div>
     <!-- PC 端中间 logo -->
@@ -158,7 +158,7 @@ const meunLanguagesVisible = ref(false)
       <a
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
         target="_blank"
-        class=" border-permaBorderGreen lg:block hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+        class=" border-permaBorderGreen lg:block h-10 hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
         {{ t('run_node') }}
       </a>
       <a
@@ -218,7 +218,7 @@ const meunLanguagesVisible = ref(false)
                 target="_blank">{{ t('run_node') }}</a>
               <a
                 :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
-                class="transition-colors py-2 flex "
+                class="transition-colors py-2 flex"
                 target="_blank">{{ t('launch') }}</a>
             </div>
           </div>

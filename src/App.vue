@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-black text-white">
+  <div class="bg-black text-white font-space-grotesk-regular">
     <Navbar :scroll-top="scrollTop" :window-width="windowWidth" />
     <router-view v-slot="{ Component }">
       <keep-alive>

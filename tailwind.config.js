@@ -7,7 +7,8 @@ module.exports = {
         'space-gtotesk-light': 'Space Gtotesk Light',
         'space-gtotesk-medium': 'Space Gtotesk Medium',
         'space-gtotesk-semiBold': 'Space Gtotesk SemiBold',
-        'space-gtotesk-bold': 'Space Gtotesk Bold'
+        'space-gtotesk-bold': 'Space Gtotesk Bold',
+        'space-grotesk-regular': 'Space Grotesk Regular'
       },
       fontSize: {
         '120px': ['120px', '128px'],
