@@ -10,6 +10,7 @@ const scrollTop = ref(0)
 const windowWidth = ref(document.documentElement.offsetWidth)
 
 onMounted(() => {
+  console.log(1)
   window.addEventListener('scroll', () => {
     scrollTop.value = document.documentElement.scrollTop
   })
