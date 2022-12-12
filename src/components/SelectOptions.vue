@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-row items-center relative  cursor-pointer border border-solid transition-colors"
+    class="flex flex-row items-center relative  cursor-pointer border border-solid transition-colors mr-4"
     :class="`${ borderNone ? 'bg-transparent opacity-80' : visible ? 'border-permaGreen11 opacity-100 bg-permaGreen8' : 'border-permaBorderGreen opacity-80 bg-permaGreen8 hover:border-permaGreen9 hover:opacity-100'} ${borderRadius ? borderRadius : ''}`">
     <div
-      class="flex items-center w-full justify-center"
+      class="flex items-center w-full justify-end"
       style="width:79px"
     >
       <slot /><img
@@ -14,7 +14,7 @@
     <transition name="fade">
       <div
         v-show="visible"
-        class="absolute top-12 left-0 bg-black w-full overflow-hidden py-2 z-20"
+        class="absolute top-12 left-0 bg-permaGreen12 bg-opacity-70 w-full overflow-hidden py-2 z-20"
         :class="borderRadius ? borderRadius : ''"
         @mousemove="isHover= true"
         @mouseout="isHover = false">
