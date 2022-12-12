@@ -77,6 +77,7 @@ module.exports = {
         permaGreen9: '#A4E0A9',
         permaGreen10: '#79D483',
         permaGreen11: '#5AAD67',
+        permaGreen12: '#161E1B',
         permaWhite: 'rgba(255, 255, 255, 0.65)',
         permaWhite2: 'rgba(255, 255, 255, 0.85)',
         permaWhite3: 'rgba(255, 255, 255, 0.45)',
