@@ -7,7 +7,8 @@ module.exports = {
         'space-gtotesk-light': 'Space Gtotesk Light',
         'space-gtotesk-medium': 'Space Gtotesk Medium',
         'space-gtotesk-semiBold': 'Space Gtotesk SemiBold',
-        'space-gtotesk-bold': 'Space Gtotesk Bold'
+        'space-gtotesk-bold': 'Space Gtotesk Bold',
+        'space-grotesk-regular': 'Space Grotesk Regular'
       },
       fontSize: {
         '120px': ['120px', '128px'],
@@ -76,6 +77,7 @@ module.exports = {
         permaGreen9: '#A4E0A9',
         permaGreen10: '#79D483',
         permaGreen11: '#5AAD67',
+        permaGreen12: '#161E1B',
         permaWhite: 'rgba(255, 255, 255, 0.65)',
         permaWhite2: 'rgba(255, 255, 255, 0.85)',
         permaWhite3: 'rgba(255, 255, 255, 0.45)',
@@ -100,7 +102,10 @@ module.exports = {
       borderWidth: ['last'],
       padding: ['last'],
       margin: ['last'],
-      width: ['last']
+      width: ['last'],
+      textColor: ['active'],
+      backgroundColor: ['active'],
+      borderColor: ['active']
     }
   },
   plugins: []

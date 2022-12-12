@@ -7,6 +7,13 @@
   font-weight: 300;
   src: url('./fonts/SpaceGrotesk-Light.ttf');
 }
+
+@font-face {
+  font-family: 'Space Grotesk Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/SpaceGrotesk-Regular.ttf');
+}
 @font-face {
   font-family: 'Space Gtotesk Medium';
   font-style: normal;

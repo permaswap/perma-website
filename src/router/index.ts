@@ -8,11 +8,6 @@ const routes = [
     component: Home
   },
   {
-    path: '/nft',
-    name: 'nft',
-    component: async () => await import('../pages/NFT.vue')
-  },
-  {
     path: '/:pathMatch(.*)*',
     name: 'notFound',
     component: async () => await import('../pages/NotFound.vue')

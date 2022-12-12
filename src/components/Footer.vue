@@ -7,6 +7,7 @@ interface FooterSrcArr {
 defineProps<{
   windowWidth: number
 }>()
+const year = new Date().getFullYear()
 const footerImgSrc:FooterSrcArr[] = [
   {
     href: 'https://everpay.io',
@@ -29,7 +30,6 @@ const footerImgSrc:FooterSrcArr[] = [
     src: 'telegram.png'
   }
 ]
-const year = new Date().getFullYear()
 </script>
 
 <template>
@@ -39,10 +39,10 @@ const year = new Date().getFullYear()
     <div class="flex flex-col items-center mb-8 md:block md:mb-0">
       <img src="@/images/logo4.png" class="h-8 mb-3 z-10">
       <div class="text-xs font-space-gtotesk-light z-10" style="color:#8C8C8C">
-        ©{{ year }} everVision. All rights reserved
+        ©{{ year }} Permaswap. All rights reserved
       </div>
     </div>
-    <div class="flex flex-row items-center justify-center md:justify-end">
+    <div class="flex flex-row items-center justify-center md:justify-end z-50">
       <a
         v-for="(item, index) in footerImgSrc"
         :key="index"
