@@ -3,10 +3,11 @@ import { ref, defineProps, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { savedI18nStorageKey, isProd } from '@/constants'
-import { checkParentsHas } from '@/lib/util'
+import { checkParentsHas, isMobile } from '@/lib/util'
 import SelectOptions from './SelectOptions.vue'
 import ModalWrapper from '@/components/common/ModalWrapper.vue'
 import { Options } from '@/lib/types'
+
 defineProps<{
   scrollTop: number,
 }>()
@@ -58,15 +59,15 @@ const routeName = computed(() => {
 })
 const navbarList = computed(() => {
   return [
-    {
-      title: 'PermaDao',
-      to: 'https://permadao.com/',
-      routeNames: [''],
-      open: true
-    },
+    // {
+    //   title: 'PermaDao',
+    //   to: 'https://permadao.com/',
+    //   routeNames: [''],
+    //   open: true
+    // },
     {
       title: t('certified_nft'),
-      to: `https://app${isProd ? '' : '-dev'}.permaswap.network/#/nft`,
+      to: `https://app${isProd ? '' : '-dev'}.permaswap.network/nft`,
       routeNames: [''],
       open: true
     },
@@ -126,7 +127,7 @@ const meunLanguagesVisible = ref(false)
           </div>
           <a
             v-else
-            target="_blank"
+            :target="isMobile ? '' : '_blank'"
             class="hover:text-permaWhite2 text-permaWhite"
             :href="item.to">
             {{ item.title }}
@@ -156,15 +157,15 @@ const meunLanguagesVisible = ref(false)
         </SelectOptions>
       </div>
       <a
-        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
-        target="_blank"
-        class=" border-permaBorderGreen lg:block h-10 hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors">
+        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/pool`"
+        :target="isMobile ? '' : '_blank'"
+        class=" border-permaBorderGreen lg:block h-10 hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors whitespace-nowrap">
         {{ t('run_node') }}
       </a>
       <a
         :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
-        target="_blank"
-        class="bg-permaGreen10  active:bg-permaGreen11 lg:block hidden rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
+        :target="isMobile ? '' : '_blank'"
+        class="bg-permaGreen10  active:bg-permaGreen11 lg:block hidden rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors whitespace-nowrap">
         {{ t('launch') }}
       </a>
     </div>
@@ -190,7 +191,7 @@ const meunLanguagesVisible = ref(false)
                 :href="item.to"
                 :class="item.routeNames.includes(routeName) ? 'text-permaGreen10' : ''"
                 class="transition-colors py-2 flex"
-                target="_blank">{{ item.title }}</a>
+                :target="isMobile ? '' : '_blank'">{{ item.title }}</a>
             </div>
             <div class="border-t mt-6 border-permaWhite5" />
             <div class="pl-8 mt-6">
@@ -213,13 +214,13 @@ const meunLanguagesVisible = ref(false)
             <div class="border-t mt-6 border-permaWhite5" />
             <div class=" lg:hidden block pl-8 mt-6">
               <a
-                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/#/pool`"
+                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/pool`"
                 class="transition-colors py-2 flex"
-                target="_blank">{{ t('run_node') }}</a>
+                :target="isMobile ? '' : '_blank'">{{ t('run_node') }}</a>
               <a
                 :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
                 class="transition-colors py-2 flex"
-                target="_blank">{{ t('launch') }}</a>
+                :target="isMobile ? '' : '_blank'">{{ t('launch') }}</a>
             </div>
           </div>
         </div>
