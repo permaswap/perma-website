@@ -44,7 +44,7 @@ const messages = {
   roadmap_5_1: '启动 Flood 网络，完成 Permaswap Network 完全去中心化治理和运营',
   certified_nft: '认证的 NFT',
   launch: '启动 App',
-  run_node: '运行节点'
+  run_node: '質押'
 }
 
 export default messages

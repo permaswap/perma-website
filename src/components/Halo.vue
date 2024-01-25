@@ -6,7 +6,7 @@ import { isMobile } from '@/lib/util'
 const props = defineProps<{
   windowWidth: number
 }>()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const contentTop = computed(() => {
   return props.windowWidth > 768 ? props.windowWidth / 1720 * 300 : props.windowWidth / 375 * 150
 })
@@ -52,14 +52,14 @@ const ball2Left = computed(() => {
       </div>
       <div class="flex justify-center md:mt-16 mt-4">
         <a
-          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/pool`"
+          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/staking?lang=${locale}`"
           :target="isMobile ? '' : '_blank'"
           style="width:168px"
           class=" border-permaBorderGreen flex justify-center items-center border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2 md:py-3  md:ml-6 sm:ml-4 ml-0 text-white text-opacity-80  cursor-pointer  transition-colors">
           {{ t('run_node') }}
         </a>
         <a
-          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+          :href="`https://app${isProd ? '' : '-dev'}.permaswap.network?lang=${locale}`"
           :target="isMobile ? '' : '_blank'"
           style="width:168px"
           class="bg-permaGreen10 flex justify-center items-center  active:bg-permaGreen11 bg-opacity-80 rounded-lg text-black py-2 md:py-3 md:ml-12 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors">
