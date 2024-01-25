@@ -67,7 +67,7 @@ const navbarList = computed(() => {
     // },
     {
       title: t('certified_nft'),
-      to: `https://app${isProd ? '' : '-dev'}.permaswap.network/nft`,
+      to: `https://app${isProd ? '' : '-dev'}.permaswap.network/nft?lang=${locale}`,
       routeNames: [''],
       open: true
     },
@@ -157,13 +157,13 @@ const meunLanguagesVisible = ref(false)
         </SelectOptions>
       </div>
       <a
-        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/pool`"
+        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/staking?lang=${locale}`"
         :target="isMobile ? '' : '_blank'"
         class=" border-permaBorderGreen lg:block h-10 hidden border hover:border-permaGreen9 hover:text-permaGreen9 active:border-permaGreen10 active:text-permaGreen10  rounded-lg  py-2  px-4 text-white text-opacity-80  cursor-pointer  transition-colors whitespace-nowrap">
         {{ t('run_node') }}
       </a>
       <a
-        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+        :href="`https://app${isProd ? '' : '-dev'}.permaswap.network?lang=${locale}`"
         :target="isMobile ? '' : '_blank'"
         class="bg-permaGreen10  active:bg-permaGreen11 lg:block hidden rounded-lg text-black py-2  px-4 md:ml-6 ml-4  cursor-pointer hover:bg-permaGreen9 transition-colors whitespace-nowrap">
         {{ t('launch') }}
@@ -214,11 +214,11 @@ const meunLanguagesVisible = ref(false)
             <div class="border-t mt-6 border-permaWhite5" />
             <div class=" lg:hidden block pl-8 mt-6">
               <a
-                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/pool`"
+                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network/staking?lang=${locale}`"
                 class="transition-colors py-2 flex"
                 :target="isMobile ? '' : '_blank'">{{ t('run_node') }}</a>
               <a
-                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network`"
+                :href="`https://app${isProd ? '' : '-dev'}.permaswap.network?lang=${locale}`"
                 class="transition-colors py-2 flex"
                 :target="isMobile ? '' : '_blank'">{{ t('launch') }}</a>
             </div>

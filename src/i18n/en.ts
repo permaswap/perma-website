@@ -44,7 +44,7 @@ const messages = {
   roadmap_5_1: "Start the Flood network and complete the decentralized governance as well as Permaswap's Network operation",
   certified_nft: 'Certified NFTs',
   launch: 'Launch App',
-  run_node: 'Run a Node'
+  run_node: 'Staking'
 }
 
 export default messages
