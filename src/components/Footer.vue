@@ -14,7 +14,7 @@ const footerImgSrc:FooterSrcArr[] = [
     src: 'everpay.png'
   },
   {
-    href: 'https://github.com/permaswap/perma-website',
+    href: 'https://github.com/permadao/permaswap',
     src: 'github.png'
   },
   {
